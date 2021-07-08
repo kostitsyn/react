@@ -3,10 +3,11 @@
     background-color: coral;
 }
 
-.item {
+.item a {
     color: white;
+    text-decoration: none;
 }
 
-.active {
+.item a.active {
     color: indigo;
 }
