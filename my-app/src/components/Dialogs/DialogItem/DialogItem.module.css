@@ -1,0 +1,8 @@
+.dialogItem a {
+    color: cornsilk;
+    text-decoration: none;
+}
+
+.dialogItem .active {
+    color: indigo;
+}

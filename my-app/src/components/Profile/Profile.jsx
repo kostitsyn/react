@@ -1,16 +1,10 @@
 import MyPosts from "./MyPosts/MyPosts";
+import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
 
 const Profile = () =>
     <div>
-        <div>
-            <img src='https://cdn.mos.cms.futurecdn.net/wtqqnkYDYi2ifsWZVW2MT4-1200-80.jpg'></img>
-        </div>
-        <div>
-            ava + description
-        </div>
-        <textarea></textarea>
-        <button>Добавить</button>
+        <ProfileInfo />
         <MyPosts />
     </div>
 

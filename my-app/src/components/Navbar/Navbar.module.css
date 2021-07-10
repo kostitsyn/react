@@ -2,12 +2,3 @@
     grid-area: n;
     background-color: coral;
 }
-
-.item a {
-    color: white;
-    text-decoration: none;
-}
-
-.item a.active {
-    color: indigo;
-}
