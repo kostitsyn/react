@@ -1,1 +1,15 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+}
+
+.dialogItems {
+
+}
+
+.dialogItems .dialogItem {
+    color: #7c5fff;
+    text-decoration: none;
+}
+
 

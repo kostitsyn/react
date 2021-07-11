@@ -1,0 +1,9 @@
+.dialogItem a {
+    color: #7c5fff;
+    text-decoration: none;
+}
+
+a.active {
+    color: indigo;
+}
+
