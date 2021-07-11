@@ -1,6 +1,8 @@
-import c from './Messages.module.css'
+import c from './Messages.module.css';
 
-const Messages = (props) =>
+
+const Message = (props) =>
     <div className={c.message}>{props.message}</div>
 
-export default Messages;
+export default Message;
+

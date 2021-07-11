@@ -1,13 +1,19 @@
 import c from './Navbar.module.css';
-import {NavLink} from "react-router-dom";
+import NavItem from "./NavItem/NavItem";
+
+let navItems = [
+        {id: 1, navName: 'Profile'},
+        {id: 2, navName: 'Messages'},
+        {id: 3, navName: 'News'},
+        {id: 4, navName: 'Music'},
+        {id: 5, navName: 'Settings'}
+]
+
+let navItemElements = navItems.map(item => <NavItem navName={item.navName}/>);
 
 const Navbar = () =>
     <nav className={c.nav}>
-        <div className={c.item}><NavLink to="/profile" activeClassName={c.active}>Profile</NavLink></div>
-        <div className={c.item}><NavLink to="/dialogs" activeClassName={c.active}>Messages</NavLink></div>
-        <div className={c.item}><NavLink to="/news" activeClassName={c.active}>News</NavLink></div>
-        <div className={c.item}><NavLink to="/music" activeClassName={c.active}>Music</NavLink></div>
-        <div className={c.item}><NavLink to="/settings" activeClassName={c.active}>Settings</NavLink></div>
+        {navItemElements}
     </nav>
 
 export default Navbar;

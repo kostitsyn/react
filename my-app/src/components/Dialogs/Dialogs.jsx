@@ -1,36 +1,31 @@
-import c from './Dialogs.module.css'
+import c from './Dialogs.module.css';
+import Message from "./Messages/Messages";
 import DialogItem from "./DialogItem/DialogItem";
-import Messages from "./Messages/Messages";
 
 
-let dialogsData = [
+let dialogs = [
     {id: 1, name: 'Ivan'},
     {id: 2, name: 'Andrey'},
     {id: 3, name: 'Aleksey'},
     {id: 4, name: 'Vitaliy'},
     {id: 5, name: 'Sergey'}
 ]
+let dialogsElements = dialogs.map(d => <DialogItem name={d.name} id={d.id} />);
 
-let messagesData = [
+let messages = [
     {id: 1, message: 'Hello!'},
     {id: 2, message: 'What\'s up nigga!'},
     {id: 3, message: 'I\'m fine!'},
 ]
+let messagesElements = messages.map(m => <Message message={m.message} />);
 
-const Dialogs = (props) =>
-
+const Dialogs = () =>
     <div className={c.dialogs}>
         <div className={c.dialogItems}>
-            <DialogItem name={dialogsData[0].name} id={dialogsData[0].id} />
-            <DialogItem name={dialogsData[1].name} id={dialogsData[1].id} />
-            <DialogItem name={dialogsData[2].name} id={dialogsData[2].id} />
-            <DialogItem name={dialogsData[3].name} id={dialogsData[3].id} />
-            <DialogItem name={dialogsData[4].name} id={dialogsData[4].id} />
+            {dialogsElements}
         </div>
         <div className={c.messages}>
-            <Messages message={messagesData[0].message} />
-            <Messages message={messagesData[1].message} />
-            <Messages message={messagesData[2].message} />
+            {messagesElements}
         </div>
     </div>
 

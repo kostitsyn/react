@@ -1,9 +1,9 @@
 .dialogItem a {
-    color: #7c5fff;
+    color: cornsilk;
     text-decoration: none;
 }
 
-a.active {
+.dialogItem .active {
     color: indigo;
 }
 
