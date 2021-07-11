@@ -1,9 +1,14 @@
 import {NavLink} from "react-router-dom";
 import c from './DialogItem.module.css';
 
-const DialogItem = (props) =>
+const DialogItem = (props) => {
+    debugger;
+    return (
     <div className={c.dialogItem}>
-        <NavLink to={`/dialogs/${props.id}`} activeClassName={c.active}>{props.name}</NavLink>
+        <img src={props.ava} alt=''></img>
+        <NavLink to={`/messages/${props.id}`} activeClassName={c.active}>{props.name}</NavLink>
     </div>
+    )
+}
 
 export default DialogItem;

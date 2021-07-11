@@ -2,24 +2,11 @@ import c from './Dialogs.module.css';
 import Message from "./Messages/Messages";
 import DialogItem from "./DialogItem/DialogItem";
 
-
-let dialogs = [
-    {id: 1, name: 'Ivan'},
-    {id: 2, name: 'Andrey'},
-    {id: 3, name: 'Aleksey'},
-    {id: 4, name: 'Vitaliy'},
-    {id: 5, name: 'Sergey'}
-]
-let dialogsElements = dialogs.map(d => <DialogItem name={d.name} id={d.id} />);
-
-let messages = [
-    {id: 1, message: 'Hello!'},
-    {id: 2, message: 'What\'s up nigga!'},
-    {id: 3, message: 'I\'m fine!'},
-]
-let messagesElements = messages.map(m => <Message message={m.message} />);
-
-const Dialogs = () =>
+const Dialogs = (props) => {
+    /*let dialogsElements = props.state.dialogs.map(d => <DialogItem name={d.name} id={d.id} ava={d.ava} />);*/
+    let dialogsElements = props.state.dialogs.map(d => <DialogItem state={d} />);
+    let messagesElements = props.state.messages.map(m => <Message message={m.message} key={m.id} />);
+    return (
     <div className={c.dialogs}>
         <div className={c.dialogItems}>
             {dialogsElements}
@@ -28,5 +15,8 @@ const Dialogs = () =>
             {messagesElements}
         </div>
     </div>
+    )
+}
+
 
 export default Dialogs;

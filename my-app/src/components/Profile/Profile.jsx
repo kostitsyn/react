@@ -2,10 +2,10 @@ import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
 
-const Profile = () =>
+const Profile = (props) =>
     <div>
         <ProfileInfo />
-        <MyPosts />
+        <MyPosts posts={props.state.posts} />
     </div>
 
 export default Profile;
