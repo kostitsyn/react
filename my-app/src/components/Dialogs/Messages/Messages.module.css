@@ -7,6 +7,21 @@
     text-decoration: none;
 }
 
-.message {
+.message span {
+    color: cadetblue;
+    border: 5px solid deepskyblue;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    margin-right: 10px;
+    text-align: center;
+}
 
+.messageLeft {
+    text-align: left;
+}
+
+.messageRight {
+    text-align: right;
 }
