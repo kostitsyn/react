@@ -40,4 +40,15 @@ let state = {
     },
 }
 
+export let addPost = (postText) => {
+    debugger;
+    let lastId = state.profilePage.posts[state.profilePage.posts.length-1].id;
+    let newPost = {
+        id: ++lastId,
+        message: postText,
+        likeQuantity: 0,
+    }
+    state.profilePage.posts.push(newPost);
+}
+
 export default state;

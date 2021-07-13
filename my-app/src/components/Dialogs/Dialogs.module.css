@@ -2,10 +2,13 @@
     display: grid;
     grid-template-columns: 2fr 10fr;
     padding: 10px;
+    grid-template-areas:
+      "d m"
+      "0 a";
 }
 
 .dialogItems {
-
+    grid-area: d;
 }
 
 .dialogItems .dialogItem {
@@ -14,4 +17,9 @@
 }
 
 .messages {
+    grid-area: m;
+}
+
+.addMessage {
+    grid-area: a;
 }
