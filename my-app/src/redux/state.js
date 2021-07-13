@@ -1,3 +1,5 @@
+import {rerendererEntireTree} from "../render";
+
 let state = {
     sidebar: {
         navbar: [
@@ -47,8 +49,9 @@ export let addPost = (postText) => {
         id: ++lastId,
         message: postText,
         likeQuantity: 0,
-    }
+    };
     state.profilePage.posts.push(newPost);
+    rerendererEntireTree(state);
 }
 
 export default state;
