@@ -1,4 +1,6 @@
-import {renderEntireTree} from "../render";
+let rerenderEntireTree = () => {
+    console.log('State changed');
+}
 
 let state = {
     sidebar: {
@@ -53,12 +55,12 @@ export let addPost = () => {
     };
     state.profilePage.posts.push(newPost);
     state.profilePage.newPostText = '';
-    renderEntireTree(state);
+    rerenderEntireTree(state);
 }
 
-export let updateNewPostText = (postText) => {
+export let updateNewPostText = postText => {
     state.profilePage.newPostText = postText;
-    renderEntireTree(state);
+    rerenderEntireTree(state);
 }
 
 export let addMessage = () => {
@@ -71,12 +73,16 @@ export let addMessage = () => {
     }
     state.dialogsPage.messages.push(newMessage);
     state.dialogsPage.newMessageText = '';
-    renderEntireTree(state);
+    rerenderEntireTree(state);
 }
 
-export let updateMessageText = (msgText) => {
+export let updateMessageText = msgText => {
     state.dialogsPage.newMessageText = msgText;
-    renderEntireTree(state);
+    rerenderEntireTree(state);
+}
+
+export const subscribe = observer => {
+    rerenderEntireTree = observer;
 }
 
 export default state;
