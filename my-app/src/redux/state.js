@@ -1,4 +1,4 @@
-import {rerendererEntireTree} from "../render";
+import {renderEntireTree} from "../render";
 
 let state = {
     sidebar: {
@@ -21,7 +21,8 @@ let state = {
             {id: 2, message: 'I\'am here!', likeQuantity: 2},
             {id: 3, message: 'Lorem ipsum dolores', likeQuantity: 100},
             {id: 4, message: 'Бесперспективно искать в драке проигравших обреченных на победу!', likeQuantity: 32},
-        ]
+        ],
+        newPostText: '',
 
     },
     dialogsPage: {
@@ -38,20 +39,44 @@ let state = {
             {id: 2, message: 'What\'s up nigga!', sender: 2, recipient: 1},
             {id: 4, message: 'I\'m fine!', sender: 1, recipient: 2},
             {id: 5, message: 'And how are you?', sender: 1, recipient: 2},
-        ]
+        ],
+        newMessageText: '',
     },
 }
 
-export let addPost = (postText) => {
-    debugger;
+export let addPost = () => {
     let lastId = state.profilePage.posts[state.profilePage.posts.length-1].id;
     let newPost = {
         id: ++lastId,
-        message: postText,
+        message: state.profilePage.newPostText,
         likeQuantity: 0,
     };
     state.profilePage.posts.push(newPost);
-    rerendererEntireTree(state);
+    state.profilePage.newPostText = '';
+    renderEntireTree(state);
+}
+
+export let updateNewPostText = (postText) => {
+    state.profilePage.newPostText = postText;
+    renderEntireTree(state);
+}
+
+export let addMessage = () => {
+    let lastId = state.dialogsPage.messages[state.dialogsPage.messages.length-1].id;
+    let newMessage = {
+        id: ++lastId,
+        message: state.dialogsPage.newMessageText,
+        sender: state.dialogsPage.messages[state.dialogsPage.messages.length-1].sender === 1 ? 2 : 1,
+        recipient: state.dialogsPage.messages[state.dialogsPage.messages.length-1].recipient === 1 ? 2 : 1,
+    }
+    state.dialogsPage.messages.push(newMessage);
+    state.dialogsPage.newMessageText = '';
+    renderEntireTree(state);
+}
+
+export let updateMessageText = (msgText) => {
+    state.dialogsPage.newMessageText = msgText;
+    renderEntireTree(state);
 }
 
 export default state;
