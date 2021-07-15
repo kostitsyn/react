@@ -4,16 +4,16 @@ import Message from "./Messages/Messages";
 import DialogItem from "./DialogItem/DialogItem";
 
 const Dialogs = (props) => {
-    let dialogsElements = props.state.dialogs.map(d => <DialogItem state={d} key={d.id} />);
-    let messagesElements = props.state.messages.map(m => <Message state={m} key={`${m.sender}${m.recipient}${m.id}`}/>);
+    let dialogsElements = props.state.dialogsPage.dialogs.map(d => <DialogItem state={d} key={d.id} />);
+    let messagesElements = props.state.dialogsPage.messages.map(m => <Message state={m} key={`${m.sender}${m.recipient}${m.id}`}/>);
     let newMessageElement = React.createRef();
 
     let addMessage = () => {
-        props.addMessage();
+        props.state.addMessage();
     }
 
     let onMessageChange = () => {
-        props.updateMessageText(newMessageElement.current.value);
+        props.state.updateMessageText(newMessageElement.current.value);
     }
 
     return (
@@ -26,7 +26,7 @@ const Dialogs = (props) => {
         </div>
         <div className={c.addMessage}>
             <div>
-                <textarea onChange={onMessageChange} ref={newMessageElement} value={props.state.newMessageText} />
+                <textarea onChange={onMessageChange} ref={newMessageElement} value={props.state.dialogsPage.newMessageText} />
             </div>
             <div>
                 <button onClick={addMessage}>Добавить</button>
