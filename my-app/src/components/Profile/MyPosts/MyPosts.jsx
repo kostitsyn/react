@@ -4,15 +4,15 @@ import c from './MyPosts.module.css';
 
 
 const MyPosts = (props) => {
-    let postsElements = props.state.getState().profilePage.posts.map(p => <Post message={p.message} likeQuantity={p.likeQuantity} key={p.id} />);
+    let postsElements = props.state.posts.map(p => <Post message={p.message} likeQuantity={p.likeQuantity} key={p.id} />);
     let newPostElement = React.createRef();
 
     let addPost = () => {
-        props.state.addPost();
+        props.addPost();
     }
 
     let onPostChange = () => {
-        props.state.updateNewPostText(newPostElement.current.value);
+        props.updateNewPostText(newPostElement.current.value);
     }
 
     return (
@@ -20,7 +20,7 @@ const MyPosts = (props) => {
         <h3>My posts</h3>
         <div>
             <div>
-                <textarea onChange={onPostChange} ref={newPostElement} value={props.state.getState().profilePage.newPostText} />
+                <textarea onChange={onPostChange} ref={newPostElement} value={props.state.newPostText} />
             </div>
             <div>
                 <button onClick={addPost}>Добавить</button>

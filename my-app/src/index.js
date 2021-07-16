@@ -7,18 +7,21 @@ import React from 'react';
 import './index.css';
 
 
-export let rerenderEntireTree = (store) => {
-    debugger;
+export let rerenderEntireTree = (state) => {
     ReactDOM.render(
         <React.StrictMode>
-            <App store={store}/>
+            <App state={state}
+                 addPost={store.addPost.bind(store)}
+                 updateNewPostText={store.updateNewPostText.bind(store)}
+                 addMessage={store.addMessage.bind(store)}
+                 updateMessageText={store.updateMessageText.bind(store)}/>
         </React.StrictMode>,
         document.getElementById('root')
     );
 }
 
 
-rerenderEntireTree(store);
+rerenderEntireTree(store.getState());
 
 store.subscribe(rerenderEntireTree);
 

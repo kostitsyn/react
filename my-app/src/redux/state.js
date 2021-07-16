@@ -81,6 +81,9 @@ let store = {
     getState() {
         return this._state;
     },
+    subscribe(observer) {
+        this._subscriber = observer;
+    },
     addPost() {
         let lastId = this._state.profilePage.posts[this._state.profilePage.posts.length-1].id;
         let newPost = {
@@ -90,13 +93,14 @@ let store = {
         };
         this._state.profilePage.posts.push(newPost);
         this._state.profilePage.newPostText = '';
-        this._subscriber(this);
+        this._subscriber(this._state);
     },
     updateNewPostText(postText) {
         this._state.profilePage.newPostText = postText;
-        this._subscriber(this);
+        this._subscriber(this._state);
     },
     addMessage() {
+        debugger;
         let lastId = this._state.dialogsPage.messages[this._state.dialogsPage.messages.length-1].id;
         let newMessage = {
             id: ++lastId,
@@ -106,15 +110,12 @@ let store = {
         }
         this._state.dialogsPage.messages.push(newMessage);
         this._state.dialogsPage.newMessageText = '';
-        this._subscriber(this);
+        this._subscriber(this._state);
     },
     updateMessageText(msgText) {
         this._state.dialogsPage.newMessageText = msgText;
-        this._subscriber(this);
+        this._subscriber(this._state);
     },
-    subscribe(observer) {
-        this._subscriber = observer;
-    }
 }
 
 window.store = store;
