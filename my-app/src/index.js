@@ -5,23 +5,19 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import React from 'react';
 import './index.css';
+import {BrowserRouter} from "react-router-dom";
 
-
-export let rerenderEntireTree = (state) => {
+export let rerenderEntireTree = (store) => {
     ReactDOM.render(
-        <React.StrictMode>
-            <App state={state}
-                 addPost={store.addPost.bind(store)}
-                 updateNewPostText={store.updateNewPostText.bind(store)}
-                 addMessage={store.addMessage.bind(store)}
-                 updateMessageText={store.updateMessageText.bind(store)}/>
-        </React.StrictMode>,
+        <BrowserRouter>
+            <App state={store.getState()} dispatch={store.dispatch.bind(store)}/>
+        </BrowserRouter>,
         document.getElementById('root')
     );
 }
 
 
-rerenderEntireTree(store.getState());
+rerenderEntireTree(store);
 
 store.subscribe(rerenderEntireTree);
 

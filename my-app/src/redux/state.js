@@ -1,3 +1,33 @@
+const ADD_POST = 'ADD-POST';
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const ADD_MESSAGE = 'ADD-MESSAGE';
+const UPDATE_MESSAGE_TEXT = 'UPDATE-MESSAGE-TEXT';
+
+export const addPostActionCreator = () => {
+    return {
+        type: ADD_POST
+    }
+}
+
+export const updateNewPostTextActionCreator = text => {
+    return {
+        type: UPDATE_NEW_POST_TEXT,
+        postText: text
+    }
+}
+
+export const addMessageActionCreator = () => {
+    return {
+        type: ADD_MESSAGE
+    }
+}
+
+export const updateMessageTextActionCreator = text => {
+    return {
+        type: UPDATE_MESSAGE_TEXT,
+        msgText: text
+    }
+}
 
 let store = {
     _subscriber() {
@@ -84,38 +114,33 @@ let store = {
     subscribe(observer) {
         this._subscriber = observer;
     },
-    addPost() {
-        let lastId = this._state.profilePage.posts[this._state.profilePage.posts.length-1].id;
-        let newPost = {
-            id: ++lastId,
-            message: this._state.profilePage.newPostText,
-            likeQuantity: 0,
-        };
-        this._state.profilePage.posts.push(newPost);
-        this._state.profilePage.newPostText = '';
-        this._subscriber(this._state);
-    },
-    updateNewPostText(postText) {
-        this._state.profilePage.newPostText = postText;
-        this._subscriber(this._state);
-    },
-    addMessage() {
-        debugger;
-        let lastId = this._state.dialogsPage.messages[this._state.dialogsPage.messages.length-1].id;
-        let newMessage = {
-            id: ++lastId,
-            message: this._state.dialogsPage.newMessageText,
-            sender: this._state.dialogsPage.messages[this._state.dialogsPage.messages.length-1].sender === 1 ? 2 : 1,
-            recipient: this._state.dialogsPage.messages[this._state.dialogsPage.messages.length-1].recipient === 1 ? 2 : 1,
+    dispatch(action) {
+        if (action.type === ADD_POST) {
+            let lastId = this._state.profilePage.posts[this._state.profilePage.posts.length-1].id;
+            let newPost = {
+                id: ++lastId,
+                message: this._state.profilePage.newPostText,
+                likeQuantity: 0,
+            };
+            this._state.profilePage.posts.push(newPost);
+            this._state.profilePage.newPostText = '';
+        } else if (action.type === UPDATE_NEW_POST_TEXT) {
+            this._state.profilePage.newPostText = action.postText;
+        } else if (action.type === ADD_MESSAGE) {
+            let lastId = this._state.dialogsPage.messages[this._state.dialogsPage.messages.length-1].id;
+            let newMessage = {
+                id: ++lastId,
+                message: this._state.dialogsPage.newMessageText,
+                sender: this._state.dialogsPage.messages[this._state.dialogsPage.messages.length-1].sender === 1 ? 2 : 1,
+                recipient: this._state.dialogsPage.messages[this._state.dialogsPage.messages.length-1].recipient === 1 ? 2 : 1,
+            }
+            this._state.dialogsPage.messages.push(newMessage);
+            this._state.dialogsPage.newMessageText = '';
+        } else if (action.type === UPDATE_MESSAGE_TEXT) {
+            this._state.dialogsPage.newMessageText = action.msgText;
         }
-        this._state.dialogsPage.messages.push(newMessage);
-        this._state.dialogsPage.newMessageText = '';
-        this._subscriber(this._state);
-    },
-    updateMessageText(msgText) {
-        this._state.dialogsPage.newMessageText = msgText;
-        this._subscriber(this._state);
-    },
+        this._subscriber(this);
+    }
 }
 
 window.store = store;
