@@ -4,8 +4,25 @@ import './App.css';
 const App = () => {
   return (
     <div>
-    <div>First block</div>
-      <div className="App">
+      <Header />
+      <Techologies />
+    </div>
+  );
+}
+
+const Header = () => {
+  return (
+      <div>
+        <a href='#'>Menu</a>
+        <a href='#'>News</a>
+        <a href='#'>Messages</a>
+      </div>
+  )
+}
+
+const Techologies = () => {
+  return (
+      <div>
         <ul>
           <li>React</li>
           <li>JS</li>
@@ -13,7 +30,6 @@ const App = () => {
           <li>Python</li>
         </ul>
       </div>
-    </div>
   );
 }
 
