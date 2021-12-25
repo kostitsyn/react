@@ -1,6 +1,8 @@
+import c from './Content.module.css';
+
 const Content = () => {
     return (
-        <div className='content'>
+        <div className={c.content}>
             <div>Content header</div>
             <div>User information</div>
             <div>User data</div>

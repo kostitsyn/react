@@ -1,0 +1,33 @@
+.header {
+  background-color: cornflowerblue;
+  display: grid;
+  grid-area: header;
+  grid-template-areas:
+  "header-logo header-search header-labels control-menu";
+
+}
+
+.header img {
+  width: 100px;
+}
+.logo {
+  grid-area: header-logo;
+}
+.search {
+  grid-area: header-search;
+}
+.labels {
+  grid-area: header-labels;
+  display: grid;
+  grid-template-areas:
+  "lbl-notifications lbl-music";
+}
+.lblNotifications {
+  grid-area: lbl-notifications;
+}
+.lblMusic {
+  grid-area: lbl-music;
+}
+.controlMenu {
+  grid-area: control-menu;
+}

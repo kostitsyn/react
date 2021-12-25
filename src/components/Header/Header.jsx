@@ -1,21 +1,23 @@
+import c from './Header.module.css';
+
 const Header = () => {
     return (
-        <header className='header'>
-            <div className='logo'>
+        <header className={c.header}>
+            <div className={c.logo}>
                 <img src={require('../../images/logo.jpg')} alt='logo'/>
             </div>
-            <div className='search'>
+            <div className={c.search}>
                 <input placeholder='Поиск'/>
             </div>
-            <div className='labels'>
-                <div className='lbl-notifications'>
+            <div className={c.labels}>
+                <div className={c.lblNotifications}>
                     Notification label
                 </div>
-                <div className='lbl-music'>
+                <div className={c.lblMusic}>
                     Music label
                 </div>
             </div>
-            <div className='control-menu'>
+            <div className={c.controlMenu}>
                 Control menu
             </div>
         </header>

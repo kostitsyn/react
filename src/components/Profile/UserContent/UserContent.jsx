@@ -1,6 +1,8 @@
+import c from './UserContent.module.css';
+
 const UserContent = () => {
     return (
-        <div className='user-content'>
+        <div className={c.userContent}>
             <div>
                 Image
             </div>

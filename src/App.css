@@ -1,5 +1,10 @@
+#root {
+  height: 100%;
+}
+
 .container {
   width: 990px;
+  height: 100%;
   margin: 0 auto;
   display: grid;
 
@@ -9,62 +14,4 @@
 
   grid-template-rows: 48px 1fr;
   grid-template-columns: 2fr 10fr;
-}
-
-
-
-.header {
-  background-color: cornflowerblue;
-  display: grid;
-  grid-area: header;
-  grid-template-areas:
-  "header-logo header-search header-labels control-menu";
-
-}
-
-.header img {
-  width: 100px;
-}
-.logo {
-  grid-area: header-logo;
-}
-.search {
-  grid-area: header-search;
-}
-.labels {
-  grid-area: header-labels;
-  display: grid;
-  grid-template-areas:
-  "lbl-notifications lbl-music";
-}
-.lbl-notifications {
-  grid-area: lbl-notifications;
-}
-.lbl-music {
-  grid-area: lbl-music;
-}
-.control-menu {
-  grid-area: control-menu;
-}
-
-.navbar {
-  background-color: lightblue;
-  grid-area: navbar;
-}
-
-.profile {
-  grid-area: profile;
-  display: grid;
-  grid-template-areas:
-  "user-content content";
-  grid-template-columns: 3fr 7fr;
-}
-.user-content {
-  background-color: skyblue;
-  grid-area: user-content;
-}
-
-.content {
-  background-color: powderblue;
-  grid-area: content;
 }

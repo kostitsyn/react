@@ -1,8 +1,10 @@
+import c from './MainNavbar.module.css';
+
 const MainNavbar = () => {
     return (
         <nav>
             <ul>
-                <li>Моя страница</li>
+                <li className={c.active}>Моя страница</li>
                 <li>Новости</li>
                 <li>Сообщения</li>
                 <li>Друзья</li>
