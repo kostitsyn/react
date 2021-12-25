@@ -4,11 +4,11 @@
   display: grid;
 
   grid-template-areas:
-  "header header header"
-  "navbar user-content content";
+  "header header"
+  "navbar profile";
 
   grid-template-rows: 48px 1fr;
-  grid-template-columns: 2fr 3fr 7fr;
+  grid-template-columns: 2fr 10fr;
 }
 
 
@@ -52,6 +52,13 @@
   grid-area: navbar;
 }
 
+.profile {
+  grid-area: profile;
+  display: grid;
+  grid-template-areas:
+  "user-content content";
+  grid-template-columns: 3fr 7fr;
+}
 .user-content {
   background-color: skyblue;
   grid-area: user-content;

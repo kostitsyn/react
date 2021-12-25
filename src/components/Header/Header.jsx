@@ -1,13 +1,13 @@
 const Header = () => {
     return (
-        <div className='header'>
+        <header className='header'>
             <div className='logo'>
-                <img src={require('./images/logo.jpg')} alt='logo'/>
+                <img src={require('../../images/logo.jpg')} alt='logo'/>
             </div>
             <div className='search'>
-                <input placeholder='Поиск' />
+                <input placeholder='Поиск'/>
             </div>
-            <div>
+            <div className='labels'>
                 <div className='lbl-notifications'>
                     Notification label
                 </div>
@@ -15,7 +15,10 @@ const Header = () => {
                     Music label
                 </div>
             </div>
-        </div>
+            <div className='control-menu'>
+                Control menu
+            </div>
+        </header>
     )
 }
 

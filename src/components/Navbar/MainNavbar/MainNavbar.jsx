@@ -1,6 +1,6 @@
 const MainNavbar = () => {
     return (
-        <div>
+        <nav>
             <ul>
                 <li>Моя страница</li>
                 <li>Новости</li>
@@ -11,7 +11,7 @@ const MainNavbar = () => {
                 <li>Музыка</li>
                 <li>Видео</li>
             </ul>
-        </div>
+        </nav>
     )
 }
 

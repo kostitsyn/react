@@ -1,13 +1,13 @@
 const AdditionalNavbar = () => {
     return (
-        <div>
+        <nav>
             <ul>
                 <li>Мини-приложения</li>
                 <li>Закладки</li>
                 <li>Файлы</li>
                 <li>Реклама</li>
             </ul>
-        </div>
+        </nav>
     )
 }
 
