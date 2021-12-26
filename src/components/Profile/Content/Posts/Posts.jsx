@@ -11,9 +11,9 @@ const Posts = () => {
             </div>
             <div className={c.posts}>
                 Posts:
-                <PostItem />
-                <PostItem />
-                <PostItem />
+                <PostItem message='Отдыхаю на Кубе' likes='10' comments='5' />
+                <PostItem message='Окончил обучение на GeekBrains' likes='123' comments='2' />
+                <PostItem message='Устроился на работу мечты' likes='100000' comments='3' />
             </div>
         </div>
     )
