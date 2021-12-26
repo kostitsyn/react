@@ -1,21 +1,26 @@
 import './App.css';
 import Header from "./components/Header/Header";
-import UserContent from "./components/Profile/UserContent/UserContent";
 import Navbar from "./components/Navbar/Navbar";
-import Profile from "./components/Profile/Profile";
+import Profile from "./components/Navbar/MainNavbar/Profile/Profile";
 import Messages from "./components/Messages/Messages";
-
+import {BrowserRouter, Navigate, Routes, Redirect} from "react-router-dom";
+import React from 'react';
 const App = () => {
     return (
-        <div className='container'>
-            <Header />
-            <Navbar />
-            <div className='content'>
-                {/*<Messages />*/}
-                <Profile />
+        <BrowserRouter>
+            <div className='container'>
+                <Header/>
+                <Navbar/>
+                {/*<p>{React.version}</p>*/}
+                <div className='content'>
+                    <Profile/>
+                    <Routes path='/' component={Profile}/>
+                    {/*<Redirect from="/profile" to="/"/>*/}
+                    {/*<Navigate from='/profile' to='/'/>*/}
+                    <Routes path='/messages' component={Messages}/>
+                </div>
             </div>
-
-        </div>
+        </BrowserRouter>
     );
 }
 

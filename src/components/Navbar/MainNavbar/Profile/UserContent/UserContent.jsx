@@ -4,7 +4,7 @@ const UserContent = () => {
     return (
         <div className={c.userContent}>
             <div className={c.avatar}>
-                <img src={require('../../../images/ava.jpg')} alt='avatar'/>
+                <img src={require('../../../../../images/ava.jpg')} alt='avatar'/>
             </div>
             <div>
                 Presents
