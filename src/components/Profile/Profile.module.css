@@ -1,5 +1,4 @@
 .profile {
-  grid-area: profile;
   display: grid;
   grid-template-areas:
   "user-content content";
