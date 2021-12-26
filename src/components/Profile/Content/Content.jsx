@@ -1,4 +1,5 @@
 import c from './Content.module.css';
+import Posts from "./Posts/Posts";
 
 const Content = () => {
     return (
@@ -7,13 +8,7 @@ const Content = () => {
             <div>User information</div>
             <div>User data</div>
             <div>User photos</div>
-            <div>Add post</div>
-            <div>
-                Posts
-                <div>Post1</div>
-                <div>Post2</div>
-                <div>Post3</div>
-            </div>
+            <Posts />
         </div>
     )
 }

@@ -1,0 +1,45 @@
+.postItem {
+    display: grid;
+    grid-template-areas:
+    "image header";
+    grid-template-columns: 60px 1fr;
+    margin-bottom: 20px;
+}
+
+.postItem img {
+    grid-area: image;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    margin-top: 10px;
+}
+
+.postItem h3 {
+    grid-area: header;
+}
+
+.postItem span {
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.statistic {
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr 5fr;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.statistic svg, span:not(.postText) {
+    color: #99a2ad;
+}
+
+.views, .repost {
+    text-align: right;
+}
+
+.comments {
+    text-align: center;
+}

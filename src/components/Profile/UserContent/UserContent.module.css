@@ -2,3 +2,13 @@
   background-color: skyblue;
   grid-area: user-content;
 }
+
+.avatar {
+  text-align: center;
+}
+
+.avatar img {
+  width: 95%;
+  height: 234px;
+  text-align: center;
+}

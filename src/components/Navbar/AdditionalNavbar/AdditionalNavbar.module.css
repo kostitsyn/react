@@ -2,3 +2,24 @@
     background-color: blanchedalmond;
     color: brown;
 }
+
+.navList {
+    list-style: none;
+    padding-left: 30px;
+}
+
+.navList li {
+    display: grid;
+    grid-template-areas:
+    "image text";
+    grid-template-columns: 2fr 8fr;
+}
+
+li svg {
+    grid-area: image;
+    color: #5181b8;
+}
+
+li span {
+    grid-area: text;
+}

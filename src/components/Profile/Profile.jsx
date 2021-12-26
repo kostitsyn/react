@@ -4,10 +4,10 @@ import c from "./Profile.module.css";
 
 const Profile = () => {
     return (
-        <div className={c.profile}>
+        <main className={c.profile}>
             <UserContent/>
             <Content/>
-        </div>
+        </main>
     )
 }
 

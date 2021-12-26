@@ -3,8 +3,8 @@ import c from './UserContent.module.css';
 const UserContent = () => {
     return (
         <div className={c.userContent}>
-            <div>
-                Image
+            <div className={c.avatar}>
+                <img src={require('../../../images/ava.jpg')} alt='avatar'/>
             </div>
             <div>
                 Presents

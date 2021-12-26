@@ -1,4 +1,5 @@
 .header {
+  height: 100%;
   background-color: cornflowerblue;
   display: grid;
   grid-area: header;
@@ -9,6 +10,13 @@
 
 .header img {
   width: 100px;
+  height: 48px;
+  margin-top: 7px;
+}
+.header svg {
+  padding-left: 10px;
+  color: #99a2ad;
+  vertical-align: text-top;
 }
 .logo {
   grid-area: header-logo;
@@ -16,12 +24,22 @@
 .search {
   grid-area: header-search;
 }
+
+.search input {
+  margin-top: 10px;
+}
+
 .labels {
   grid-area: header-labels;
   display: grid;
   grid-template-areas:
   "lbl-notifications lbl-music";
 }
+
+.labels {
+  margin-top: 10px;
+}
+
 .lblNotifications {
   grid-area: lbl-notifications;
 }
@@ -30,4 +48,10 @@
 }
 .controlMenu {
   grid-area: control-menu;
+  text-align: center;
+}
+.controlMenu img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
 }
