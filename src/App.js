@@ -2,7 +2,7 @@ import './App.css';
 import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Navbar/MainNavbar/Profile/Profile";
-import Messages from "./components/Messages/Messages";
+import Messages from "./components/Navbar/MainNavbar/Messages/Messages";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import React from 'react';
 import News from "./components/Navbar/MainNavbar/News/News";
@@ -21,7 +21,6 @@ const App = () => {
             <div className='container'>
                 <Header/>
                 <Navbar/>
-                <p>{React.version}</p>
                 <div className='content'>
                     <Routes>
                         <Route path='/profile' element={<Profile />}/>
