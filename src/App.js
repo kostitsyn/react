@@ -24,18 +24,18 @@ const App = () => {
                 {/*<p>{React.version}</p>*/}
                 <div className='content'>
                     <Routes>
-                        <Route path='/profile' component={Profile}/>
-                        <Route path='/news' component={News}/>
-                        <Route path='/messages' component={Messages}/>
-                        <Route path='/friends' component={Friends}/>
-                        <Route path='/communities' component={Communities}/>
-                        <Route path='/photos' component={Photos}/>
-                        <Route path='/music' component={Music}/>
-                        <Route path='/video' component={Video}/>
-                        <Route path='/mini-apps' component={MiniApps}/>
-                        <Route path='/bookmarks' component={Bookmarks}/>
-                        <Route path='/files' component={Files}/>
-                        <Route path='/advertising' component={Advertising}/>
+                        <Route path='/profile' element={<Profile />}/>
+                        <Route path='/news' element={<News />}/>
+                        <Route path='/messages' element={<Messages />}/>
+                        <Route path='/friends' element={<Friends />}/>
+                        <Route path='/communities' element={<Communities />}/>
+                        <Route path='/photos' element={<Photos />}/>
+                        <Route path='/music' element={<Music />}/>
+                        <Route path='/video' element={<Video />}/>
+                        <Route path='/mini-apps' element={<MiniApps />}/>
+                        <Route path='/bookmarks' element={<Bookmarks />}/>
+                        <Route path='/files' element={<Files/>}/>
+                        <Route path='/advertising' element={<Advertising/>}/>
                     </Routes>
                 </div>
             </div>
