@@ -1,3 +1,4 @@
+import React from 'react';
 import MainNavbar from './MainNavbar/MainNavbar';
 import AdditionalNavbar from './AdditionalNavbar/AdditionalNavbar';
 import c from './Navbar.module.css';

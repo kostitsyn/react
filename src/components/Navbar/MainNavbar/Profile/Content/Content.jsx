@@ -1,3 +1,4 @@
+import React from 'react';
 import c from './Content.module.css';
 import Posts from "./Posts/Posts";
 

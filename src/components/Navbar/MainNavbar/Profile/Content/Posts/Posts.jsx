@@ -1,3 +1,4 @@
+import React from 'react';
 import c from './Posts.module.css';
 import PostItem from "./PostItem/PostItem";
 

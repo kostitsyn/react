@@ -1,3 +1,4 @@
+import React from 'react';
 import c from './PostItem.module.css';
 
 const PostItem = (props) => {
