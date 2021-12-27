@@ -20,6 +20,7 @@ li svg {
     color: #5181b8;
 }
 
-li span {
+li a {
     grid-area: text;
+    text-decoration: none;
 }
