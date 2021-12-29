@@ -11,8 +11,12 @@
 .header img {
   width: 100px;
   height: 48px;
+}
+
+.controlMenu img {
   margin-top: 7px;
 }
+
 .header svg {
   padding-left: 10px;
   color: #99a2ad;

@@ -15,6 +15,7 @@ import MiniApps from "./components/Navbar/AdditionalNavbar/MiniApps/MiniApps";
 import Bookmarks from "./components/Navbar/AdditionalNavbar/Bookmarks/Bookmarks";
 import Files from "./components/Navbar/AdditionalNavbar/Files/Files";
 import Advertising from "./components/Navbar/AdditionalNavbar/Advertising/Advertising";
+import Dialog from "./components/Navbar/MainNavbar/Dialog/Dialog";
 const App = () => {
     return (
         <BrowserRouter>
@@ -35,6 +36,7 @@ const App = () => {
                         <Route path='/bookmarks' element={<Bookmarks />}/>
                         <Route path='/files' element={<Files />}/>
                         <Route path='/advertising' element={<Advertising />}/>
+                        <Route path='/messages/:id' element={<Dialog />} />
                     </Routes>
                 </div>
             </div>

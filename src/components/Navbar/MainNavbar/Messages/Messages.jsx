@@ -2,6 +2,17 @@ import React from 'react';
 import c from './Messages.module.css';
 import {NavLink} from "react-router-dom";
 
+
+const Dialog = (props) => {
+    return (
+        <NavLink to={`/messages/${props.id}`} className={navData => navData.isActive ? `${c.active} ${c.dialogItem}` : c.dialogItem}>
+            <img src={props.imgLink} alt='ava'/>
+            <span className={c.companion}>Фродо Бэггинс</span>
+            <span>{props.name}</span>
+        </NavLink>
+    )
+}
+
 const Messages = (props) => {
     return (
         <div className={c.messages}>
@@ -17,21 +28,10 @@ const Messages = (props) => {
                 </div>
             </div>
             <div className={c.dialogs}>
-                <NavLink to='#' className={navData => navData.isActive ? `${c.active} ${c.dialogItem}` : c.dialogItem}>
-                    <img src="https://1.bp.blogspot.com/--nN9E8LB86c/X7Ewn5GEGmI/AAAAAAAAGLc/ueRKDW39iUg_5uBBtUANVOv0jMsBufeIQCLcBGAsYHQ/s1280/Frodo%2BBaggins.png} alt='logo'"/>
-                    <span className={c.companion}>Фродо Бэггинс</span>
-                    <span>Привет Фродо!</span>
-                </NavLink>
-                <NavLink to='#' className={c.dialogItem}>
-                    <img src="https://s3.yugopolis.ru/media/media/cache/news/data/img/cdbb04ac08902ad689d7e0cd19585b33/107841.jpg"/>
-                    <span className={c.companion}>Лектер Ганнибал</span>
-                    <span>Здарова наркоман)</span>
-                </NavLink>
-                <NavLink to='#' className={c.dialogItem}>
-                    <img src="https://s2.hostingkartinok.com/uploads/images/2012/08/617f0d57c28066df47b8d47c973d877d.jpg"/>
-                    <span className={c.companion}>Немезис</span>
-                    <span>Мочи козлов)</span>
-                </NavLink>
+                <Dialog name='Фродо Бэггинс' id='1' imgLink="https://1.bp.blogspot.com/--nN9E8LB86c/X7Ewn5GEGmI/AAAAAAAAGLc/ueRKDW39iUg_5uBBtUANVOv0jMsBufeIQCLcBGAsYHQ/s1280/Frodo%2BBaggins.png} alt='logo'" />
+                <Dialog name='Лектер Ганнибал' id='2' imgLink="https://s3.yugopolis.ru/media/media/cache/news/data/img/cdbb04ac08902ad689d7e0cd19585b33/107841.jpg" />
+                <Dialog name='Немезис' id='3' imgLink="https://s2.hostingkartinok.com/uploads/images/2012/08/617f0d57c28066df47b8d47c973d877d.jpg" />
+
             </div>
         </div>
     )
