@@ -14,6 +14,13 @@ const Dialog = (props) => {
 }
 
 const Messages = (props) => {
+
+    let users = [
+        {id: 1, name:"Фродо Бэггинс", imgLink:"https://1.bp.blogspot.com/--nN9E8LB86c/X7Ewn5GEGmI/AAAAAAAAGLc/ueRKDW39iUg_5uBBtUANVOv0jMsBufeIQCLcBGAsYHQ/s1280/Frodo%2BBaggins.png} alt='logo'"},
+        {id: 2, name:"Лектер Ганнибал", imgLink:"https://s3.yugopolis.ru/media/media/cache/news/data/img/cdbb04ac08902ad689d7e0cd19585b33/107841.jpg"},
+        {id: 3, name:"Немезис", imgLink:"https://s2.hostingkartinok.com/uploads/images/2012/08/617f0d57c28066df47b8d47c973d877d.jpg"}
+    ]
+
     return (
         <div className={c.messages}>
             <div className={c.searchBlock}>
@@ -28,9 +35,9 @@ const Messages = (props) => {
                 </div>
             </div>
             <div className={c.dialogs}>
-                <Dialog name='Фродо Бэггинс' id='1' imgLink="https://1.bp.blogspot.com/--nN9E8LB86c/X7Ewn5GEGmI/AAAAAAAAGLc/ueRKDW39iUg_5uBBtUANVOv0jMsBufeIQCLcBGAsYHQ/s1280/Frodo%2BBaggins.png} alt='logo'" />
-                <Dialog name='Лектер Ганнибал' id='2' imgLink="https://s3.yugopolis.ru/media/media/cache/news/data/img/cdbb04ac08902ad689d7e0cd19585b33/107841.jpg" />
-                <Dialog name='Немезис' id='3' imgLink="https://s2.hostingkartinok.com/uploads/images/2012/08/617f0d57c28066df47b8d47c973d877d.jpg" />
+                <Dialog id={users[0].id} name={users[0].name} imgLink={users[0].imgLink} />
+                <Dialog id={users[1].id} name={users[1].name} imgLink={users[1].imgLink} />
+                <Dialog id={users[2].id} name={users[2].name}  imgLink={users[2].imgLink} />
 
             </div>
         </div>
