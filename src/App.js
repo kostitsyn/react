@@ -16,7 +16,7 @@ import Bookmarks from "./components/Navbar/AdditionalNavbar/Bookmarks/Bookmarks"
 import Files from "./components/Navbar/AdditionalNavbar/Files/Files";
 import Advertising from "./components/Navbar/AdditionalNavbar/Advertising/Advertising";
 import Dialog from "./components/Navbar/MainNavbar/Dialog/Dialog";
-const App = () => {
+const App = (props) => {
     return (
         <BrowserRouter>
             <div className='container'>
@@ -24,9 +24,9 @@ const App = () => {
                 <Navbar/>
                 <div className='content'>
                     <Routes>
-                        <Route path='/profile' element={<Profile />}/>
+                        <Route path='/profile' element={<Profile posts={props.data.posts} />}/>
                         <Route path='/news' element={<News />}/>
-                        <Route path='/messages' element={<Messages />}/>
+                        <Route path='/messages' element={<Messages users={props.data.users} />}/>
                         <Route path='/friends' element={<Friends />}/>
                         <Route path='/communities' element={<Communities />}/>
                         <Route path='/photos' element={<Photos />}/>
@@ -36,7 +36,7 @@ const App = () => {
                         <Route path='/bookmarks' element={<Bookmarks />}/>
                         <Route path='/files' element={<Files />}/>
                         <Route path='/advertising' element={<Advertising />}/>
-                        <Route path='/messages/:id' element={<Dialog />} />
+                        <Route path='/messages/:id' element={<Dialog dialogs={props.data.dialogs} />} />
                     </Routes>
                 </div>
             </div>

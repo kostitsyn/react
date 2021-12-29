@@ -3,11 +3,11 @@ import UserContent from "./UserContent/UserContent";
 import Content from "./Content/Content";
 import c from "./Profile.module.css";
 
-const Profile = () => {
+const Profile = (props) => {
     return (
         <main className={c.profile}>
             <UserContent/>
-            <Content/>
+            <Content posts={props.posts}/>
         </main>
     )
 }

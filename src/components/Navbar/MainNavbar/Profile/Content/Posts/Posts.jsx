@@ -2,15 +2,9 @@ import React from 'react';
 import c from './Posts.module.css';
 import PostItem from "./PostItem/PostItem";
 
-const Posts = () => {
+const Posts = (props) => {
 
-    let posts = [
-        {id: 1, message: "Отдыхаю на Кубе", likes: 10, comments: 5},
-        {id: 2, message: "Окончил обучение на GeekBrains", likes: 123, comments: 2},
-        {id: 3, message: "Устроился на работу мечты", likes: 100000, comments: 3},
-    ]
-
-    let postElements = posts.map(p => <PostItem message={p.message} likes={p.likes} comments={p.comments} key={p.id} />)
+    let postElements = props.posts.map(p => <PostItem message={p.message} likes={p.likes} comments={p.comments} key={p.id} />)
 
     return (
         <div>
