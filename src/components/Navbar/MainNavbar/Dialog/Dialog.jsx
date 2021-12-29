@@ -10,7 +10,7 @@ const Dialog = (props) => {
     ]
     let { id } = useParams();
     let currentDialogs = dialogs.find(elem => elem.id == id);
-    let dialogElements = currentDialogs.messages.map(elem => <DialogItem id={elem.id} message={elem.message} key={elem.id} />)
+    let dialogElements = currentDialogs.messages.map(d => <DialogItem id={d.id} message={d.message} key={d.id} />)
     return (
         <div>
             {dialogElements}

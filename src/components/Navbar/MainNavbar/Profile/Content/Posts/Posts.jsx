@@ -10,6 +10,8 @@ const Posts = () => {
         {id: 3, message: "Устроился на работу мечты", likes: 100000, comments: 3},
     ]
 
+    let postElements = posts.map(p => <PostItem message={p.message} likes={p.likes} comments={p.comments} key={p.id} />)
+
     return (
         <div>
             <div className={c.addPost}>
@@ -19,9 +21,7 @@ const Posts = () => {
             </div>
             <div className={c.posts}>
                 Posts:
-                <PostItem message={posts[0].message} likes={posts[0].likes} comments={posts[0].comments} />
-                <PostItem message={posts[1].message} likes={posts[1].likes} comments={posts[1].comments} />
-                <PostItem message={posts[2].message} likes={posts[2].likes} comments={posts[2].comments} />
+                {postElements}
             </div>
         </div>
     )

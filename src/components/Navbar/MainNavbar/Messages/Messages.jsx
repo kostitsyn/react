@@ -21,6 +21,8 @@ const Messages = (props) => {
         {id: 3, name:"Немезис", imgLink:"https://s2.hostingkartinok.com/uploads/images/2012/08/617f0d57c28066df47b8d47c973d877d.jpg"}
     ]
 
+    let userElements = users.map(u => <Dialog id={u.id} name={u.name} imgLink={u.imgLink} key={u.id} />)
+
     return (
         <div className={c.messages}>
             <div className={c.searchBlock}>
@@ -35,10 +37,7 @@ const Messages = (props) => {
                 </div>
             </div>
             <div className={c.dialogs}>
-                <Dialog id={users[0].id} name={users[0].name} imgLink={users[0].imgLink} />
-                <Dialog id={users[1].id} name={users[1].name} imgLink={users[1].imgLink} />
-                <Dialog id={users[2].id} name={users[2].name}  imgLink={users[2].imgLink} />
-
+                {userElements}
             </div>
         </div>
     )
