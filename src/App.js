@@ -24,10 +24,10 @@ const App = (props) => {
                 <Navbar/>
                 <div className='content'>
                     <Routes>
-                        <Route path='/profile' element={<Profile posts={props.data.posts} />}/>
+                        <Route path='/profile' element={<Profile state={props.state} />}/>
                         <Route path='/news' element={<News />}/>
-                        <Route path='/messages' element={<Messages users={props.data.users} />}/>
-                        <Route path='/friends' element={<Friends />}/>
+                        <Route path='/messages' element={<Messages messages={props.state.messagesPage} />}/>
+                        <Route path='/friends' element={<Friends friends={props.state.friends} />}/>
                         <Route path='/communities' element={<Communities />}/>
                         <Route path='/photos' element={<Photos />}/>
                         <Route path='/music' element={<Music />}/>
@@ -36,7 +36,7 @@ const App = (props) => {
                         <Route path='/bookmarks' element={<Bookmarks />}/>
                         <Route path='/files' element={<Files />}/>
                         <Route path='/advertising' element={<Advertising />}/>
-                        <Route path='/messages/:id' element={<Dialog dialogs={props.data.dialogs} />} />
+                        <Route path='/messages/:id' element={<Dialog dialogs={props.state.messagesPage} />} />
                     </Routes>
                 </div>
             </div>

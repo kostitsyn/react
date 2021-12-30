@@ -1,0 +1,10 @@
+.friends {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    text-align: center;
+}
+
+.friendsLabel {
+    color: black !important;
+    padding-left: 10px;
+}

@@ -1,7 +1,9 @@
 import React from 'react';
 import c from './UserContent.module.css';
+import Friends from "../../Friends/Friends";
+import FriendsContent from "./FriendsContent/FriendsContent";
 
-const UserContent = () => {
+const UserContent = (props) => {
     return (
         <div className={c.userContent}>
             <div className={c.avatar}>
@@ -10,8 +12,8 @@ const UserContent = () => {
             <div>
                 Presents
             </div>
-            <div>
-                Friends
+            <div className={c.friends}>
+                <FriendsContent friends={props.friends} />
             </div>
             <div>
                 Friends online

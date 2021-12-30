@@ -1,0 +1,27 @@
+.friend {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    border-bottom: 1px solid gray;
+    padding: 10px 0;
+}
+
+.friend:first-of-type {
+    border-top: 1px solid gray;
+}
+
+.friend img {
+     width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    grid-row-start: 1;
+    grid-row-end: 3;
+}
+
+.friendName {
+    padding-top: 15px;
+}
+
+.friend a {
+    text-decoration: none;
+
+}

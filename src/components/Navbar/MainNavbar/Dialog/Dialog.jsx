@@ -4,8 +4,8 @@ import DialogItem from "./DialogItem/DialogItem";
 
 const Dialog = (props) => {
     let { id } = useParams();
-    let currentDialogs = props.dialogs.find(elem => elem.id == id);
-    let dialogElements = currentDialogs.messages.map(d => <DialogItem id={d.id} message={d.message} key={d.id} />)
+    let currentDialogs = props.dialogs.dialogs.find(elem => elem.id.toString() === id);
+    let dialogElements = currentDialogs.messages.map(d => <DialogItem id={d.id} message={d.message} key={`${d.id}${d.message}`} />)
     return (
         <div>
             {dialogElements}

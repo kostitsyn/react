@@ -4,7 +4,7 @@ import Companion from "./Companion/Companion";
 
 const Messages = (props) => {
 
-    let userElements = props.users.map(u => <Companion id={u.id} name={u.name} imgLink={u.imgLink} key={u.id} />)
+    let userElements = props.messages.messages.map(u => <Companion id={u.id} name={u.name} imgLink={u.imgLink} key={u.id} />)
 
     return (
         <div className={c.messages}>
