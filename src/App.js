@@ -16,31 +16,32 @@ import Bookmarks from "./components/Navbar/AdditionalNavbar/Bookmarks/Bookmarks"
 import Files from "./components/Navbar/AdditionalNavbar/Files/Files";
 import Advertising from "./components/Navbar/AdditionalNavbar/Advertising/Advertising";
 import Dialog from "./components/Navbar/MainNavbar/Dialog/Dialog";
+
 const App = (props) => {
     return (
-        <BrowserRouter>
-            <div className='container'>
-                <Header/>
-                <Navbar/>
-                <div className='content'>
-                    <Routes>
-                        <Route path='/profile' element={<Profile state={props.state} />}/>
-                        <Route path='/news' element={<News />}/>
-                        <Route path='/messages' element={<Messages messages={props.state.messagesPage} users={props.state.users} />}/>
-                        <Route path='/friends' element={<Friends friends={props.state.friends} users={props.state.users} />}/>
-                        <Route path='/communities' element={<Communities />}/>
-                        <Route path='/photos' element={<Photos />}/>
-                        <Route path='/music' element={<Music />}/>
-                        <Route path='/video' element={<Video />}/>
-                        <Route path='/mini-apps' element={<MiniApps />}/>
-                        <Route path='/bookmarks' element={<Bookmarks />}/>
-                        <Route path='/files' element={<Files />}/>
-                        <Route path='/advertising' element={<Advertising />}/>
-                        <Route path='/messages/:id' element={<Dialog state={props.state} />} />
-                    </Routes>
-                </div>
+        <div className='container'>
+            <Header/>
+            <Navbar/>
+            <div className='content'>
+                <Routes>
+                    <Route path='/profile' element={<Profile state={props.state}/>}/>
+                    <Route path='/news' element={<News/>}/>
+                    <Route path='/messages'
+                           element={<Messages messages={props.state.messagesPage} users={props.state.users}/>}/>
+                    <Route path='/friends'
+                           element={<Friends friends={props.state.friends} users={props.state.users}/>}/>
+                    <Route path='/communities' element={<Communities/>}/>
+                    <Route path='/photos' element={<Photos/>}/>
+                    <Route path='/music' element={<Music/>}/>
+                    <Route path='/video' element={<Video/>}/>
+                    <Route path='/mini-apps' element={<MiniApps/>}/>
+                    <Route path='/bookmarks' element={<Bookmarks/>}/>
+                    <Route path='/files' element={<Files/>}/>
+                    <Route path='/advertising' element={<Advertising/>}/>
+                    <Route path='/messages/:id' element={<Dialog state={props.state}/>}/>
+                </Routes>
             </div>
-        </BrowserRouter>
+        </div>
     );
 }
 
