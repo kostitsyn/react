@@ -27,7 +27,7 @@ const App = (props) => {
                         <Route path='/profile' element={<Profile state={props.state} />}/>
                         <Route path='/news' element={<News />}/>
                         <Route path='/messages' element={<Messages messages={props.state.messagesPage} users={props.state.users} />}/>
-                        <Route path='/friends' element={<Friends friends={props.state.friends} />}/>
+                        <Route path='/friends' element={<Friends friends={props.state.friends} users={props.state.users} />}/>
                         <Route path='/communities' element={<Communities />}/>
                         <Route path='/photos' element={<Photos />}/>
                         <Route path='/music' element={<Music />}/>

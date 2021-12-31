@@ -12,7 +12,7 @@ const Messages = (props) => {
         }
     })
 
-    let userElements = filteredUsers.map(u => <Companion id={u.id} name={u.name} imgLink={u.imgLink} key={u.id} />)
+    let userElements = filteredUsers.map(u => <Companion messages={props.messages.dialogs} companion={u} key={u.id} />)
 
     return (
         <div className={c.messages}>

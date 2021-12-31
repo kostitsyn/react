@@ -43,6 +43,7 @@ const state = {
         {id: 6, name: 'Фред', imgLink: 'https://i.pinimg.com/originals/2f/09/9d/2f099d05fd0017a450325120584c00d3.jpg'},
         {id: 7, name: 'Пеннивайз', imgLink: 'https://upload.wikimedia.org/wikipedia/ru/thumb/9/9f/Pennywise_It.jpg/274px-Pennywise_It.jpg'},
         {id: 8, name: 'Кощей', imgLink: 'https://regnum.ru/uploads/pictures/news/2016/07/15/regnum_picture_146861212866714_normal.jpg'},
+        {id: 100, name: 'Александр', imgLink: 'https://scontent-hel3-1.xx.fbcdn.net/v/t1.6435-9/fr/cp0/e15/q65/93485935_109332727408156_4462720764302327808_n.jpg?_nc_cat=109&ccb=1-5&_nc_sid=85a577&_nc_ohc=UUV6Es8WJYYAX-pY8Vr&_nc_ht=scontent-hel3-1.xx&oh=00_AT-ZZksQ9iQAklBnEhE0VgkYp4E9UKZ9kIjo1uni8LpH5w&oe=61F5B280'},
     ]
 }
 

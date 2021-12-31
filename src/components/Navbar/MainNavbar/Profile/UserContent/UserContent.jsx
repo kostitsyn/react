@@ -1,13 +1,13 @@
 import React from 'react';
 import c from './UserContent.module.css';
-import Friends from "../../Friends/Friends";
 import FriendsContent from "./FriendsContent/FriendsContent";
 
 const UserContent = (props) => {
+    let me = props.users.find(u => u.id === 100);
     return (
         <div className={c.userContent}>
             <div className={c.avatar}>
-                <img src={require('../../../../../images/ava.jpg')} alt='avatar'/>
+                <img src={me.imgLink} alt='avatar'/>
             </div>
             <div>
                 Presents

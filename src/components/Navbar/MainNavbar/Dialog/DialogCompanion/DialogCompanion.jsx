@@ -1,10 +1,9 @@
 import React from 'react';
-import c from './DialogItem.module.css';
+import c from './DialogCompanion.module.css';
 
-const DialogItem = (props) => {
-    let companionId = props.companion.user_id;
+const DialogCompanion = (props) => {
     return (
-        <div className={c.dialogItem}>
+        <div className={c.companion}>
             <img src={props.companion.imgLink} alt='ava' />
             <span className={c.name}>{props.companion.name}</span>
             <span>{props.state.message}</span>
@@ -12,4 +11,4 @@ const DialogItem = (props) => {
     )
 }
 
-export default DialogItem;
+export default DialogCompanion;

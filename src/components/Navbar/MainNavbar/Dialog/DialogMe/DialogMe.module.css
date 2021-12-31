@@ -1,0 +1,33 @@
+.me {
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 1fr 50px;
+    grid-template-areas:
+    "n a"
+    "m a"
+}
+
+.me span {
+    padding: 7px;
+}
+
+.name {
+    grid-area: n;
+    margin-left: auto;
+    color: #2a5885;
+    font-weight: 600;
+}
+
+.message {
+    grid-area: m;
+    margin-left: auto;
+}
+
+.ava {
+    grid-area: a;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    margin-top: 16px;
+    margin-left: 7px;
+}
