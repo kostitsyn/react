@@ -1,0 +1,9 @@
+.inputBlock {
+    display: grid;
+    grid-template-columns: 1fr 150px;
+    grid-gap: 40px;
+}
+
+.inputText {
+    width: 100%;
+}

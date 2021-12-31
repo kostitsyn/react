@@ -2,6 +2,7 @@ import React from "react";
 import {useParams} from "react-router-dom";
 import DialogCompanion from "./DialogCompanion/DialogCompanion";
 import DialogMe from "./DialogMe/DialogMe";
+import c from './Dialog.module.css';
 
 const Dialog = (props) => {
     let { id } = useParams();
@@ -9,9 +10,21 @@ const Dialog = (props) => {
     let companion = props.state.users.find(u => u.id.toString() === id);
     let me = props.state.users.find(u => u.id === 100);
     let dialogElements = currentDialogs.messages.map(d => d.user_id == id ? <DialogCompanion companion={companion} state={d} key={`${d.id}${d.message}`} /> : <DialogMe me={me} state={d} /> )
+
+    let newMsgElement = React.createRef();
+
+    let addMsg = () => {
+        let text = newMsgElement.current.value;
+        alert(text);
+    }
+
     return (
         <div>
             {dialogElements}
+            <div className={c.inputBlock}>
+                <textarea ref={newMsgElement} className={c.inputText} />
+                <button onClick={addMsg}>Сохранить</button>
+            </div>
         </div>
     )
 }
