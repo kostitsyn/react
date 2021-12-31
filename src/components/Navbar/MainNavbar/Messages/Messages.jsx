@@ -4,7 +4,15 @@ import Companion from "./Companion/Companion";
 
 const Messages = (props) => {
 
-    let userElements = props.messages.messages.map(u => <Companion id={u.id} name={u.name} imgLink={u.imgLink} key={u.id} />)
+    let filteredUsers = props.users.filter(u => {
+        let newArr = [];
+        props.messages.messages.forEach(m => newArr.push(m.user_id))
+        if (newArr.includes(u.id)) {
+            return u;
+        }
+    })
+
+    let userElements = filteredUsers.map(u => <Companion id={u.id} name={u.name} imgLink={u.imgLink} key={u.id} />)
 
     return (
         <div className={c.messages}>

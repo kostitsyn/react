@@ -13,7 +13,7 @@ const UserContent = (props) => {
                 Presents
             </div>
             <div className={c.friends}>
-                <FriendsContent friends={props.friends} />
+                <FriendsContent friends={props.friends} users={props.users} />
             </div>
             <div>
                 Friends online

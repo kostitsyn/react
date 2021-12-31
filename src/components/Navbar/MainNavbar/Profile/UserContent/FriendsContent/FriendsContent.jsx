@@ -11,7 +11,15 @@ const FriendsContent = (props) => {
             friends.splice(removeFriend, 1);
         }
     }
-    let friendElements = friends.map(f => <FriendContent friend={f} key={f.id} />)
+    let filterFriends = props.users.filter(u => {
+        let newArr = [];
+        friends.forEach(f => newArr.push(f.user_id));
+        if (newArr.includes(u.id)) {
+            return u;
+        }
+    });
+
+    let friendElements = filterFriends.map(f => <FriendContent friend={f} key={f.id} />)
     return (
         <div>
             <span className={c.friendsLabel}>Friends {props.friends.length}</span>

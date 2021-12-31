@@ -26,7 +26,7 @@ const App = (props) => {
                     <Routes>
                         <Route path='/profile' element={<Profile state={props.state} />}/>
                         <Route path='/news' element={<News />}/>
-                        <Route path='/messages' element={<Messages messages={props.state.messagesPage} />}/>
+                        <Route path='/messages' element={<Messages messages={props.state.messagesPage} users={props.state.users} />}/>
                         <Route path='/friends' element={<Friends friends={props.state.friends} />}/>
                         <Route path='/communities' element={<Communities />}/>
                         <Route path='/photos' element={<Photos />}/>
@@ -36,7 +36,7 @@ const App = (props) => {
                         <Route path='/bookmarks' element={<Bookmarks />}/>
                         <Route path='/files' element={<Files />}/>
                         <Route path='/advertising' element={<Advertising />}/>
-                        <Route path='/messages/:id' element={<Dialog dialogs={props.state.messagesPage} />} />
+                        <Route path='/messages/:id' element={<Dialog state={props.state} />} />
                     </Routes>
                 </div>
             </div>

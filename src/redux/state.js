@@ -8,54 +8,42 @@ const state = {
     },
     messagesPage: {
         messages: [
-            {
-                id: 1,
-                name: "Фродо Бэггинс",
-                imgLink: "https://1.bp.blogspot.com/--nN9E8LB86c/X7Ewn5GEGmI/AAAAAAAAGLc/ueRKDW39iUg_5uBBtUANVOv0jMsBufeIQCLcBGAsYHQ/s1280/Frodo%2BBaggins.png} alt='logo'"
-            },
-            {
-                id: 2,
-                name: "Лектер Ганнибал",
-                imgLink: "https://s3.yugopolis.ru/media/media/cache/news/data/img/cdbb04ac08902ad689d7e0cd19585b33/107841.jpg"
-            },
-            {
-                id: 3,
-                name: "Немезис",
-                imgLink: "https://s2.hostingkartinok.com/uploads/images/2012/08/617f0d57c28066df47b8d47c973d877d.jpg"
-            }
+            {user_id: 1},
+            {user_id: 2},
+            {user_id: 3},
         ],
         dialogs: [
             {
-                id: 1, messages: [{id: 100, message: 'hello'}, {id: 1, message: 'you too'}, {id: 100, message: 'super'}]
+                id: 1, messages: [{user_id: 100, message: 'hello'}, {user_id: 1, message: 'you too'}, {user_id: 100, message: 'super'}]
             },
             {
-                id: 2, messages: [{id: 2, message: 'good morning'}, {id: 100, message: 'you too'}, {id: 2, message: 'go home'}]
+                id: 2,
+                messages: [{user_id: 2, message: 'good morning'}, {user_id: 100, message: 'you too'}, {user_id: 2, message: 'go home'}]
             },
             {
-                id: 3, messages: [{id: 100, message: 'you sick'}, {id: 3, message: 'you too'}, {id: 100, message: 'fuck you'}]
+                id: 3,
+                messages: [{user_id: 100, message: 'you sick'}, {user_id: 3, message: 'you too'}, {user_id: 100, message: 'fuck you'}]
             },
         ]
     },
     friends: [
-            {
-                id: 1, name: "Фродо Бэггинс", imgLink: "https://1.bp.blogspot.com/--nN9E8LB86c/X7Ewn5GEGmI/AAAAAAAAGLc/ueRKDW39iUg_5uBBtUANVOv0jMsBufeIQCLcBGAsYHQ/s1280/Frodo%2BBaggins.png} alt='logo'"
-            },
-            {
-                id: 3, name: 'Пинхед', imgLink: 'https://image.tmdb.org/t/p/original/8gAvVDbxtWYw3KzyUAPQ4Ddd0AL.jpg'
-            },
-            {
-                id: 4, name: 'Джейсон', imgLink: 'https://avatars.mds.yandex.net/get-zen_doc/41204/pub_5d2bb3b4ac412400ae8f3cea_5d2bb50c998ed600acf9b478/scale_1200'
-            },
-            {
-                id: 5, name: 'Фред', imgLink: 'https://i.pinimg.com/originals/2f/09/9d/2f099d05fd0017a450325120584c00d3.jpg'
-            },
-            {
-                id: 6, name: 'Пеннивайз', imgLink: 'https://upload.wikimedia.org/wikipedia/ru/thumb/9/9f/Pennywise_It.jpg/274px-Pennywise_It.jpg'
-            },
-            {
-                id: 7, name: 'Кощей', imgLink: 'https://regnum.ru/uploads/pictures/news/2016/07/15/regnum_picture_146861212866714_normal.jpg'
-            },
-        ],
+        {user_id: 1},
+        {user_id: 4},
+        {user_id: 5},
+        {user_id: 6},
+        {user_id: 7},
+        {user_id: 8},
+    ],
+    users: [
+        {id: 1, name: "Фродо Бэггинс", imgLink: "https://1.bp.blogspot.com/--nN9E8LB86c/X7Ewn5GEGmI/AAAAAAAAGLc/ueRKDW39iUg_5uBBtUANVOv0jMsBufeIQCLcBGAsYHQ/s1280/Frodo%2BBaggins.png} alt='logo'"},
+        {id: 2, name: "Лектер Ганнибал", imgLink: "https://s3.yugopolis.ru/media/media/cache/news/data/img/cdbb04ac08902ad689d7e0cd19585b33/107841.jpg"},
+        {id: 3, name: "Немезис", imgLink: "https://s2.hostingkartinok.com/uploads/images/2012/08/617f0d57c28066df47b8d47c973d877d.jpg"},
+        {id: 4, name: 'Пинхед', imgLink: 'https://image.tmdb.org/t/p/original/8gAvVDbxtWYw3KzyUAPQ4Ddd0AL.jpg'},
+        {id: 5, name: 'Джейсон', imgLink: 'https://avatars.mds.yandex.net/get-zen_doc/41204/pub_5d2bb3b4ac412400ae8f3cea_5d2bb50c998ed600acf9b478/scale_1200'},
+        {id: 6, name: 'Фред', imgLink: 'https://i.pinimg.com/originals/2f/09/9d/2f099d05fd0017a450325120584c00d3.jpg'},
+        {id: 7, name: 'Пеннивайз', imgLink: 'https://upload.wikimedia.org/wikipedia/ru/thumb/9/9f/Pennywise_It.jpg/274px-Pennywise_It.jpg'},
+        {id: 8, name: 'Кощей', imgLink: 'https://regnum.ru/uploads/pictures/news/2016/07/15/regnum_picture_146861212866714_normal.jpg'},
+    ]
 }
 
 export default state;

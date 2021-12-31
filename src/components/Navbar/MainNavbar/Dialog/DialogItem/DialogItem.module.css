@@ -1,0 +1,25 @@
+.dialogItem {
+    paddig: 10px;
+    display: grid;
+    grid-template-columns: 50px 1fr;
+
+}
+
+.dialogItem img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    padding-top: 16px;
+
+}
+
+.dialogItem span {
+    padding: 7px;
+}
+
+.name {
+    vertical-align: top;
+
+}
