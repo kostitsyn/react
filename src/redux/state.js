@@ -47,4 +47,25 @@ const state = {
     ]
 }
 
+export const addPost = (postText) => {
+    let lastId = state.profilePage.posts[state.profilePage.posts.length-1].id;
+    let newPost = {
+        id: ++lastId,
+        message: postText,
+        likes: 0,
+        comments: 0
+    };
+    state.profilePage.posts.push(newPost);
+}
+
+export const addMessage = (msgText, dialog_id) => {
+    let currentDialogs = state.messagesPage.dialogs.find(d => d.id == dialog_id);
+    let newMessage = {
+        user_id: 100,
+        message: msgText
+    }
+    debugger;
+    currentDialogs.messages.push(newMessage);
+}
+
 export default state;

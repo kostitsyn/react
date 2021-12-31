@@ -3,7 +3,7 @@ import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Navbar/MainNavbar/Profile/Profile";
 import Messages from "./components/Navbar/MainNavbar/Messages/Messages";
-import {BrowserRouter, Routes, Route} from "react-router-dom";
+import {Routes, Route} from "react-router-dom";
 import React from 'react';
 import News from "./components/Navbar/MainNavbar/News/News";
 import Friends from "./components/Navbar/MainNavbar/Friends/Friends";
@@ -24,10 +24,11 @@ const App = (props) => {
             <Navbar/>
             <div className='content'>
                 <Routes>
-                    <Route path='/profile' element={<Profile state={props.state}/>}/>
+                    <Route path='/profile' element={<Profile state={props.state} addPost={props.addPost}/>}/>
                     <Route path='/news' element={<News/>}/>
                     <Route path='/messages'
-                           element={<Messages messages={props.state.messagesPage} users={props.state.users}/>}/>
+                           element={<Messages messages={props.state.messagesPage}
+                           users={props.state.users}/>}/>
                     <Route path='/friends'
                            element={<Friends friends={props.state.friends} users={props.state.users}/>}/>
                     <Route path='/communities' element={<Communities/>}/>
@@ -38,7 +39,8 @@ const App = (props) => {
                     <Route path='/bookmarks' element={<Bookmarks/>}/>
                     <Route path='/files' element={<Files/>}/>
                     <Route path='/advertising' element={<Advertising/>}/>
-                    <Route path='/messages/:id' element={<Dialog state={props.state}/>}/>
+                    <Route path='/messages/:id' element={<Dialog state={props.state}
+                    addMessage={props.addMessage}/>}/>
                 </Routes>
             </div>
         </div>

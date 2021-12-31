@@ -11,7 +11,7 @@ const Content = (props) => {
             <div>User information</div>
             <div>User data</div>
             <div>User photos</div>
-            <Posts posts={props.posts} />
+            <Posts addPost={props.addPost} posts={props.posts} />
         </div>
     )
 }
