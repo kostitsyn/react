@@ -4,7 +4,7 @@ import PostItem from "./PostItem/PostItem";
 
 const Posts = (props) => {
     let currentUser = props.currentUser;
-    let userPosts = props.posts.filter(p => p.author === currentUser.id)
+    let userPosts = props.state.profilePage.posts.filter(p => p.author === currentUser.id)
     let postElements = userPosts.map(p => <PostItem message={p.message} likes={p.likes} currentUser={currentUser} comments={p.comments} key={p.id} />)
 
     let newPostElement = React.createRef();
@@ -16,15 +16,14 @@ const Posts = (props) => {
     }
 
     let addPost = () => {
-        let text = newPostElement.current.value;
-        props.addPost(currentUser.id, text);
+        props.addPost(currentUser.id);
     }
 
     return (
         <div>
             <div className={c.addPost}>
                 <label htmlFor='addPost'>Add post: </label>
-                <textarea onChange={updatePostText} ref={newPostElement} id='addPost'/>
+                <textarea onChange={updatePostText} value={props.state.profilePage.newPostText} ref={newPostElement} id='addPost'/>
                 <button onClick={addPost}>Сохранить</button>
             </div>
             <div className={c.posts}>

@@ -19,15 +19,15 @@ const Dialog = (props) => {
     }
 
     let addMsg = () => {
-        let text = newMsgElement.current.value;
-        props.addMessage(text, id);
+        props.addMessage(id);
     }
 
     return (
         <div>
             {dialogElements}
             <div className={c.inputBlock}>
-                <textarea onChange={updateMessage} ref={newMsgElement} className={c.inputText} />
+                <textarea onChange={updateMessage} value={props.state.messagesPage.newMessageText}
+                          ref={newMsgElement} className={c.inputText} />
                 <button onClick={addMsg}>Сохранить</button>
             </div>
         </div>
