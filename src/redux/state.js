@@ -1,9 +1,13 @@
+import render from '../render';
+
 const state = {
+    newPostText: '',
+    newMessageText: '',
     profilePage: {
         posts: [
-            {id: 1, message: "Отдыхаю на Кубе", likes: 10, comments: 5},
-            {id: 2, message: "Окончил обучение на GeekBrains", likes: 123, comments: 2},
-            {id: 3, message: "Устроился на работу мечты", likes: 100000, comments: 3}
+            {id: 1, author: 100, message: "Отдыхаю на Кубе", likes: 10, comments: 5},
+            {id: 2, author: 100, message: "Окончил обучение на GeekBrains", likes: 123, comments: 2},
+            {id: 3, author: 100, message: "Устроился на работу мечты", likes: 100000, comments: 3}
         ]
     },
     messagesPage: {
@@ -47,15 +51,22 @@ const state = {
     ]
 }
 
-export const addPost = (postText) => {
+export const addPost = (author, postText) => {
     let lastId = state.profilePage.posts[state.profilePage.posts.length-1].id;
     let newPost = {
         id: ++lastId,
+        author: author,
         message: postText,
         likes: 0,
         comments: 0
     };
     state.profilePage.posts.push(newPost);
+    render(state, addPost, updatePost, addMessage, updateMessage);
+}
+
+export const updatePost = (text) => {
+    state.newPostText = text;
+    render(state, addPost, updatePost, addMessage, updateMessage);
 }
 
 export const addMessage = (msgText, dialog_id) => {
@@ -64,8 +75,15 @@ export const addMessage = (msgText, dialog_id) => {
         user_id: 100,
         message: msgText
     }
-    debugger;
     currentDialogs.messages.push(newMessage);
+    render(state, addPost, updatePost, addMessage, updateMessage);
+}
+
+export const updateMessage = (text) => {
+    debugger;
+    state.newMessageText = text;
+    debugger;
+    render(state, addPost, updatePost, addMessage, updateMessage);
 }
 
 export default state;

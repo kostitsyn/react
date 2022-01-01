@@ -6,7 +6,7 @@ const PostItem = (props) => {
     return (
         <div className={c.postItem}>
             <img src={require('../../../../../../../images/ava.jpg')} alt='ava' />
-            <h3>Post1</h3>
+            <h3>{props.currentUser.name}</h3>
             <span className={c.postText}>{props.message}</span>
             <div className={c.statistic}>
                 <div className={c.likes}>

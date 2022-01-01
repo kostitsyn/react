@@ -8,7 +8,7 @@ const Profile = (props) => {
         <main className={c.profile}>
             <UserContent friends={props.state.friends} users={props.state.users}/>
             <Content posts={props.state.profilePage.posts}
-            users={props.state.users} addPost={props.addPost}/>
+            users={props.state.users} addPost={props.addPost} updatePost={props.updatePost}/>
         </main>
     )
 }

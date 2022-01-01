@@ -13,9 +13,13 @@ const Dialog = (props) => {
 
     let newMsgElement = React.createRef();
 
+    let updateMessage = () => {
+        let text = newMsgElement.current.value;
+        props.updateMessage(text);
+    }
+
     let addMsg = () => {
         let text = newMsgElement.current.value;
-        debugger;
         props.addMessage(text, id);
     }
 
@@ -23,7 +27,7 @@ const Dialog = (props) => {
         <div>
             {dialogElements}
             <div className={c.inputBlock}>
-                <textarea ref={newMsgElement} className={c.inputText} />
+                <textarea onChange={updateMessage} ref={newMsgElement} className={c.inputText} />
                 <button onClick={addMsg}>Сохранить</button>
             </div>
         </div>

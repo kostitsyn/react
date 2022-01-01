@@ -24,7 +24,7 @@ const App = (props) => {
             <Navbar/>
             <div className='content'>
                 <Routes>
-                    <Route path='/profile' element={<Profile state={props.state} addPost={props.addPost}/>}/>
+                    <Route path='/profile' element={<Profile state={props.state} addPost={props.addPost} updatePost={props.updatePost}/>}/>
                     <Route path='/news' element={<News/>}/>
                     <Route path='/messages'
                            element={<Messages messages={props.state.messagesPage}
@@ -40,7 +40,7 @@ const App = (props) => {
                     <Route path='/files' element={<Files/>}/>
                     <Route path='/advertising' element={<Advertising/>}/>
                     <Route path='/messages/:id' element={<Dialog state={props.state}
-                    addMessage={props.addMessage}/>}/>
+                    addMessage={props.addMessage} updateMessage={props.updateMessage}/>}/>
                 </Routes>
             </div>
         </div>
