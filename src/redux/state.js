@@ -1,4 +1,6 @@
-import render from '../render';
+let render = () => {
+    console.log('render');
+}
 
 const state = {
     profilePage: {
@@ -62,12 +64,12 @@ export const addPost = (author) => {
     };
     state.profilePage.posts.push(newPost);
     state.profilePage.newPostText = '';
-    render(state, addPost, updatePost, addMessage, updateMessage);
+    render(state);
 }
 
 export const updatePost = (text) => {
     state.profilePage.newPostText = text;
-    render(state, addPost, updatePost, addMessage, updateMessage);
+    render(state);
 }
 
 export const addMessage = (dialog_id) => {
@@ -78,12 +80,15 @@ export const addMessage = (dialog_id) => {
     }
     currentDialogs.messages.push(newMessage);
     state.messagesPage.newMessageText = '';
-    render(state, addPost, updatePost, addMessage, updateMessage);
+    render(state);
 }
 
 export const updateMessage = (text) => {
     state.messagesPage.newMessageText = text;
-    render(state, addPost, updatePost, addMessage, updateMessage);
+    render(state);
 }
+
+export const subscribe = (observer) =>
+    render = observer;
 
 export default state;
