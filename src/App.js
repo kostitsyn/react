@@ -24,13 +24,13 @@ const App = (props) => {
             <Navbar/>
             <div className='content'>
                 <Routes>
-                    <Route path='/profile' element={<Profile state={props.state} addPost={props.addPost} updatePost={props.updatePost}/>}/>
+                    <Route path='/profile' element={<Profile state={props.store.getState()} addPost={props.store.addPost} updatePost={props.store.updatePost}/>}/>
                     <Route path='/news' element={<News/>}/>
                     <Route path='/messages'
-                           element={<Messages messages={props.state.messagesPage}
-                           users={props.state.users}/>}/>
+                           element={<Messages messages={props.store.getState().messagesPage}
+                           users={props.store.getState().users}/>}/>
                     <Route path='/friends'
-                           element={<Friends friends={props.state.friends} users={props.state.users}/>}/>
+                           element={<Friends friends={props.store.getState().friends} users={props.store.getState().users}/>}/>
                     <Route path='/communities' element={<Communities/>}/>
                     <Route path='/photos' element={<Photos/>}/>
                     <Route path='/music' element={<Music/>}/>
@@ -39,8 +39,8 @@ const App = (props) => {
                     <Route path='/bookmarks' element={<Bookmarks/>}/>
                     <Route path='/files' element={<Files/>}/>
                     <Route path='/advertising' element={<Advertising/>}/>
-                    <Route path='/messages/:id' element={<Dialog state={props.state}
-                    addMessage={props.addMessage} updateMessage={props.updateMessage}/>}/>
+                    <Route path='/messages/:id' element={<Dialog state={props.store.getState()}
+                    addMessage={props.store.addMessage} updateMessage={props.store.updateMessage}/>}/>
                 </Routes>
             </div>
         </div>
