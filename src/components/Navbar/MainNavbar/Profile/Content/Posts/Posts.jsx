@@ -1,6 +1,7 @@
 import React from 'react';
 import c from './Posts.module.css';
 import PostItem from "./PostItem/PostItem";
+import {addPostActionCreator, updatePostActionCreator} from "../../../../../../redux/store";
 
 const Posts = (props) => {
     let currentUser = props.currentUser;
@@ -11,20 +12,12 @@ const Posts = (props) => {
 
     let updatePostText = () => {
         let text = newPostElement.current.value;
-        let action = {
-            type: "UPDATE-POST",
-            text: text
-        }
-        props.dispatch(action);
+        props.dispatch(updatePostActionCreator(text));
 
     }
 
     let addPost = () => {
-        let action = {
-            type: "ADD-POST",
-            author_id: currentUser.id
-        }
-        props.dispatch(action);
+        props.dispatch(addPostActionCreator(currentUser.id));
     }
 
     return (

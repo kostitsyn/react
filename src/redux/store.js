@@ -1,3 +1,8 @@
+const addPost = 'ADD-POST';
+const updatePost = 'UPDATE-POST';
+const addMessage = 'ADD-MESSAGE';
+const updateMessage = 'UPDATE-MESSAGE';
+
 let store = {
     _callSubscriber () {
         console.log('render');
@@ -90,7 +95,7 @@ let store = {
 
     dispatch (action) {
         switch (action.type) {
-            case 'ADD-POST':
+            case addPost:
                 let lastId = this._state.profilePage.posts[this._state.profilePage.posts.length-1].id;
                 let newPost = {
                     id: ++lastId,
@@ -103,11 +108,11 @@ let store = {
                 this._state.profilePage.newPostText = '';
                 this._callSubscriber(this._state);
                 break;
-            case 'UPDATE-POST':
+            case updatePost:
                 this._state.profilePage.newPostText = action.text;
                 this._callSubscriber(this._state);
                 break;
-            case 'ADD-MESSAGE':
+            case addMessage:
                 let currentDialogs = this._state.messagesPage.dialogs.find(d => d.id == action.dialog_id);
                 let newMessage = {
                     user_id: 100,
@@ -117,7 +122,7 @@ let store = {
                 this._state.messagesPage.newMessageText = '';
                 this._callSubscriber(this._state);
                 break;
-            case 'UPDATE-MESSAGE':
+            case updateMessage:
                 this._state.messagesPage.newMessageText = action.text;
                 this._callSubscriber(this._state);
                 break;
@@ -136,5 +141,10 @@ let store = {
         return this._state;
     }
 }
+
+export const updateMessageActionCreator = (text) => ({type: updateMessage, text});
+export const addMessageActionCreator = (dialog_id) => ({type: addMessage, dialog_id});
+export const updatePostActionCreator = (text) => ({type: updatePost, text});
+export const addPostActionCreator = (author_id) => ({type: addPost, author_id});
 
 export default store;
