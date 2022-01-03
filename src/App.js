@@ -24,7 +24,7 @@ const App = (props) => {
             <Navbar/>
             <div className='content'>
                 <Routes>
-                    <Route path='/profile' element={<Profile state={props.store.getState()} addPost={props.store.addPost} updatePost={props.store.updatePost}/>}/>
+                    <Route path='/profile' element={<Profile store={props.store}/>}/>
                     <Route path='/news' element={<News/>}/>
                     <Route path='/messages'
                            element={<Messages messages={props.store.getState().messagesPage}
@@ -40,7 +40,7 @@ const App = (props) => {
                     <Route path='/files' element={<Files/>}/>
                     <Route path='/advertising' element={<Advertising/>}/>
                     <Route path='/messages/:id' element={<Dialog state={props.store.getState()}
-                    addMessage={props.store.addMessage} updateMessage={props.store.updateMessage}/>}/>
+                    addMessage={props.store.addMessage.bind(props.store)} updateMessage={props.store.updateMessage.bind(props.store)}/>}/>
                 </Routes>
             </div>
         </div>

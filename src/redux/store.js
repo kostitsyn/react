@@ -1,8 +1,7 @@
 let store = {
-    render() {
+    render () {
         console.log('render');
     },
-
     _state: {
         profilePage: {
             newPostText: '',
@@ -85,8 +84,8 @@ let store = {
     },
 
     updateMessage (text) {
-        this.state.messagesPage.newMessageText = text;
-        this.render(this.state);
+        this._state.messagesPage.newMessageText = text;
+        this.render(this._state);
     },
 
     setSubscribe (observer) {
