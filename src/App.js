@@ -24,13 +24,21 @@ const App = (props) => {
             <Navbar/>
             <div className='content'>
                 <Routes>
-                    <Route path='/profile' element={<Profile store={props.store}/>}/>
+                    <Route path='/profile' element={<Profile state={props.state}
+                                                             addPost={props.addPost}
+                                                             updatePost={props.updatePost}
+                                           />}
+                    />
                     <Route path='/news' element={<News/>}/>
                     <Route path='/messages'
-                           element={<Messages messages={props.store.getState().messagesPage}
-                           users={props.store.getState().users}/>}/>
+                           element={<Messages messages={props.state.messagesPage}
+                                              users={props.state.users}
+                           />}/>
                     <Route path='/friends'
-                           element={<Friends friends={props.store.getState().friends} users={props.store.getState().users}/>}/>
+                           element={<Friends friends={props.state.friends}
+                                             users={props.state.users}
+                           />}
+                    />
                     <Route path='/communities' element={<Communities/>}/>
                     <Route path='/photos' element={<Photos/>}/>
                     <Route path='/music' element={<Music/>}/>
@@ -39,8 +47,11 @@ const App = (props) => {
                     <Route path='/bookmarks' element={<Bookmarks/>}/>
                     <Route path='/files' element={<Files/>}/>
                     <Route path='/advertising' element={<Advertising/>}/>
-                    <Route path='/messages/:id' element={<Dialog state={props.store.getState()}
-                    addMessage={props.store.addMessage.bind(props.store)} updateMessage={props.store.updateMessage.bind(props.store)}/>}/>
+                    <Route path='/messages/:id' element={<Dialog state={props.state}
+                                                                 addMessage={props.addMessage}
+                                                                 updateMessage={props.updateMessage}
+                                                />}
+                    />
                 </Routes>
             </div>
         </div>

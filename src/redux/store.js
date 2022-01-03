@@ -1,5 +1,5 @@
 let store = {
-    render () {
+    _callSubscriber () {
         console.log('render');
     },
     _state: {
@@ -64,12 +64,12 @@ let store = {
         };
         this._state.profilePage.posts.push(newPost);
         this._state.profilePage.newPostText = '';
-        this.render(this._state);
+        this._callSubscriber(this._state);
     },
 
     updatePost (text) {
         this._state.profilePage.newPostText = text;
-        this.render(this._state);
+        this._callSubscriber(this._state);
     },
 
     addMessage (dialog_id) {
@@ -80,19 +80,19 @@ let store = {
         }
         currentDialogs.messages.push(newMessage);
         this._state.messagesPage.newMessageText = '';
-        this.render(this._state);
+        this._callSubscriber(this._state);
     },
 
     updateMessage (text) {
         this._state.messagesPage.newMessageText = text;
-        this.render(this._state);
+        this._callSubscriber(this._state);
     },
 
-    setSubscribe (observer) {
-        this.render = observer;
+    set subscribe (observer) {
+        this._callSubscriber = observer;
     },
 
-    getState () {
+    get state () {
         return this._state;
     }
 }
