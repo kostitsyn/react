@@ -12,8 +12,7 @@ const Content = (props) => {
             <div>User data</div>
             <div>User photos</div>
             <Posts state={props.state.profilePage}
-                   addPost={props.addPost}
-                   updatePost={props.updatePost}
+                   dispatch={props.dispatch}
                    currentUser={me}
             />
         </div>

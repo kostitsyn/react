@@ -53,39 +53,79 @@ let store = {
         ]
     },
 
-    addPost (author) {
-        let lastId = this._state.profilePage.posts[this._state.profilePage.posts.length-1].id;
-        let newPost = {
-            id: ++lastId,
-            author: author,
-            message: this._state.profilePage.newPostText,
-            likes: 0,
-            comments: 0
-        };
-        this._state.profilePage.posts.push(newPost);
-        this._state.profilePage.newPostText = '';
-        this._callSubscriber(this._state);
-    },
-
-    updatePost (text) {
-        this._state.profilePage.newPostText = text;
-        this._callSubscriber(this._state);
-    },
-
-    addMessage (dialog_id) {
-        let currentDialogs = this._state.messagesPage.dialogs.find(d => d.id == dialog_id);
-        let newMessage = {
-            user_id: 100,
-            message: this._state.messagesPage.newMessageText
-        }
-        currentDialogs.messages.push(newMessage);
-        this._state.messagesPage.newMessageText = '';
-        this._callSubscriber(this._state);
-    },
+    // addPost (author) {
+    //     let lastId = this._state.profilePage.posts[this._state.profilePage.posts.length-1].id;
+    //     let newPost = {
+    //         id: ++lastId,
+    //         author: author,
+    //         message: this._state.profilePage.newPostText,
+    //         likes: 0,
+    //         comments: 0
+    //     };
+    //     this._state.profilePage.posts.push(newPost);
+    //     this._state.profilePage.newPostText = '';
+    //     this._callSubscriber(this._state);
+    // },
+    //
+    // updatePost (text) {
+    //     this._state.profilePage.newPostText = text;
+    //     this._callSubscriber(this._state);
+    // },
+    //
+    // addMessage (dialog_id) {
+    //     let currentDialogs = this._state.messagesPage.dialogs.find(d => d.id == dialog_id);
+    //     let newMessage = {
+    //         user_id: 100,
+    //         message: this._state.messagesPage.newMessageText
+    //     }
+    //     currentDialogs.messages.push(newMessage);
+    //     this._state.messagesPage.newMessageText = '';
+    //     this._callSubscriber(this._state);
+    // },
 
     updateMessage (text) {
         this._state.messagesPage.newMessageText = text;
         this._callSubscriber(this._state);
+    },
+
+    dispatch (action) {
+        switch (action.type) {
+            case 'ADD-POST':
+                let lastId = this._state.profilePage.posts[this._state.profilePage.posts.length-1].id;
+                let newPost = {
+                    id: ++lastId,
+                    author: action.author_id,
+                    message: this._state.profilePage.newPostText,
+                    likes: 0,
+                    comments: 0
+                };
+                this._state.profilePage.posts.push(newPost);
+                this._state.profilePage.newPostText = '';
+                this._callSubscriber(this._state);
+                break;
+            case 'UPDATE-POST':
+                this._state.profilePage.newPostText = action.text;
+                this._callSubscriber(this._state);
+                break;
+            case 'ADD-MESSAGE':
+                let currentDialogs = this._state.messagesPage.dialogs.find(d => d.id == action.dialog_id);
+                let newMessage = {
+                    user_id: 100,
+                    message: this._state.messagesPage.newMessageText
+                }
+                currentDialogs.messages.push(newMessage);
+                this._state.messagesPage.newMessageText = '';
+                this._callSubscriber(this._state);
+                break;
+            case 'UPDATE-MESSAGE':
+                this._state.messagesPage.newMessageText = action.text;
+                this._callSubscriber(this._state);
+                break;
+            default:
+                break;
+        }
+
+
     },
 
     set subscribe (observer) {

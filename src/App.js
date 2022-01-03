@@ -25,8 +25,7 @@ const App = (props) => {
             <div className='content'>
                 <Routes>
                     <Route path='/profile' element={<Profile state={props.state}
-                                                             addPost={props.addPost}
-                                                             updatePost={props.updatePost}
+                                                             dispatch={props.dispatch}
                                            />}
                     />
                     <Route path='/news' element={<News/>}/>
@@ -48,8 +47,7 @@ const App = (props) => {
                     <Route path='/files' element={<Files/>}/>
                     <Route path='/advertising' element={<Advertising/>}/>
                     <Route path='/messages/:id' element={<Dialog state={props.state}
-                                                                 addMessage={props.addMessage}
-                                                                 updateMessage={props.updateMessage}
+                                                                 dispatch={props.dispatch}
                                                 />}
                     />
                 </Routes>
