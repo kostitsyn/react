@@ -17,9 +17,12 @@ let render = (state) => {
     );
 }
 
-let state = store.state;
-render(state);
-store.subscribe = render;
+render(store.state);
+
+store.subscribe = () => {
+    let state = store.state;
+    render(state);
+}
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

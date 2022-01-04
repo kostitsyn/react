@@ -1,3 +1,4 @@
+import React from 'react';
 import c from '../../Friends/Friend/Friend.module.css';
 import {addFriendActionCreator, deleteFriendActionCreator} from '../../../../../redux/friends-reducer';
 

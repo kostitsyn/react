@@ -1,7 +1,30 @@
 const addMessage = 'ADD-MESSAGE';
 const updateMessage = 'UPDATE-MESSAGE';
 
-const messagesReducer = (state, action) => {
+
+let initialState = {
+            newMessageText: '',
+            messages: [
+                {user_id: 1},
+                {user_id: 2},
+                {user_id: 3},
+            ],
+            dialogs: [
+                {
+                    id: 1, messages: [{user_id: 100, message: 'hello'}, {user_id: 1, message: 'you too'}, {user_id: 100, message: 'super'}]
+                },
+                {
+                    id: 2,
+                    messages: [{user_id: 2, message: 'good morning'}, {user_id: 100, message: 'you too'}, {user_id: 2, message: 'go home'}]
+                },
+                {
+                    id: 3,
+                    messages: [{user_id: 100, message: 'you sick'}, {user_id: 3, message: 'you too'}, {user_id: 100, message: 'fuck you'}]
+                },
+            ]
+        }
+
+const messagesReducer = (state=initialState, action) => {
     switch (action.type) {
         case addMessage:
             let currentDialogs = state.dialogs.find(d => d.id == action.dialog_id);
