@@ -12,10 +12,8 @@ const Dialog = (props) => {
     let me = props.state.users.find(u => u.id === 100);
     let dialogElements = currentDialogs.messages.map(d => d.user_id == id ? <DialogCompanion companion={companion} state={d} key={`${d.id}${d.message}`} /> : <DialogMe me={me} state={d} /> )
 
-    let newMsgElement = React.createRef();
-
-    let updateMessage = () => {
-        let text = newMsgElement.current.value;
+    let updateMessage = (event) => {
+        let text = event.target.value;
         props.dispatch(updateMessageActionCreator(text));
     }
 
@@ -28,7 +26,7 @@ const Dialog = (props) => {
             {dialogElements}
             <div className={c.inputBlock}>
                 <textarea onChange={updateMessage} value={props.state.messagesPage.newMessageText}
-                          ref={newMsgElement} className={c.inputText} />
+                          className={c.inputText} />
                 <button onClick={addMsg}>Сохранить</button>
             </div>
         </div>

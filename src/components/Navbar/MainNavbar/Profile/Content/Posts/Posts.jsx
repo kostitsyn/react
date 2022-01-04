@@ -8,10 +8,8 @@ const Posts = (props) => {
     let userPosts = props.state.posts.filter(p => p.author === currentUser.id);
     let postElements = userPosts.map(p => <PostItem message={p.message} likes={p.likes} currentUser={currentUser} comments={p.comments} key={p.id} />);
 
-    let newPostElement = React.createRef();
-
-    let updatePostText = () => {
-        let text = newPostElement.current.value;
+    let updatePostText = (event) => {
+        let text = event.target.value;
         props.dispatch(updatePostActionCreator(text));
 
     }
@@ -24,7 +22,7 @@ const Posts = (props) => {
         <div>
             <div className={c.addPost}>
                 <label htmlFor='addPost'>Add post: </label>
-                <textarea onChange={updatePostText} value={props.state.newPostText} ref={newPostElement} id='addPost'/>
+                <textarea onChange={updatePostText} value={props.state.newPostText} id='addPost'/>
                 <button onClick={addPost}>Сохранить</button>
             </div>
             <div className={c.posts}>
