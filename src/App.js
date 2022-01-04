@@ -16,6 +16,7 @@ import Bookmarks from "./components/Navbar/AdditionalNavbar/Bookmarks/Bookmarks"
 import Files from "./components/Navbar/AdditionalNavbar/Files/Files";
 import Advertising from "./components/Navbar/AdditionalNavbar/Advertising/Advertising";
 import Dialog from "./components/Navbar/MainNavbar/Dialog/Dialog";
+import Users from "./components/Navbar/MainNavbar/Users/Users";
 
 const App = (props) => {
     return (
@@ -34,14 +35,19 @@ const App = (props) => {
                                               users={props.state.users}
                            />}/>
                     <Route path='/friends'
-                           element={<Friends friends={props.state.friends}
+                           element={<Friends friends={props.state.friendsPage.friends}
                                              users={props.state.users}
+                                             dispatch={props.dispatch}
                            />}
                     />
                     <Route path='/communities' element={<Communities/>}/>
                     <Route path='/photos' element={<Photos/>}/>
                     <Route path='/music' element={<Music/>}/>
                     <Route path='/video' element={<Video/>}/>
+                    <Route path='/users' element={<Users users={props.state.users}
+                                                         friends={props.state.friendsPage.friends}
+                                                         dispatch={props.dispatch}
+                    />}/>
                     <Route path='/mini-apps' element={<MiniApps/>}/>
                     <Route path='/bookmarks' element={<Bookmarks/>}/>
                     <Route path='/files' element={<Files/>}/>

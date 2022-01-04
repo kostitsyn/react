@@ -10,7 +10,7 @@ const Friends = (props) => {
             return u;
         }
     })
-    let friendElements = currentFriends.map(f => <Friend friend={f} key={f.id} />)
+    let friendElements = currentFriends.map(f => <Friend dispatch={props.dispatch} friend={f} key={f.id} />)
     return (
         <div className={c.friends}>
             <h2>Мои друзья:</h2>

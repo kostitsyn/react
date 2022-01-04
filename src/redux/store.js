@@ -1,7 +1,6 @@
-const addPost = 'ADD-POST';
-const updatePost = 'UPDATE-POST';
-const addMessage = 'ADD-MESSAGE';
-const updateMessage = 'UPDATE-MESSAGE';
+import friendsReducer from './friends-reducer';
+import messagesReducer from './messages-reducer';
+import profileReducer from './profile-reducer';
 
 let store = {
     _callSubscriber () {
@@ -37,14 +36,16 @@ let store = {
                 },
             ]
         },
-        friends: [
-            {user_id: 1},
-            {user_id: 4},
-            {user_id: 5},
-            {user_id: 6},
-            {user_id: 7},
-            {user_id: 8},
-        ],
+        friendsPage: {
+            friends: [
+                {user_id: 1},
+                {user_id: 4},
+                {user_id: 5},
+                {user_id: 6},
+                {user_id: 7},
+                {user_id: 8},
+            ]
+        },
         users: [
             {id: 1, name: "Фродо Бэггинс", imgLink: "https://1.bp.blogspot.com/--nN9E8LB86c/X7Ewn5GEGmI/AAAAAAAAGLc/ueRKDW39iUg_5uBBtUANVOv0jMsBufeIQCLcBGAsYHQ/s1280/Frodo%2BBaggins.png} alt='logo'"},
             {id: 2, name: "Лектер Ганнибал", imgLink: "https://s3.yugopolis.ru/media/media/cache/news/data/img/cdbb04ac08902ad689d7e0cd19585b33/107841.jpg"},
@@ -58,79 +59,16 @@ let store = {
         ]
     },
 
-    // addPost (author) {
-    //     let lastId = this._state.profilePage.posts[this._state.profilePage.posts.length-1].id;
-    //     let newPost = {
-    //         id: ++lastId,
-    //         author: author,
-    //         message: this._state.profilePage.newPostText,
-    //         likes: 0,
-    //         comments: 0
-    //     };
-    //     this._state.profilePage.posts.push(newPost);
-    //     this._state.profilePage.newPostText = '';
-    //     this._callSubscriber(this._state);
-    // },
-    //
-    // updatePost (text) {
-    //     this._state.profilePage.newPostText = text;
-    //     this._callSubscriber(this._state);
-    // },
-    //
-    // addMessage (dialog_id) {
-    //     let currentDialogs = this._state.messagesPage.dialogs.find(d => d.id == dialog_id);
-    //     let newMessage = {
-    //         user_id: 100,
-    //         message: this._state.messagesPage.newMessageText
-    //     }
-    //     currentDialogs.messages.push(newMessage);
-    //     this._state.messagesPage.newMessageText = '';
-    //     this._callSubscriber(this._state);
-    // },
-
     updateMessage (text) {
         this._state.messagesPage.newMessageText = text;
         this._callSubscriber(this._state);
     },
 
     dispatch (action) {
-        switch (action.type) {
-            case addPost:
-                let lastId = this._state.profilePage.posts[this._state.profilePage.posts.length-1].id;
-                let newPost = {
-                    id: ++lastId,
-                    author: action.author_id,
-                    message: this._state.profilePage.newPostText,
-                    likes: 0,
-                    comments: 0
-                };
-                this._state.profilePage.posts.push(newPost);
-                this._state.profilePage.newPostText = '';
-                this._callSubscriber(this._state);
-                break;
-            case updatePost:
-                this._state.profilePage.newPostText = action.text;
-                this._callSubscriber(this._state);
-                break;
-            case addMessage:
-                let currentDialogs = this._state.messagesPage.dialogs.find(d => d.id == action.dialog_id);
-                let newMessage = {
-                    user_id: 100,
-                    message: this._state.messagesPage.newMessageText
-                }
-                currentDialogs.messages.push(newMessage);
-                this._state.messagesPage.newMessageText = '';
-                this._callSubscriber(this._state);
-                break;
-            case updateMessage:
-                this._state.messagesPage.newMessageText = action.text;
-                this._callSubscriber(this._state);
-                break;
-            default:
-                break;
-        }
-
-
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.messagesPage = messagesReducer(this._state.messagesPage, action);
+        this._state.friendsPage = friendsReducer(this._state.friendsPage, action);
+        this._callSubscriber(this._state);
     },
 
     set subscribe (observer) {
@@ -142,9 +80,8 @@ let store = {
     }
 }
 
-export const updateMessageActionCreator = (text) => ({type: updateMessage, text});
-export const addMessageActionCreator = (dialog_id) => ({type: addMessage, dialog_id});
-export const updatePostActionCreator = (text) => ({type: updatePost, text});
-export const addPostActionCreator = (author_id) => ({type: addPost, author_id});
+
+
+
 
 export default store;

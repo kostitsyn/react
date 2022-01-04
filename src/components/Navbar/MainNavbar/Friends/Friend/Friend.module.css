@@ -1,8 +1,12 @@
 .friend {
     display: grid;
-    grid-template-columns: 100px 1fr;
+    grid-template-columns: 100px 1fr 100px;
+    grid-template-areas:
+    "i n b"
+    "i l b";
     border-bottom: 1px solid gray;
     padding: 10px 0;
+    position: relative;
 }
 
 .friend:first-of-type {
@@ -10,18 +14,27 @@
 }
 
 .friend img {
-     width: 80px;
+    width: 80px;
     height: 80px;
     border-radius: 50%;
-    grid-row-start: 1;
-    grid-row-end: 3;
+    grid-area: i;
 }
 
 .friendName {
     padding-top: 15px;
+    grid-area: n;
 }
 
 .friend a {
     text-decoration: none;
+    grid-area: l;
 
+}
+
+.friend button {
+    grid-area: b;
+    width: 100px;
+    height: 36px;
+    position: absolute;
+    top: 21px;
 }

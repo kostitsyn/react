@@ -3,7 +3,7 @@ import {useParams} from "react-router-dom";
 import DialogCompanion from "./DialogCompanion/DialogCompanion";
 import DialogMe from "./DialogMe/DialogMe";
 import c from './Dialog.module.css';
-import {addMessageActionCreator, updateMessageActionCreator} from "../../../../redux/store";
+import {addMessageActionCreator, updateMessageActionCreator} from "../../../../redux/messages-reducer";
 
 const Dialog = (props) => {
     let { id } = useParams();

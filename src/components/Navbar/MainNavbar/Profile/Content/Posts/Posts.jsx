@@ -1,7 +1,7 @@
 import React from 'react';
 import c from './Posts.module.css';
 import PostItem from "./PostItem/PostItem";
-import {addPostActionCreator, updatePostActionCreator} from "../../../../../../redux/store";
+import {addPostActionCreator, updatePostActionCreator} from "../../../../../../redux/profile-reducer";
 
 const Posts = (props) => {
     let currentUser = props.currentUser;
