@@ -19,7 +19,6 @@ import Dialog from "./components/Navbar/MainNavbar/Dialog/Dialog";
 import Users from "./components/Navbar/MainNavbar/Users/Users";
 
 const App = (props) => {
-    debugger;
     return (
         <div className='container'>
             <Header/>
