@@ -1,8 +1,8 @@
 import React from 'react';
-import c from './PostItem.module.css';
+import c from './MyPostItem.module.css';
 
 
-const PostItem = (props) => {
+const MyPostItem = (props) => {
     return (
         <div className={c.postItem}>
             <img src={require('../../../../../../../images/ava.jpg')} alt='ava' />
@@ -30,4 +30,4 @@ const PostItem = (props) => {
     )
 }
 
-export default PostItem;
+export default MyPostItem;

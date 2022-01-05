@@ -1,20 +1,18 @@
 import React from 'react';
 import c from './Content.module.css';
-import Posts from "./Posts/Posts";
+import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import ContentHeader from "./ContentHeader/ContentHeader";
 
 const Content = (props) => {
-    let me = props.state.users.find(u => u.id === 100);
-    return (
+        let state = props.store.getState();
+        let currentUser = state.users.find(u => u.id === 100);
+        return (
         <div className={c.content}>
-            <ContentHeader me={me} />
+            <ContentHeader currentUser={currentUser} />
             <div>User information</div>
             <div>User data</div>
             <div>User photos</div>
-            <Posts state={props.state.profilePage}
-                   dispatch={props.dispatch}
-                   currentUser={me}
-            />
+            <MyPostsContainer store={props.store}/>
         </div>
     )
 }

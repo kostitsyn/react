@@ -6,8 +6,8 @@ import c from "./Profile.module.css";
 const Profile = (props) => {
     return (
         <main className={c.profile}>
-            <UserContent friends={props.state.friendsPage.friends} users={props.state.users}/>
-            <Content state={props.state} dispatch={props.dispatch}/>
+            <UserContent store={props.store}/>
+            <Content store={props.store}/>
         </main>
     )
 }

@@ -3,17 +3,18 @@ import c from './UserContent.module.css';
 import FriendsContent from "./FriendsContent/FriendsContent";
 
 const UserContent = (props) => {
-    let me = props.users.find(u => u.id === 100);
+    let state = props.store.getState();
+    let currentUser = state.users.find(u => u.id === 100);
     return (
         <div className={c.userContent}>
             <div className={c.avatar}>
-                <img src={me.imgLink} alt='avatar'/>
+                <img src={currentUser.imgLink} alt='avatar'/>
             </div>
             <div>
                 Presents
             </div>
             <div className={c.friends}>
-                <FriendsContent friends={props.friends} users={props.users} />
+                <FriendsContent friends={state.friendsPage.friends} users={state.users} />
             </div>
             <div>
                 Friends online

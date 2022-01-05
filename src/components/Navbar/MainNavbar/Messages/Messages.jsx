@@ -3,16 +3,16 @@ import c from './Messages.module.css';
 import Companion from "./Companion/Companion";
 
 const Messages = (props) => {
-
-    let filteredUsers = props.users.filter(u => {
+    let state = props.store.getState();
+    let filteredUsers = state.users.filter(u => {
         let newArr = [];
-        props.messages.messages.forEach(m => newArr.push(m.user_id))
+        state.messagesPage.messages.forEach(m => newArr.push(m.user_id))
         if (newArr.includes(u.id)) {
             return u;
         }
     })
 
-    let userElements = filteredUsers.map(u => <Companion messages={props.messages.dialogs} companion={u} key={u.id} />)
+    let userElements = filteredUsers.map(u => <Companion messages={state.messagesPage.dialogs} companion={u} key={u.id} />)
 
     return (
         <div className={c.messages}>

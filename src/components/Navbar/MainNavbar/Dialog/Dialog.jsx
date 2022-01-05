@@ -1,31 +1,28 @@
 import React from "react";
 import {useParams} from "react-router-dom";
 import DialogCompanion from "./DialogCompanion/DialogCompanion";
-import DialogMe from "./DialogMe/DialogMe";
+import DialogMe from "./OwnDialog/OwnDialog";
 import c from './Dialog.module.css';
-import {addMessageActionCreator, updateMessageActionCreator} from "../../../../redux/messages-reducer";
 
 const Dialog = (props) => {
-    let { id } = useParams();
-    let currentDialogs = props.state.messagesPage.dialogs.find(elem => elem.id.toString() === id);
-    let companion = props.state.users.find(u => u.id.toString() === id);
-    let me = props.state.users.find(u => u.id === 100);
-    let dialogElements = currentDialogs.messages.map(d => d.user_id == id ? <DialogCompanion companion={companion} state={d} key={`${d.id}${d.message}`} /> : <DialogMe me={me} state={d} /> )
+    let dialogElements = props.currentDialogs.messages.map(d => d.user_id == props.id
+                              ? <DialogCompanion companion={props.companion} state={d} key={`${d.id}${d.message}`} />
+                              : <DialogMe currentUser={props.currentUser} state={d} /> )
 
     let updateMessage = (event) => {
         let text = event.target.value;
-        props.dispatch(updateMessageActionCreator(text));
+        props.updateMessage(text);
     }
 
     let addMsg = () => {
-        props.dispatch(addMessageActionCreator(id));
+        props.addMsg();
     }
 
     return (
         <div>
             {dialogElements}
             <div className={c.inputBlock}>
-                <textarea onChange={updateMessage} value={props.state.messagesPage.newMessageText}
+                <textarea onChange={updateMessage} value={props.newMessageText}
                           className={c.inputText} />
                 <button onClick={addMsg}>Сохранить</button>
             </div>

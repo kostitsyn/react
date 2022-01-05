@@ -15,7 +15,7 @@ import MiniApps from "./components/Navbar/AdditionalNavbar/MiniApps/MiniApps";
 import Bookmarks from "./components/Navbar/AdditionalNavbar/Bookmarks/Bookmarks";
 import Files from "./components/Navbar/AdditionalNavbar/Files/Files";
 import Advertising from "./components/Navbar/AdditionalNavbar/Advertising/Advertising";
-import Dialog from "./components/Navbar/MainNavbar/Dialog/Dialog";
+import DialogContainer from "./components/Navbar/MainNavbar/Dialog/DialogContainer";
 import Users from "./components/Navbar/MainNavbar/Users/Users";
 
 const App = (props) => {
@@ -25,36 +25,22 @@ const App = (props) => {
             <Navbar/>
             <div className='content'>
                 <Routes>
-                    <Route path='/profile' element={<Profile state={props.state}
-                                                             dispatch={props.dispatch}
-                                           />}
-                    />
+                    <Route path='/profile' element={<Profile store={props.store}/>}/>
                     <Route path='/news' element={<News/>}/>
                     <Route path='/messages'
-                           element={<Messages messages={props.state.messagesPage}
-                                              users={props.state.users}
-                           />}/>
+                           element={<Messages store={props.store}/>}/>
                     <Route path='/friends'
-                           element={<Friends friends={props.state.friendsPage.friends}
-                                             users={props.state.users}
-                                             dispatch={props.dispatch}
-                           />}
-                    />
+                           element={<Friends store={props.store}/>}/>
                     <Route path='/communities' element={<Communities/>}/>
                     <Route path='/photos' element={<Photos/>}/>
                     <Route path='/music' element={<Music/>}/>
                     <Route path='/video' element={<Video/>}/>
-                    <Route path='/users' element={<Users users={props.state.users}
-                                                         friends={props.state.friendsPage.friends}
-                                                         dispatch={props.dispatch}
-                    />}/>
+                    <Route path='/users' element={<Users store={props.store}/>}/>
                     <Route path='/mini-apps' element={<MiniApps/>}/>
                     <Route path='/bookmarks' element={<Bookmarks/>}/>
                     <Route path='/files' element={<Files/>}/>
                     <Route path='/advertising' element={<Advertising/>}/>
-                    <Route path='/messages/:id' element={<Dialog state={props.state}
-                                                                 dispatch={props.dispatch}
-                                                />}
+                    <Route path='/messages/:id' element={<DialogContainer store={props.store}/>}
                     />
                 </Routes>
             </div>

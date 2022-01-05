@@ -1,16 +1,15 @@
 import React from 'react';
 import c from '../../Friends/Friend/Friend.module.css';
-import {addFriendActionCreator, deleteFriendActionCreator} from '../../../../../redux/friends-reducer';
 
 const User = (props) => {
 
 
     let addFriend = (user_id) => {
-        props.dispatch(addFriendActionCreator(user_id))
+        props.addFriend(user_id);
     }
 
     let deleteFriend = (user_id) => {
-        props.dispatch(deleteFriendActionCreator(user_id));
+        props.deleteFriend(user_id);
     }
 
     return (
