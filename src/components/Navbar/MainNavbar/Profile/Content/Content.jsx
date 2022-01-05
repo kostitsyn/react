@@ -12,7 +12,7 @@ const Content = (props) => {
             <div>User information</div>
             <div>User data</div>
             <div>User photos</div>
-            <MyPostsContainer store={props.store}/>
+            <MyPostsContainer/>
         </div>
     )
 }
