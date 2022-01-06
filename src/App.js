@@ -28,14 +28,14 @@ const App = (props) => {
                     <Route path='/profile' element={<Profile store={props.store}/>}/>
                     <Route path='/news' element={<News/>}/>
                     <Route path='/messages'
-                           element={<Messages/>}/>
+                           element={<Messages store={props.store}/>}/>
                     <Route path='/friends'
-                           element={<Friends/>}/>
+                           element={<Friends store={props.store}/>}/>
                     <Route path='/communities' element={<Communities/>}/>
                     <Route path='/photos' element={<Photos/>}/>
                     <Route path='/music' element={<Music/>}/>
                     <Route path='/video' element={<Video/>}/>
-                    <Route path='/users' element={<Users/>}/>
+                    <Route path='/users' element={<Users store={props.store}/>}/>
                     <Route path='/mini-apps' element={<MiniApps/>}/>
                     <Route path='/bookmarks' element={<Bookmarks/>}/>
                     <Route path='/files' element={<Files/>}/>
