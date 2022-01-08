@@ -6,7 +6,7 @@ import Messages from "./components/Navbar/MainNavbar/Messages/Messages";
 import {Routes, Route} from "react-router-dom";
 import React from 'react';
 import News from "./components/Navbar/MainNavbar/News/News";
-import Friends from "./components/Navbar/MainNavbar/Friends/Friends";
+import FriendsContainer from "./components/Navbar/MainNavbar/Friends/FriendsContainer";
 import Communities from "./components/Navbar/MainNavbar/Communities/Communities";
 import Photos from "./components/Navbar/MainNavbar/Photos/Photos";
 import Music from "./components/Navbar/MainNavbar/Music/Music";
@@ -15,8 +15,8 @@ import MiniApps from "./components/Navbar/AdditionalNavbar/MiniApps/MiniApps";
 import Bookmarks from "./components/Navbar/AdditionalNavbar/Bookmarks/Bookmarks";
 import Files from "./components/Navbar/AdditionalNavbar/Files/Files";
 import Advertising from "./components/Navbar/AdditionalNavbar/Advertising/Advertising";
-import DialogContainer from "./components/Navbar/MainNavbar/Dialog/DialogContainer";
-import Users from "./components/Navbar/MainNavbar/Users/Users";
+import DialogContainer from "./components/Navbar/MainNavbar/Messages/Companion/Dialog/DialogContainer";
+import UsersContainer from "./components/Navbar/MainNavbar/Users/UsersContainer";
 
 const App = (props) => {
     return (
@@ -29,18 +29,17 @@ const App = (props) => {
                     <Route path='/news' element={<News/>}/>
                     <Route path='/messages'
                            element={<Messages store={props.store}/>}/>
-                    <Route path='/friends'
-                           element={<Friends store={props.store}/>}/>
+                    <Route path='/friends' element={<FriendsContainer/>}/>
                     <Route path='/communities' element={<Communities/>}/>
                     <Route path='/photos' element={<Photos/>}/>
                     <Route path='/music' element={<Music/>}/>
                     <Route path='/video' element={<Video/>}/>
-                    <Route path='/users' element={<Users store={props.store}/>}/>
+                    <Route path='/users' element={<UsersContainer/>}/>
                     <Route path='/mini-apps' element={<MiniApps/>}/>
                     <Route path='/bookmarks' element={<Bookmarks/>}/>
                     <Route path='/files' element={<Files/>}/>
                     <Route path='/advertising' element={<Advertising/>}/>
-                    <Route path='/messages/:id' element={<DialogContainer/>}/>
+                    <Route path='/messages/:id' element={<DialogContainer />}/>
                 </Routes>
             </div>
         </div>

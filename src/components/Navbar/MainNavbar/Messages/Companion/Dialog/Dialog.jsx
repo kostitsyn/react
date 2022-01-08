@@ -5,7 +5,6 @@ import DialogMe from "./OwnDialog/OwnDialog";
 import c from './Dialog.module.css';
 
 const Dialog = (props) => {
-    debugger;
     let dialogElements = props.currentDialogs.messages.map(d => d.user_id == props.id
                               ? <DialogCompanion companion={props.companion} state={d} key={`${d.id}${d.message}`} />
                               : <DialogMe currentUser={props.currentUser} state={d} /> )

@@ -15,18 +15,24 @@ let initialState = {
 const friendsReducer = (state=initialState, action) => {
     let arrayId = [];
     switch (action.type) {
-        case addFriend:
+        case addFriend: {
             state.friends.forEach(f => arrayId.push(f.user_id));
             if (!arrayId.includes(action.user_id)) {
-                state.friends.push({user_id: action.user_id});
+                let stateCopy = {...state};
+                stateCopy.friends = [...state.friends];
+                stateCopy.friends.push({user_id: action.user_id});
+                return stateCopy;
             }
-            return state;
-        case deleteFriend:
+        }
+        case deleteFriend: {
             state.friends.forEach(f => arrayId.push(f.user_id));
             if (arrayId.includes(action.user_id)) {
-                state.friends = state.friends.filter(f => f.user_id !== action.user_id);
+                let stateCopy = {...state};
+                stateCopy.friends = [...state.friends];
+                stateCopy.friends = stateCopy.friends.filter(f => f.user_id !== action.user_id);
+                return stateCopy;
             }
-            return state;
+        }
         default:
             return state;
     }

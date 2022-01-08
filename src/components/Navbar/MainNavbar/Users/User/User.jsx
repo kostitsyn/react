@@ -11,7 +11,6 @@ const User = (props) => {
     let deleteFriend = (user_id) => {
         props.deleteFriend(user_id);
     }
-
     return (
         <div className={c.friend}>
             <img src={props.user.imgLink} alt='ava'/>
@@ -22,7 +21,6 @@ const User = (props) => {
                 ? <button onClick={() => deleteFriend(props.user.id)}>Удалить из друзей</button>
                 : <button onClick={() => addFriend(props.user.id)}>Добавить в друзья</button>
             }
-
         </div>
     )
 }

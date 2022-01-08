@@ -3,7 +3,6 @@ import c from './MyPosts.module.css';
 import PostItem from "./MyPostItem/MyPostItem";
 
 const MyPosts = (props) => {
-    debugger;
     let postElements = props.userPosts.map(p => <PostItem message={p.message} likes={p.likes} currentUser={props.currentUser} comments={p.comments} key={p.id} />);
 
     let updatePostText = (event) => {
