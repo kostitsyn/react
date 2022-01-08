@@ -1,5 +1,5 @@
-const addPost = 'ADD-POST';
-const updatePost = 'UPDATE-POST';
+const ADD_POST = 'ADD-POST';
+const UPDATE_POST = 'UPDATE-POST';
 
 
 let initialState = {
@@ -13,7 +13,7 @@ let initialState = {
 
 const profileReducer = (state=initialState, action) => {
     switch (action.type) {
-        case addPost: {
+        case ADD_POST: {
             let lastId = state.posts[state.posts.length-1].id;
             let newPost = {
                 id: ++lastId,
@@ -24,7 +24,7 @@ const profileReducer = (state=initialState, action) => {
             };
             return {...state, posts: [...state.posts, newPost], newPostText: ''};
         }
-        case updatePost: {
+        case UPDATE_POST: {
             return {...state, newPostText: action.text};
         }
         default:
@@ -32,7 +32,7 @@ const profileReducer = (state=initialState, action) => {
     }
 }
 
-export const updatePostActionCreator = (text) => ({type: updatePost, text});
-export const addPostActionCreator = (author_id) => ({type: addPost, author_id});
+export const updatePostActionCreator = (text) => ({type: UPDATE_POST, text});
+export const addPostActionCreator = (author_id) => ({type: ADD_POST, author_id});
 
 export default profileReducer;

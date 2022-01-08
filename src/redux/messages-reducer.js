@@ -1,5 +1,5 @@
-const addMessage = 'ADD-MESSAGE';
-const updateMessage = 'UPDATE-MESSAGE';
+const ADD_MESSAGE = 'ADD-MESSAGE';
+const UPDATE_MESSAGE = 'UPDATE-MESSAGE';
 
 
 let initialState = {
@@ -26,26 +26,31 @@ let initialState = {
 
 const messagesReducer = (state=initialState, action) => {
     switch (action.type) {
-        case addMessage: {
-            let stateCopy = {...state, newMessageText: ""};
-            stateCopy.dialogs = [...state.dialogs];
-            let currentDialogs = stateCopy.dialogs.find(d => d.id == action.dialog_id);
+        case ADD_MESSAGE: {
             let newMessage = {
                 user_id: 100,
                 message: state.newMessageText
             }
-            currentDialogs.messages = [...currentDialogs.messages, newMessage];
-            return stateCopy;
+            return {
+                ...state,
+                newMessageText: '',
+                dialogs: state.dialogs.map(d => {
+                    if (d.id == action.dialog_id) {
+                        return {...d, messages: [...d.messages, newMessage]}
+                    }
+                    return d;
+                })
+            }
         }
-        case updateMessage: {
-            return {...state ,newMessageText: action.text};
+        case UPDATE_MESSAGE: {
+            return {...state, newMessageText: action.text};
         }
         default:
             return state;
     }
 }
 
-export const updateMessageActionCreator = (text) => ({type: updateMessage, text});
-export const addMessageActionCreator = (dialog_id) => ({type: addMessage, dialog_id});
+export const updateMessageActionCreator = (text) => ({type: UPDATE_MESSAGE, text});
+export const addMessageActionCreator = (dialog_id) => ({type: ADD_MESSAGE, dialog_id});
 
 export default messagesReducer;
