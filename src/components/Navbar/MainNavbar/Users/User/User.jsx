@@ -3,7 +3,6 @@ import c from '../../Friends/Friend/Friend.module.css';
 
 const User = (props) => {
 
-    debugger;
     let addFriend = (user_id) => {
         props.addFriend(user_id);
     }

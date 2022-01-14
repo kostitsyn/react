@@ -35,7 +35,7 @@ import axios from 'axios';
 class Users extends React.Component {
 
     getUserElements = () => {
-        this.props.excludeCurrentUser.map(u => <User addFriend={this.props.addFriend}
+        return this.props.excludeCurrentUser.map(u => <User addFriend={this.props.addFriend}
                                                                deleteFriend={this.props.deleteFriend}
                                                                friends={this.props.friendsId}
                                                                user={u} key={u.id} />)
@@ -54,7 +54,7 @@ class Users extends React.Component {
             <div>
                 <div className={c.users}>
 
-                    {this.getUserElements}
+                    {this.getUserElements()}
                 </div>
             </div>
         )

@@ -17,7 +17,8 @@ let mapStateToProps = (state) => {
     });
     return {
         excludeCurrentUser: excludeCurrentUser,
-        friendsId: friendsId
+        friendsId: friendsId,
+        users: state.users,
     }
 }
 
