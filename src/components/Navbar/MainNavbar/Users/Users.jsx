@@ -34,27 +34,23 @@ import axios from 'axios';
 
 class Users extends React.Component {
 
-    getUserElements = () => {
-        return this.props.excludeCurrentUser.map(u => <User addFriend={this.props.addFriend}
-                                                               deleteFriend={this.props.deleteFriend}
-                                                               friends={this.props.friendsId}
-                                                               user={u} key={u.id} />)
-   }
-
     componentDidMount() {
-        axios.get('http://127.0.0.1:8000/api/users/')
+        axios.get('http://127.0.0.1:8000/api/users/?limit=5')
             .then(response => {
-                this.props.setUsers(response.data);
+                this.props.setUsers(response.data.results);
             })
-        this.getUserElements();
     }
 
     render () {
+        let userElements = this.props.excludeCurrentUser.map(u => <User addFriend={this.props.addFriend}
+                                                               deleteFriend={this.props.deleteFriend}
+                                                               friends={this.props.friendsId}
+                                                               user={u} key={u.id} />);
+
         return (
             <div>
                 <div className={c.users}>
-
-                    {this.getUserElements()}
+                    {userElements}
                 </div>
             </div>
         )
