@@ -4,7 +4,8 @@ import FriendsContent from "./FriendsContent/FriendsContent";
 
 const UserContent = (props) => {
     let state = props.store.getState();
-    let currentUser = state.users.find(u => u.id === 100);
+    let currentUser = state.users.users.find(u => u.id === 100);
+    debugger;
     return (
         <div className={c.userContent}>
             <div className={c.avatar}>

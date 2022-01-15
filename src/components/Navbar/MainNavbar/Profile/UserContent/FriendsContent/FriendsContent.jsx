@@ -11,7 +11,7 @@ const FriendsContent = (props) => {
             friends.splice(removeFriend, 1);
         }
     }
-    let filterFriends = props.users.filter(u => {
+    let filterFriends = props.users.users.filter(u => {
         let newArr = [];
         friends.forEach(f => newArr.push(f.user_id));
         if (newArr.includes(u.id)) {

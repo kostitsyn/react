@@ -5,7 +5,7 @@ import ContentHeader from "./ContentHeader/ContentHeader";
 
 const Content = (props) => {
         let state = props.store.getState();
-        let currentUser = state.users.find(u => u.id === 100);
+        let currentUser = state.users.users.find(u => u.id === 100);
         return (
         <div className={c.content}>
             <ContentHeader currentUser={currentUser} />

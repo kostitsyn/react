@@ -5,7 +5,7 @@ import Companion from "./Companion/Companion";
 const Messages = (props) => {
 
     let state = props.store.getState();
-    let filteredUsers = state.users.filter(u => {
+    let filteredUsers = state.users.users.filter(u => {
         let newArr = [];
         state.messagesPage.messages.forEach(m => newArr.push(m.user_id))
         if (newArr.includes(u.id)) {

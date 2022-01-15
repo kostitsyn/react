@@ -6,7 +6,7 @@ import {deleteFriendActionCreator} from '../../../../redux/friends-reducer';
 let mapStateToProps = (state) => {
     let newArr = [];
     state.friendsPage.friends.forEach(f => newArr.push(f.user_id))
-    let currentFriends = state.users.filter(u => {
+    let currentFriends = state.users.users.filter(u => {
         if(newArr.includes(u.id)) {
             return u;
         }
