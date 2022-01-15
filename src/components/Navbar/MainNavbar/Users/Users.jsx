@@ -3,39 +3,21 @@ import User from './User/User';
 import c from './Users.module.css';
 import axios from 'axios';
 
-// const Users = (props) => {
-//
-//     let getUsers = () => {
-//         if (props.excludeCurrentUser.length === 0) {
-//             axios.get('http://127.0.0.1:8000/api/users/')
-//             .then(response => {
-//                 let users = response.data;
-//                 props.setUsers(users);
-//             })
-//     }
-//
-//
-//     }
-//
-//     let userElements = props.excludeCurrentUser.map(u => <User addFriend={props.addFriend}
-//                                                                deleteFriend={props.deleteFriend}
-//                                                                friends={props.friendsId}
-//                                                                user={u} key={u.id} />);
-//     return (
-//         <div>
-//             <button onClick={getUsers}>Get users</button>
-//             <div className={c.users}>
-//
-//                 {userElements}
-//             </div>
-//         </div>
-//     )
-// }
-
 class Users extends React.Component {
 
     componentDidMount() {
-        axios.get('http://127.0.0.1:8000/api/users/?limit=5')
+        let offset = this.props.pageSize * (this.props.currentPage-1);
+        axios.get(`http://127.0.0.1:8000/api/users/?limit=${this.props.pageSize}&offset=${offset}`)
+            .then(response => {
+                this.props.setUsers(response.data.results);
+                this.props.getTotalUsersCount(response.data.count);
+            })
+    }
+
+    changeUsersOnPage = (p) => {
+        let offset = this.props.pageSize * (p-1);
+        this.props.changePage(p);
+        axios.get(`http://127.0.0.1:8000/api/users/?limit=${this.props.pageSize}&offset=${offset}`)
             .then(response => {
                 this.props.setUsers(response.data.results);
             })
@@ -47,8 +29,20 @@ class Users extends React.Component {
                                                                friends={this.props.friendsId}
                                                                user={u} key={u.id} />);
 
+        let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize)
+
+        let pageNumbers = [];
+        for(let i=1; i<=pagesCount; ++i) {
+            pageNumbers.push(i);
+        }
+
         return (
             <div>
+                <div>
+                    {pageNumbers.map(p => {
+                        return <span onClick={(e) => this.changeUsersOnPage(p)} className={this.props.currentPage === p && c.selectedPage}>{p}</span>})}
+
+                </div>
                 <div className={c.users}>
                     {userElements}
                 </div>
