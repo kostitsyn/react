@@ -3,15 +3,17 @@ import {connect} from 'react-redux';
 import Users from './Users';
 import axios from 'axios';
 import {addFriendActionCreator, deleteFriendActionCreator} from '../../../../redux/friends-reducer';
-import {setUsersAC, changePageAC, getCountUsersAC} from '../../../../redux/users-reducer';
+import {setUsersAC, changePageAC, getCountUsersAC, setToggleAC} from '../../../../redux/users-reducer';
 
 
 class UsersContainer extends React.Component {
 
     componentDidMount() {
         let offset = this.props.pageSize * (this.props.currentPage-1);
+        this.props.setToggle(true);
         axios.get(`http://127.0.0.1:8000/api/users/?limit=${this.props.pageSize}&offset=${offset}`)
             .then(response => {
+                this.props.setToggle(false);
                 this.props.setUsers(response.data.results);
                 this.props.getTotalUsersCount(response.data.count);
             })
@@ -20,8 +22,10 @@ class UsersContainer extends React.Component {
     changeUsersOnPage = (p) => {
         let offset = this.props.pageSize * (p-1);
         this.props.changePage(p);
+        this.props.setToggle(true);
         axios.get(`http://127.0.0.1:8000/api/users/?limit=${this.props.pageSize}&offset=${offset}`)
             .then(response => {
+                this.props.setToggle(false);
                 this.props.setUsers(response.data.results);
             })
     }
@@ -35,7 +39,8 @@ class UsersContainer extends React.Component {
                pageSize={this.props.pageSize}
                currentPage={this.props.currentPage}
                excludeCurrentUser={this.props.excludeCurrentUser}
-               changeUsersOnPage={this.changeUsersOnPage} />
+               changeUsersOnPage={this.changeUsersOnPage}
+               isFetching={this.props.isFetching} />
         )
 
     }
@@ -58,7 +63,8 @@ let mapStateToProps = (state) => {
         friendsId: friendsId,
         currentPage: state.users.currentPage,
         totalUsersCount: state.users.totalUsersCount,
-        pageSize: state.users.pageSize
+        pageSize: state.users.pageSize,
+        isFetching: state.users.isFetching
     }
 }
 
@@ -78,6 +84,9 @@ let mapDispatchToProps = (dispatch) => {
         },
         getTotalUsersCount: (count) => {
             dispatch(getCountUsersAC(count));
+        },
+        setToggle: (isFetching) => {
+            dispatch(setToggleAC(isFetching));
         }
     }
 }

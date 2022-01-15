@@ -1,6 +1,7 @@
 import React from 'react';
 import User from './User/User';
 import c from './Users.module.css';
+import Preloader from '../../../common/Preloader/Preloader';
 
 const Users = (props) => {
     let userElements = props.excludeCurrentUser.map(u => <User addFriend={props.addFriend}
@@ -14,17 +15,19 @@ const Users = (props) => {
         for(let i=1; i<=pagesCount; ++i) {
             pageNumbers.push(i);
         }
-
         return (
-            <div>
+            <>
+                {props.isFetching ? <Preloader/> : null}
                 <div>
-                    {pageNumbers.map(p => {
-                        return <span onClick={(e) => props.changeUsersOnPage(p)} className={props.currentPage === p && c.selectedPage}>{p}</span>})}
+                    <div>
+                        {pageNumbers.map(p => {
+                            return <span onClick={(e) => props.changeUsersOnPage(p)} className={props.currentPage === p && c.selectedPage}>{p}</span>})}
+                    </div>
+                    <div className={c.users}>
+                        {userElements}
+                    </div>
                 </div>
-                <div className={c.users}>
-                    {userElements}
-                </div>
-            </div>
+            </>
         )
 }
 
