@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import Friends from './Friends';
-import {deleteFriendActionCreator} from '../../../../redux/friends-reducer';
+import {deleteFriend} from '../../../../redux/friends-reducer';
 
 
 let mapStateToProps = (state) => {
@@ -16,12 +16,12 @@ let mapStateToProps = (state) => {
     }
 }
 
-let mapDispatchToProps = (dispatch) => {
-    return {
-        deleteFriend: (user_id) => {
-            dispatch(deleteFriendActionCreator(user_id));
-        }
-    }
-}
+// let mapDispatchToProps = (dispatch) => {
+//     return {
+//         deleteFriend: (user_id) => {
+//             dispatch(deleteFriendActionCreator(user_id));
+//         }
+//     }
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Friends);
+export default connect(mapStateToProps, {deleteFriend})(Friends);

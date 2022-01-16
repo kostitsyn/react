@@ -26,9 +26,9 @@ const usersReducer = (state=initialState, action) => {
     }
 }
 
-export const setUsersAC = (users) => ({type: SET_USERS, users});
-export const changePageAC = (pageNumber) => ({type: CHANGE_CURRENT_PAGE, pageNumber});
-export const getCountUsersAC = (usersCount) => ({type: GET_TOTAL_USERS_COUNT, usersCount});
-export const setToggleAC = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
+export const setUsers = (users) => ({type: SET_USERS, users});
+export const changePage = (pageNumber) => ({type: CHANGE_CURRENT_PAGE, pageNumber});
+export const getTotalUsersCount = (usersCount) => ({type: GET_TOTAL_USERS_COUNT, usersCount});
+export const setToggle = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
 
 export default usersReducer;

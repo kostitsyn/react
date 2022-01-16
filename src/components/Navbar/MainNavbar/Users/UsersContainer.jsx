@@ -2,8 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Users from './Users';
 import axios from 'axios';
-import {addFriendActionCreator, deleteFriendActionCreator} from '../../../../redux/friends-reducer';
-import {setUsersAC, changePageAC, getCountUsersAC, setToggleAC} from '../../../../redux/users-reducer';
+import {addFriend, deleteFriend} from '../../../../redux/friends-reducer';
+import {setUsers, changePage, getTotalUsersCount, setToggle} from '../../../../redux/users-reducer';
 
 
 class UsersContainer extends React.Component {
@@ -68,27 +68,27 @@ let mapStateToProps = (state) => {
     }
 }
 
-let mapDispatchToProps = (dispatch) => {
-    return {
-        addFriend: (userId) => {
-        dispatch(addFriendActionCreator(userId));
-        },
-        deleteFriend: (userId) => {
-            dispatch(deleteFriendActionCreator(userId));
-        },
-        setUsers: (users) => {
-            dispatch(setUsersAC(users));
-        },
-        changePage: (pageNumber) => {
-            dispatch(changePageAC(pageNumber));
-        },
-        getTotalUsersCount: (count) => {
-            dispatch(getCountUsersAC(count));
-        },
-        setToggle: (isFetching) => {
-            dispatch(setToggleAC(isFetching));
-        }
-    }
-}
+// let mapDispatchToProps = (dispatch) => {
+//     return {
+//         addFriend: (userId) => {
+//         dispatch(addFriendActionCreator(userId));
+//         },
+//         deleteFriend: (userId) => {
+//             dispatch(deleteFriendActionCreator(userId));
+//         },
+//         setUsers: (users) => {
+//             dispatch(setUsersAC(users));
+//         },
+//         changePage: (pageNumber) => {
+//             dispatch(changePageAC(pageNumber));
+//         },
+//         getTotalUsersCount: (count) => {
+//             dispatch(getCountUsersAC(count));
+//         },
+//         setToggle: (isFetching) => {
+//             dispatch(setToggleAC(isFetching));
+//         }
+//     }
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
+export default connect(mapStateToProps, {setUsers, changePage, getTotalUsersCount, setToggle, addFriend, deleteFriend})(UsersContainer);

@@ -11,11 +11,11 @@ const Dialog = (props) => {
 
     let updateMessage = (event) => {
         let text = event.target.value;
-        props.updateMessage(text);
+        props.updateMessageText(text);
     }
 
     let addMsg = () => {
-        props.addMsg();
+        props.addMessage();
     }
 
     return (

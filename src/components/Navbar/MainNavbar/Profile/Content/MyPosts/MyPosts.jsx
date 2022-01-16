@@ -12,7 +12,7 @@ const MyPosts = (props) => {
     }
 
     let addPost = () => {
-        props.addPost();
+        props.addPost(100);
     }
 
     return (

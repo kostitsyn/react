@@ -33,7 +33,7 @@ const friendsReducer = (state=initialState, action) => {
     }
 }
 
-export const addFriendActionCreator = (user_id) => ({type: ADD_FRIEND, user_id});
-export const deleteFriendActionCreator = (user_id) => ({type: DELETE_FRIEND, user_id});
+export const addFriend = (user_id) => ({type: ADD_FRIEND, user_id});
+export const deleteFriend = (user_id) => ({type: DELETE_FRIEND, user_id});
 
 export default friendsReducer;
