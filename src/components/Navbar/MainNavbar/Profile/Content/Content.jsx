@@ -2,14 +2,23 @@ import React from 'react';
 import c from './Content.module.css';
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import ContentHeader from "./ContentHeader/ContentHeader";
+import Preloader from '../../../../common/Preloader/Preloader';
+import yes from '../../../../../assets/images/yes.webp';
+import no from '../../../../../assets/images/no.gif';
 
 const Content = (props) => {
-        let state = props.store.getState();
-        let currentUser = state.users.users.find(u => u.id === 100);
+
+        if (!props.users.length) {
+            return <Preloader />
+        }
         return (
         <div className={c.content}>
-            <ContentHeader currentUser={currentUser} />
-            <div>User information</div>
+            <ContentHeader profile={props.profile} />
+            <div>Ищу работу:</div>
+            {props.profile.lookingForAJob
+            ? <img src={yes}/>
+            : <img src={no}/>
+            }
             <div>User data</div>
             <div>User photos</div>
             <MyPostsContainer/>

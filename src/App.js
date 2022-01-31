@@ -1,7 +1,10 @@
 import './App.css';
 import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
-import Profile from "./components/Navbar/MainNavbar/Profile/Profile";
+
+import ProfileContainer from "./components/Navbar/MainNavbar/Profile/ProfileContainer";
+import UsersContainer from "./components/Navbar/MainNavbar/Users/UsersContainer";
+
 import Messages from "./components/Navbar/MainNavbar/Messages/Messages";
 import {Routes, Route} from "react-router-dom";
 import React from 'react';
@@ -16,7 +19,7 @@ import Bookmarks from "./components/Navbar/AdditionalNavbar/Bookmarks/Bookmarks"
 import Files from "./components/Navbar/AdditionalNavbar/Files/Files";
 import Advertising from "./components/Navbar/AdditionalNavbar/Advertising/Advertising";
 import DialogContainer from "./components/Navbar/MainNavbar/Messages/Companion/Dialog/DialogContainer";
-import UsersContainer from "./components/Navbar/MainNavbar/Users/UsersContainer";
+
 
 const App = (props) => {
     return (
@@ -25,7 +28,7 @@ const App = (props) => {
             <Navbar/>
             <div className='content'>
                 <Routes>
-                    <Route path='/profile' element={<Profile store={props.store}/>}/>
+                    <Route path='/profile' element={<ProfileContainer/>}/>
                     <Route path='/news' element={<News/>}/>
                     <Route path='/messages'
                            element={<Messages store={props.store}/>}/>

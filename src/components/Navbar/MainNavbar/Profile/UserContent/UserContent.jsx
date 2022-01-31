@@ -1,20 +1,19 @@
 import React from 'react';
 import c from './UserContent.module.css';
 import FriendsContent from "./FriendsContent/FriendsContent";
+import Preloader from '../../../../common/Preloader/Preloader';
 
 const UserContent = (props) => {
-    let state = props.store.getState();
-    let currentUser = state.users.users.find(u => u.id === 100);
     return (
         <div className={c.userContent}>
             <div className={c.avatar}>
-                <img src={currentUser.imgLink} alt='avatar'/>
+                <img src={props.profile.userId.imgLink} alt='avatar'/>
             </div>
             <div>
                 Presents
             </div>
             <div className={c.friends}>
-                <FriendsContent friends={state.friendsPage.friends} users={state.users} />
+                <FriendsContent {...props} />
             </div>
             <div>
                 Friends online

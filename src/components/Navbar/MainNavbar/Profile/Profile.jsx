@@ -2,12 +2,16 @@ import React from 'react';
 import UserContent from "./UserContent/UserContent";
 import Content from "./Content/Content";
 import c from "./Profile.module.css";
+import Preloader from '../../../common/Preloader/Preloader';
 
 const Profile = (props) => {
+    if (!props.profile) {
+        return <Preloader />
+    }
     return (
         <main className={c.profile}>
-            <UserContent store={props.store}/>
-            <Content store={props.store}/>
+            <UserContent friends={props.friends} users={props.users} profile={props.profile}/>
+            <Content friends={props.store} users={props.users} profile={props.profile}/>
         </main>
     )
 }

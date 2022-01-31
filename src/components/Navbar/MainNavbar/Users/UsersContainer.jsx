@@ -68,27 +68,4 @@ let mapStateToProps = (state) => {
     }
 }
 
-// let mapDispatchToProps = (dispatch) => {
-//     return {
-//         addFriend: (userId) => {
-//         dispatch(addFriendActionCreator(userId));
-//         },
-//         deleteFriend: (userId) => {
-//             dispatch(deleteFriendActionCreator(userId));
-//         },
-//         setUsers: (users) => {
-//             dispatch(setUsersAC(users));
-//         },
-//         changePage: (pageNumber) => {
-//             dispatch(changePageAC(pageNumber));
-//         },
-//         getTotalUsersCount: (count) => {
-//             dispatch(getCountUsersAC(count));
-//         },
-//         setToggle: (isFetching) => {
-//             dispatch(setToggleAC(isFetching));
-//         }
-//     }
-// }
-
 export default connect(mapStateToProps, {setUsers, changePage, getTotalUsersCount, setToggle, addFriend, deleteFriend})(UsersContainer);

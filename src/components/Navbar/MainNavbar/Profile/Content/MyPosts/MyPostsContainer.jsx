@@ -14,15 +14,4 @@ let mapStateToProps = (state) => {
     }
 }
 
-// let mapDispatchToProps = (dispatch) => {
-//     return {
-//         updatePostText: (text) => {
-//             dispatch(updatePostActionCreator(text));
-//         },
-//         addPost: () => {
-//             dispatch(addPostActionCreator(100));
-//         }
-//     }
-// }
-
 export default connect(mapStateToProps, {addPost, updatePostText})(MyPosts);

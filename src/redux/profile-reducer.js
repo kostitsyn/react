@@ -1,5 +1,6 @@
 const ADD_POST = 'ADD-POST';
 const UPDATE_POST = 'UPDATE-POST';
+const SET_USER_PROFILE = 'SET_USER_PROFILE';
 
 
 let initialState = {
@@ -8,7 +9,8 @@ let initialState = {
                 {id: 1, author: 100, message: "Отдыхаю на Кубе", likes: 10, comments: 5},
                 {id: 2, author: 100, message: "Окончил обучение на GeekBrains", likes: 123, comments: 2},
                 {id: 3, author: 100, message: "Устроился на работу мечты", likes: 100000, comments: 3}
-            ]
+            ],
+            profile: null,
         }
 
 const profileReducer = (state=initialState, action) => {
@@ -27,6 +29,8 @@ const profileReducer = (state=initialState, action) => {
         case UPDATE_POST: {
             return {...state, newPostText: action.text};
         }
+        case SET_USER_PROFILE:
+            return {...state, profile: action.profile};
         default:
             return state;
     }
@@ -34,5 +38,6 @@ const profileReducer = (state=initialState, action) => {
 
 export const updatePostText = (text) => ({type: UPDATE_POST, text});
 export const addPost = (author_id) => ({type: ADD_POST, author_id});
+export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile})
 
 export default profileReducer;

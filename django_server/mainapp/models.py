@@ -53,8 +53,6 @@ class Profile(models.Model):
     looking_for_a_job = models.BooleanField(default=False, verbose_name='Ищу ли работу')
     looking_for_a_job_description = models.CharField(max_length=512, verbose_name='Описание поиска работы')
 
-
-
     def __str__(self):
         return f'Профиль пользователя {self.user_id.name}'
 

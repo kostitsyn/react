@@ -1,8 +1,12 @@
 import React from "react";
 import FriendContent from "./FriendContent/FriendContent";
 import c from './FriendsContent.module.css';
+import Preloader from '../../../../../common/Preloader/Preloader';
 
 const FriendsContent = (props) => {
+    if (!props.users.length) {
+        return <Preloader />
+    }
     let friends = [...props.friends];
     if (friends.length > 3) {
         while (friends.length !== 3) {
@@ -11,7 +15,7 @@ const FriendsContent = (props) => {
             friends.splice(removeFriend, 1);
         }
     }
-    let filterFriends = props.users.users.filter(u => {
+    let filterFriends = props.users.filter(u => {
         let newArr = [];
         friends.forEach(f => newArr.push(f.user_id));
         if (newArr.includes(u.id)) {
