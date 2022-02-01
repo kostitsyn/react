@@ -28,7 +28,10 @@ const App = (props) => {
             <Navbar/>
             <div className='content'>
                 <Routes>
-                    <Route path='/profile' element={<ProfileContainer/>}/>
+                    <Route path='/profile'>
+                        <Route path="" element={<ProfileContainer/>}/>
+                        <Route path=":userId" element={<ProfileContainer/>}/>
+                    </Route>
                     <Route path='/news' element={<News/>}/>
                     <Route path='/messages'
                            element={<Messages store={props.store}/>}/>

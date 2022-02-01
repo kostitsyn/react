@@ -3,3 +3,19 @@
   grid-area: content;
   padding: 10px;
 }
+
+.foundJob {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+}
+
+.foundJob img {
+    width: 100px;
+    height: 50px;
+    border-radius: 50px;
+}
+
+.foundJob div {
+    line-height: 50px;
+}
+

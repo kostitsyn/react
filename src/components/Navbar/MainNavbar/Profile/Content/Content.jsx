@@ -11,15 +11,23 @@ const Content = (props) => {
         if (!props.users.length) {
             return <Preloader />
         }
+        let contacts = Object.keys(props.profile.contact).map((k, v) => <div>{k}: {props.profile.contact[k]}</div>)
         return (
         <div className={c.content}>
             <ContentHeader profile={props.profile} />
-            <div>Ищу работу:</div>
+            <div className={c.foundJob}>
+                <div>Ищу работу:</div>
+                {props.profile.lookingForAJob
+                ? <img src={yes}/>
+                : <img src={no}/>
+                }
+            </div>
             {props.profile.lookingForAJob
-            ? <img src={yes}/>
-            : <img src={no}/>
+            ? <div>Описание искомой работы: {props.profile.lookingForAJobDescription}</div>
+            : null
             }
-            <div>User data</div>
+            <div>Контакты:</div>
+            {contacts}
             <div>User photos</div>
             <MyPostsContainer/>
         </div>
