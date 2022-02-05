@@ -1,17 +1,18 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
 
-class User(models.Model):
-    name = models.CharField(max_length=128, verbose_name='Имя пользователя')
-    img_link = models.URLField(max_length=512, verbose_name='аватарка')
+class User(AbstractUser):
+    # name = models.CharField(max_length=128, verbose_name='Имя пользователя')
+    img_link = models.URLField(max_length=512, blank=True, verbose_name='аватарка')
 
     class Meta:
         verbose_name = 'Пользователь'
         verbose_name_plural = 'Пользователи'
-        ordering = ['name']
+        ordering = ['username']
 
     def __str__(self):
-        return self.name
+        return self.username
 
 
 class Contact(models.Model):
@@ -47,14 +48,14 @@ class Photo(models.Model):
 
 
 class Profile(models.Model):
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     full_name = models.CharField(max_length=256, verbose_name='Полное имя')
     about_me = models.CharField(max_length=256, verbose_name='Обо мне')
     looking_for_a_job = models.BooleanField(default=False, verbose_name='Ищу ли работу')
     looking_for_a_job_description = models.CharField(max_length=512, verbose_name='Описание поиска работы')
 
     def __str__(self):
-        return f'Профиль пользователя {self.user_id.name}'
+        return f'Профиль пользователя {self.user.name}'
 
     class Meta:
         verbose_name = 'Профиль'

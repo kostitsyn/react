@@ -1,5 +1,5 @@
 import './App.css';
-import Header from "./components/Header/Header";
+import HeaderContainer from "./components/Header/HeaderContainer";
 import Navbar from "./components/Navbar/Navbar";
 
 import ProfileContainer from "./components/Navbar/MainNavbar/Profile/ProfileContainer";
@@ -24,7 +24,7 @@ import DialogContainer from "./components/Navbar/MainNavbar/Messages/Companion/D
 const App = (props) => {
     return (
         <div className='container'>
-            <Header/>
+            <HeaderContainer/>
             <Navbar/>
             <div className='content'>
                 <Routes>

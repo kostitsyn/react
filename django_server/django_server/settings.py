@@ -26,8 +26,10 @@ SECRET_KEY = 'django-insecure-j+)(3_k_#!c1+j2)^e)(r2bz7k0_g$bo6(e9bly+te-nijl=$n
 DEBUG = True
 
 ALLOWED_HOSTS = []
+CORS_ORIGIN_ALLOW_ALL = True
 
 
+CORS_ALLOW_CREDENTIALS = True
 # Application definition
 
 INSTALLED_APPS = [
@@ -147,4 +149,12 @@ REST_FRAMEWORK = {
         'djangorestframework_camel_case.parser.CamelCaseJSONParser',
         # Any other parsers
     ),
+    # 'DEFAULT_AUTHENTICATION_CLASSES': (
+    #     'rest_framework_simplejwt.authentication.JWTAuthentication',
+    # )
 }
+
+AUTH_USER_MODEL = 'mainapp.User'
+
+SESSION_COOKIE_SAMESITE = None
+CRSF_COOKIE_SAMESITE = None

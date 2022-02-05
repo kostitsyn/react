@@ -6,9 +6,9 @@ const SET_USER_PROFILE = 'SET_USER_PROFILE';
 let initialState = {
             newPostText: '',
             posts: [
-                {id: 1, author: 100, message: "Отдыхаю на Кубе", likes: 10, comments: 5},
-                {id: 2, author: 100, message: "Окончил обучение на GeekBrains", likes: 123, comments: 2},
-                {id: 3, author: 100, message: "Устроился на работу мечты", likes: 100000, comments: 3}
+                {id: 1, author: 1, message: "Отдыхаю на Кубе", likes: 10, comments: 5},
+                {id: 2, author: 1, message: "Окончил обучение на GeekBrains", likes: 123, comments: 2},
+                {id: 3, author: 1, message: "Устроился на работу мечты", likes: 100000, comments: 3}
             ],
             profile: null,
         }

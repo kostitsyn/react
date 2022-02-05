@@ -11,7 +11,7 @@ const Content = (props) => {
         if (!props.users.length) {
             return <Preloader />
         }
-        let contacts = Object.keys(props.profile.contact).map((k, v) => <div>{k}: {props.profile.contact[k]}</div>)
+        let contacts = Object.keys(props.profile.contact).map((k, v) => <div>{k}: {props.profile.contact[k]} key={k}</div>)
         return (
         <div className={c.content}>
             <ContentHeader profile={props.profile} />

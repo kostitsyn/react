@@ -13,7 +13,7 @@ const User = (props) => {
     return (
         <div className={c.friend}>
             <img src={props.user.imgLink} alt='ava'/>
-            <span className={c.friendName}>{props.user.name}</span>
+            <span className={c.friendName}>{props.user.username}</span>
             <a href='#'>Написать сообщение</a>
 
             {props.friends.includes(props.user.id)

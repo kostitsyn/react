@@ -2,12 +2,15 @@ import React from 'react';
 import c from './UserContent.module.css';
 import FriendsContent from "./FriendsContent/FriendsContent";
 import Preloader from '../../../../common/Preloader/Preloader';
+import default_ava from '../../../../../assets/images/default_ava.png';
 
 const UserContent = (props) => {
     return (
         <div className={c.userContent}>
             <div className={c.avatar}>
-                <img src={props.profile.userId.imgLink} alt='avatar'/>
+                {props.profile.user.imgLink
+                ? <img src={props.profile.user.imgLink} alt='avatar'/>
+                : <img src={default_ava} alt='avatar'/>}
             </div>
             <div>
                 Presents

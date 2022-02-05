@@ -1,27 +1,27 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework import serializers
 from .models import User, Profile, Photo, Contact
 
 
-class UserModelSerializer(ModelSerializer):
+class UserModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = '__all__'
+        fields = ('id', 'username', 'img_link')
 
 
-class PhotoModelSerializer(ModelSerializer):
+class PhotoModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Photo
         fields = ('small', 'large')
 
 
-class ContactModelSerializer(ModelSerializer):
+class ContactModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Contact
         exclude = ('id', 'profile')
 
 
-class ProfileModelSerializer(ModelSerializer):
-    user_id = UserModelSerializer()
+class ProfileModelSerializer(serializers.ModelSerializer):
+    user = UserModelSerializer()
     photo = PhotoModelSerializer()
     contact = ContactModelSerializer()
 
