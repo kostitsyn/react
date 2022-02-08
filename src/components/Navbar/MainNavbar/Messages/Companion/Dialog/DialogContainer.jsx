@@ -21,16 +21,4 @@ let mapStateToProps = (state) => {
     }
 }
 
-// let mapDispatchToProps = (dispatch) => {
-//     let id = '1';
-//     return {
-//         updateMessage: (text) => {
-//             dispatch(updateMessageActionCreator(text));
-//         },
-//         addMsg: () => {
-//             dispatch(addMessageActionCreator(id));
-//         }
-//     }
-// }
-
 export default connect(mapStateToProps, {addMessage, updateMessageText})(Dialog);

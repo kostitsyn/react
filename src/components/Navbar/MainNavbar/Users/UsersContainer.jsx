@@ -11,7 +11,8 @@ class UsersContainer extends React.Component {
     componentDidMount() {
         let offset = this.props.pageSize * (this.props.currentPage-1);
         this.props.setToggle(true);
-        axios.get(`http://127.0.0.1:8000/api/users/?limit=${this.props.pageSize}&offset=${offset}`)
+        axios.get(`http://127.0.0.1:8000/api/users/?limit=${this.props.pageSize}&offset=${offset}`,
+         {withCredentials: true})
             .then(response => {
                 this.props.setToggle(false);
                 this.props.setUsers(response.data.results);
@@ -23,7 +24,8 @@ class UsersContainer extends React.Component {
         let offset = this.props.pageSize * (p-1);
         this.props.changePage(p);
         this.props.setToggle(true);
-        axios.get(`http://127.0.0.1:8000/api/users/?limit=${this.props.pageSize}&offset=${offset}`)
+        axios.get(`http://127.0.0.1:8000/api/users/?limit=${this.props.pageSize}&offset=${offset}`,
+         {withCredentials: true})
             .then(response => {
                 this.props.setToggle(false);
                 this.props.setUsers(response.data.results);

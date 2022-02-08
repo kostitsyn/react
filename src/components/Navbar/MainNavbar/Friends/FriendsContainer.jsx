@@ -16,12 +16,4 @@ let mapStateToProps = (state) => {
     }
 }
 
-// let mapDispatchToProps = (dispatch) => {
-//     return {
-//         deleteFriend: (user_id) => {
-//             dispatch(deleteFriendActionCreator(user_id));
-//         }
-//     }
-// }
-
 export default connect(mapStateToProps, {deleteFriend})(Friends);

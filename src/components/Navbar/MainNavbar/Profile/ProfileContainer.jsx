@@ -29,10 +29,6 @@ class ProfileContainer extends React.Component {
         if (!userId) {
             userId = 1;
         }
-//         axios.get(`http://127.0.0.1:8000/api/profile/${userId}`)
-//             .then(response => {
-//                 this.props.setUserProfile(response.data)
-//             });
     }
 
     render() {
