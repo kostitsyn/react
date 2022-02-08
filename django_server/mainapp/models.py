@@ -3,7 +3,6 @@ from django.contrib.auth.models import AbstractUser
 
 
 class User(AbstractUser):
-    # name = models.CharField(max_length=128, verbose_name='Имя пользователя')
     img_link = models.URLField(max_length=512, blank=True, verbose_name='аватарка')
 
     class Meta:
@@ -47,15 +46,20 @@ class Photo(models.Model):
         verbose_name_plural = 'Фотографии'
 
 
+# class Friend(models.Model):
+#     user = models.ManyToManyField()
+#     friend = models.ManyToManyField()
+
 class Profile(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     full_name = models.CharField(max_length=256, verbose_name='Полное имя')
     about_me = models.CharField(max_length=256, verbose_name='Обо мне')
     looking_for_a_job = models.BooleanField(default=False, verbose_name='Ищу ли работу')
     looking_for_a_job_description = models.CharField(max_length=512, verbose_name='Описание поиска работы')
+    friends = models.ManyToManyField('self', blank=True)
 
     def __str__(self):
-        return f'Профиль пользователя {self.user.name}'
+        return f'Профиль пользователя {self.user.username}'
 
     class Meta:
         verbose_name = 'Профиль'

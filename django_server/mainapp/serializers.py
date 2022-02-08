@@ -28,3 +28,7 @@ class ProfileModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
         fields = '__all__'
+
+
+class FollowSerializer(serializers.Serializer):
+    user_id = serializers.IntegerField(default=0)

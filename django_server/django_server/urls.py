@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from mainapp.views import UserModelViewSet, ProfileModelViewSet, AuthDataView
+from mainapp.views import UserModelViewSet, ProfileModelViewSet, AuthDataAPIView, FollowAPIView
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 router = DefaultRouter()
@@ -27,7 +27,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
     path('api/', include(router.urls)),
-    path('api/auth/me/', AuthDataView.as_view()),
-    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/auth/me/', AuthDataAPIView.as_view()),
+    path('api/follow/<int:pk>/', FollowAPIView.as_view()),
 ]
