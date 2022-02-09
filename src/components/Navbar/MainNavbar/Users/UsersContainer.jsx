@@ -49,20 +49,21 @@ class UsersContainer extends React.Component {
 }
 
 let mapStateToProps = (state) => {
-    let friendsId = [];
-    state.friendsPage.friends.forEach(f => friendsId.push(f.user_id));
-    let excludeCurrentUser = state.users.users.filter(u => u.id !== 100);
-    excludeCurrentUser.sort((a, b) => {
-        if(a.name > b.name){
-            return 1;
-        } else if (a.name < b.name) {
-            return -1;
-        }
-        return 0;
-    });
+
+//     let friendsId = [];
+//     state.friendsPage.friends.forEach(f => friendsId.push(f.user_id));
+//     let excludeCurrentUser = state.users.users.filter(u => u.id !== 100);
+//     excludeCurrentUser.sort((a, b) => {
+//         if(a.name > b.name){
+//             return 1;
+//         } else if (a.name < b.name) {
+//             return -1;
+//         }
+//         return 0;
+//     });
     return {
-        excludeCurrentUser: excludeCurrentUser,
-        friendsId: friendsId,
+//         excludeCurrentUser: excludeCurrentUser,
+        friendsId: state.profilePage.profile.friends,
         currentPage: state.users.currentPage,
         totalUsersCount: state.users.totalUsersCount,
         pageSize: state.users.pageSize,

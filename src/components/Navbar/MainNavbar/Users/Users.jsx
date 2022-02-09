@@ -4,9 +4,10 @@ import c from './Users.module.css';
 import Preloader from '../../../common/Preloader/Preloader';
 
 const Users = (props) => {
+    debugger;
     let userElements = props.excludeCurrentUser.map(u => <User addFriend={props.addFriend}
                                                                deleteFriend={props.deleteFriend}
-                                                               friends={props.friendsId}
+                                                               followed={props.friendsId.includes(u.id)}
                                                                user={u} key={u.id} />);
 
         let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)

@@ -11,7 +11,7 @@ class HeaderContainer extends React.Component {
             .then(response1 => {
                 if (response1.data.resultCode === 0) {
                     let {userId, email, login} = response1.data.data;
-                    axios.get(`http://127.0.0.1:8000/api/profile/${userId}`)
+                    axios.get(`http://127.0.0.1:8000/api/profile/${userId}/`)
                         .then(response2 => {
                             this.props.setUserProfile(response2.data);
                             this.props.setAuthUserData(userId, email, login);

@@ -32,10 +32,11 @@ CORS_ORIGIN_ALLOW_ALL = True
 #     "X-API-Key",
 # ]
 
-# CSRF_TRUSTED_ORIGINS  =  [
-#     "http://127.0.0.1:8000",
-#     "http://localhost:8000",
-# ]
+
+CSRF_TRUSTED_ORIGINS = [
+    "http://127.0.0.1:3000",
+    "http://localhost:3000",
+]
 
 CORS_ALLOW_CREDENTIALS = True
 # Application definition
@@ -51,6 +52,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_api_key',
     'corsheaders',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
@@ -144,8 +146,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #     'http://127.0.0.1:3000'
 # ]
 
-CORS_ORIGIN_ALLOW_ALL = True
-
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     # 'PAGE_SIZE': 5,
@@ -161,9 +161,10 @@ REST_FRAMEWORK = {
         'djangorestframework_camel_case.parser.CamelCaseJSONParser',
         # Any other parsers
     ),
-    # 'DEFAULT_AUTHENTICATION_CLASSES': (
-    #     'rest_framework_simplejwt.authentication.JWTAuthentication',
-    # )
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    )
 }
 
 AUTH_USER_MODEL = 'mainapp.User'

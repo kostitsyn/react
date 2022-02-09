@@ -16,15 +16,16 @@ const friendsReducer = (state=initialState, action) => {
     let arrayId = [];
     switch (action.type) {
         case ADD_FRIEND: {
-            state.friends.forEach(f => arrayId.push(f.user_id));
-            if (!arrayId.includes(action.user_id)) {
-                return {...state, friends: [...state.friends, {user_id: action.user_id}]};
+            debugger;
+            state.friends.forEach(f => arrayId.push(f.userId));
+            if (!arrayId.includes(action.userId)) {
+                return {...state, friends: [...state.friends, {userId: action.userId}]};
             }
         }
         case DELETE_FRIEND: {
-            state.friends.forEach(f => arrayId.push(f.user_id));
-            if (arrayId.includes(action.user_id)) {
-                let friends = state.friends.filter(f => f.user_id !== action.user_id);
+            state.friends.forEach(f => arrayId.push(f.userId));
+            if (arrayId.includes(action.userId)) {
+                let friends = state.friends.filter(f => f.userId !== action.userId);
                 return {...state, friends: friends};
             }
         }
@@ -33,7 +34,7 @@ const friendsReducer = (state=initialState, action) => {
     }
 }
 
-export const addFriend = (user_id) => ({type: ADD_FRIEND, user_id});
-export const deleteFriend = (user_id) => ({type: DELETE_FRIEND, user_id});
+export const addFriend = (userId) => ({type: ADD_FRIEND, userId});
+export const deleteFriend = (userId) => ({type: DELETE_FRIEND, userId});
 
 export default friendsReducer;

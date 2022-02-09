@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from mainapp.views import UserModelViewSet, ProfileModelViewSet, AuthDataAPIView, FollowAPIView
-from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from rest_framework.authtoken import views
 
 router = DefaultRouter()
 router.register('users', UserModelViewSet)
@@ -26,6 +26,7 @@ router.register('profile', ProfileModelViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
+    path('api-token-auth/', views.obtain_auth_token),
     path('api/', include(router.urls)),
     path('api/auth/me/', AuthDataAPIView.as_view()),
     path('api/follow/<int:pk>/', FollowAPIView.as_view()),
