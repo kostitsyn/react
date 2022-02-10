@@ -20,9 +20,9 @@ const User = (props) => {
         return cookieValue;
     }
 
-
     let addFriend = (userId) => {
         let csrftoken = getCookie('csrftoken');
+        debugger;
         axios.post(`http://127.0.0.1:8000/api/follow/${userId}/`, {},
             {
                 withCredentials: true,
@@ -39,12 +39,14 @@ const User = (props) => {
 
     let deleteFriend = (userId) => {
         let csrftoken = getCookie('csrftoken');
+        debugger;
         axios.delete(`http://127.0.0.1:8000/api/follow/${userId}/`,
             {
                 withCredentials: true,
                 headers: {"x-csrftoken": csrftoken}
             })
                 .then(response => {
+                    debugger;
                     if (response.data.resultCode === 0) {
                         props.deleteFriend(response.data.data.id);
                     }

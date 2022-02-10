@@ -35,12 +35,12 @@ class UsersContainer extends React.Component {
     render () {
         return (
             <Users addFriend={this.props.addFriend}
+               profile={this.props.profile}
                deleteFriend={this.props.deleteFriend}
-               friendsId={this.props.friendsId}
                totalUsersCount={this.props.totalUsersCount}
                pageSize={this.props.pageSize}
                currentPage={this.props.currentPage}
-               excludeCurrentUser={this.props.excludeCurrentUser}
+               users={this.props.users}
                changeUsersOnPage={this.changeUsersOnPage}
                isFetching={this.props.isFetching} />
         )
@@ -49,21 +49,20 @@ class UsersContainer extends React.Component {
 }
 
 let mapStateToProps = (state) => {
-
 //     let friendsId = [];
 //     state.friendsPage.friends.forEach(f => friendsId.push(f.user_id));
-//     let excludeCurrentUser = state.users.users.filter(u => u.id !== 100);
-//     excludeCurrentUser.sort((a, b) => {
-//         if(a.name > b.name){
-//             return 1;
-//         } else if (a.name < b.name) {
-//             return -1;
-//         }
-//         return 0;
-//     });
+    let excludeCurrentUser = state.users.users.filter(u => u.id !== 100);
+    excludeCurrentUser.sort((a, b) => {
+        if(a.name > b.name){
+            return 1;
+        } else if (a.name < b.name) {
+            return -1;
+        }
+        return 0;
+    });
     return {
-//         excludeCurrentUser: excludeCurrentUser,
-        friendsId: state.profilePage.profile.friends,
+        profile: state.profilePage.profile,
+        users: state.users.users,
         currentPage: state.users.currentPage,
         totalUsersCount: state.users.totalUsersCount,
         pageSize: state.users.pageSize,
