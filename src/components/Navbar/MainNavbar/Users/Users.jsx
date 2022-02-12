@@ -7,10 +7,11 @@ const Users = (props) => {
     if (!props.profile) {
         return <Preloader />
     }
+    debugger;
     let excludeCurrentUser = props.users.filter(u => u.id !==props.profile.id)
     let userElements = excludeCurrentUser.map(u => <User addFriend={props.addFriend}
                                                                deleteFriend={props.deleteFriend}
-                                                               followed={props.profile.friends.includes(u.id)}
+                                                               followed={props.friends.includes(u.id)}
                                                                user={u} key={u.id} />);
 
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)

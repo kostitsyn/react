@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import Header from './Header';
 import {setAuthUserData} from '../../redux/auth-reducer';
 import {setUserProfile} from '../../redux/profile-reducer';
+import {setFriends} from '../../redux/friends-reducer';
 import axios from 'axios';
 
 class HeaderContainer extends React.Component {
@@ -15,10 +16,10 @@ class HeaderContainer extends React.Component {
                         .then(response2 => {
                             this.props.setUserProfile(response2.data);
                             this.props.setAuthUserData(userId, email, login);
+                            this.props.setFriends(response2.data.friends);
                         })
                 }
             })
-
     }
     render() {
         return <Header {...this.props} />
@@ -31,4 +32,4 @@ const mapStateToProps = (state) => ({
     profile: state.profilePage.profile
 })
 
-export default connect(mapStateToProps, {setAuthUserData, setUserProfile})(HeaderContainer);
+export default connect(mapStateToProps, {setAuthUserData, setUserProfile, setFriends})(HeaderContainer);

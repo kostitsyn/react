@@ -41,6 +41,7 @@ class UsersContainer extends React.Component {
                pageSize={this.props.pageSize}
                currentPage={this.props.currentPage}
                users={this.props.users}
+               friends={this.props.friends}
                changeUsersOnPage={this.changeUsersOnPage}
                isFetching={this.props.isFetching} />
         )
@@ -61,6 +62,7 @@ let mapStateToProps = (state) => {
         return 0;
     });
     return {
+        friends: state.friendsPage.friends,
         profile: state.profilePage.profile,
         users: state.users.users,
         currentPage: state.users.currentPage,

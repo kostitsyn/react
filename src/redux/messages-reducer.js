@@ -11,15 +11,15 @@ let initialState = {
             ],
             dialogs: [
                 {
-                    id: 1, messages: [{user_id: 100, message: 'hello'}, {user_id: 1, message: 'you too'}, {user_id: 100, message: 'super'}]
+                    id: 1, messages: [{userId: 100, message: 'hello'}, {userId: 1, message: 'you too'}, {userId: 100, message: 'super'}]
                 },
                 {
                     id: 2,
-                    messages: [{user_id: 2, message: 'good morning'}, {user_id: 100, message: 'you too'}, {user_id: 2, message: 'go home'}]
+                    messages: [{userId: 2, message: 'good morning'}, {userId: 100, message: 'you too'}, {userId: 2, message: 'go home'}]
                 },
                 {
                     id: 3,
-                    messages: [{user_id: 100, message: 'you sick'}, {user_id: 3, message: 'you too'}, {user_id: 100, message: 'fuck you'}]
+                    messages: [{userId: 100, message: 'you sick'}, {userId: 3, message: 'you too'}, {userId: 100, message: 'fuck you'}]
                 },
             ]
         }
@@ -35,7 +35,7 @@ const messagesReducer = (state=initialState, action) => {
                 ...state,
                 newMessageText: '',
                 dialogs: state.dialogs.map(d => {
-                    if (d.id == action.dialog_id) {
+                    if (d.id == action.dialogId) {
                         return {...d, messages: [...d.messages, newMessage]}
                     }
                     return d;
@@ -51,6 +51,6 @@ const messagesReducer = (state=initialState, action) => {
 }
 
 export const updateMessageText = (text) => ({type: UPDATE_MESSAGE, text});
-export const addMessage = (dialog_id) => ({type: ADD_MESSAGE, dialog_id});
+export const addMessage = (dialogId) => ({type: ADD_MESSAGE, dialogId});
 
 export default messagesReducer;

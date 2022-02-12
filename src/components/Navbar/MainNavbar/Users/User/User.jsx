@@ -52,6 +52,7 @@ const User = (props) => {
                     }
                 })
     }
+    debugger;
     return (
         <div className={c.friend}>
             <img src={props.user.imgLink} alt='ava'/>
