@@ -5,21 +5,20 @@ import {setAuthUserData} from '../../redux/auth-reducer';
 import {setUserProfile} from '../../redux/profile-reducer';
 import {setFriends} from '../../redux/friends-reducer';
 import axios from 'axios';
+import {usersAPI} from '../../api/api';
 
 class HeaderContainer extends React.Component {
     componentDidMount() {
-        axios.get('http://127.0.0.1:8000/api/auth/me/', {withCredentials: true})
-            .then(response1 => {
-                if (response1.data.resultCode === 0) {
-                    let {userId, email, login} = response1.data.data;
-                    axios.get(`http://127.0.0.1:8000/api/profile/${userId}/`)
-                        .then(response2 => {
-                            this.props.setUserProfile(response2.data);
-                            this.props.setAuthUserData(userId, email, login);
-                            this.props.setFriends(response2.data.friends);
-                        })
-                }
-            })
+        usersAPI.getAuthData().then(data1 => {
+            if (data1.resultCode === 0) {
+                let {userId, email, login} = data1.data;
+                usersAPI.getProfile(userId).then(data2 => {
+                    this.props.setUserProfile(data2);
+                    this.props.setAuthUserData(userId, email, login);
+                    this.props.setFriends(data2.friends);
+                })
+            }
+        })
     }
     render() {
         return <Header {...this.props} />

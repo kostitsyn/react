@@ -16,10 +16,11 @@ let initialState = {
 const profileReducer = (state=initialState, action) => {
     switch (action.type) {
         case ADD_POST: {
+            debugger;
             let lastId = state.posts[state.posts.length-1].id;
             let newPost = {
                 id: ++lastId,
-                author: action.author_id,
+                author: action.authorId,
                 message: state.newPostText,
                 likes: 0,
                 comments: 0
@@ -27,6 +28,7 @@ const profileReducer = (state=initialState, action) => {
             return {...state, posts: [...state.posts, newPost], newPostText: ''};
         }
         case UPDATE_POST: {
+            debugger;
             return {...state, newPostText: action.text};
         }
         case SET_USER_PROFILE:
@@ -37,7 +39,7 @@ const profileReducer = (state=initialState, action) => {
 }
 
 export const updatePostText = (text) => ({type: UPDATE_POST, text});
-export const addPost = (author_id) => ({type: ADD_POST, author_id});
+export const addPost = (authorId) => ({type: ADD_POST, authorId});
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile})
 
 export default profileReducer;

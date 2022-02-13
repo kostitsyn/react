@@ -5,7 +5,7 @@ const FriendContent = (props) => {
     return (
         <div className={c.friend}>
             <img src={props.friend.imgLink} alt='ava'/>
-            <span>{props.friend.name}</span>
+            <span>{props.friend.username}</span>
         </div>
     )
 }

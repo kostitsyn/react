@@ -4,6 +4,7 @@ import Profile from './Profile';
 import {connect} from 'react-redux';
 import {setUserProfile} from '../../../../redux/profile-reducer';
 import {useParams} from 'react-router-dom';
+import {usersAPI} from '../../../../api/api';
 
 // const withRouter = WrappedComponent => props => {
 //     const params = useParams();
@@ -26,9 +27,13 @@ class ProfileContainer extends React.Component {
 
     componentDidMount() {
         let userId = this.props.router.userId;
-        if (!userId) {
-            userId = 1;
+        if (userId) {
+            usersAPI.getProfile(userId).then(data => {
+            this.props.setUserProfile(data);
+        })
         }
+
+
     }
 
     render() {

@@ -7,7 +7,6 @@ const Users = (props) => {
     if (!props.profile) {
         return <Preloader />
     }
-    debugger;
     let excludeCurrentUser = props.users.filter(u => u.id !==props.profile.id)
     let userElements = excludeCurrentUser.map(u => <User addFriend={props.addFriend}
                                                                deleteFriend={props.deleteFriend}

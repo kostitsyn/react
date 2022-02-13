@@ -4,32 +4,26 @@ import Users from './Users';
 import axios from 'axios';
 import {addFriend, deleteFriend} from '../../../../redux/friends-reducer';
 import {setUsers, changePage, getTotalUsersCount, setToggle} from '../../../../redux/users-reducer';
+import {usersAPI} from '../../../../api/api';
 
 
 class UsersContainer extends React.Component {
-
     componentDidMount() {
-        let offset = this.props.pageSize * (this.props.currentPage-1);
         this.props.setToggle(true);
-        axios.get(`http://127.0.0.1:8000/api/users/?limit=${this.props.pageSize}&offset=${offset}`,
-         {withCredentials: true})
-            .then(response => {
-                this.props.setToggle(false);
-                this.props.setUsers(response.data.results);
-                this.props.getTotalUsersCount(response.data.count);
-            })
+        usersAPI.getUsers(this.props.pageSize, this.props.currentPage).then(data => {
+            this.props.setToggle(false);
+            this.props.setUsers(data.results);
+            this.props.getTotalUsersCount(data.count);
+        })
     }
 
     changeUsersOnPage = (p) => {
-        let offset = this.props.pageSize * (p-1);
         this.props.changePage(p);
         this.props.setToggle(true);
-        axios.get(`http://127.0.0.1:8000/api/users/?limit=${this.props.pageSize}&offset=${offset}`,
-         {withCredentials: true})
-            .then(response => {
-                this.props.setToggle(false);
-                this.props.setUsers(response.data.results);
-            })
+        usersAPI.getUsers(this.props.pageSize, p).then(data => {
+            this.props.setToggle(false);
+            this.props.setUsers(data.results);
+        })
     }
 
     render () {
@@ -50,8 +44,6 @@ class UsersContainer extends React.Component {
 }
 
 let mapStateToProps = (state) => {
-//     let friendsId = [];
-//     state.friendsPage.friends.forEach(f => friendsId.push(f.user_id));
     let excludeCurrentUser = state.users.users.filter(u => u.id !== 100);
     excludeCurrentUser.sort((a, b) => {
         if(a.name > b.name){

@@ -6,13 +6,14 @@ const MyPosts = (props) => {
     let postElements = props.userPosts.map(p => <PostItem message={p.message} likes={p.likes} currentUser={props.currentUser} comments={p.comments} key={p.id} />);
 
     let updatePostText = (event) => {
+        debugger;
         let text = event.target.value;
         props.updatePostText(text);
 
     }
-
     let addPost = () => {
-        props.addPost(100);
+        debugger;
+        props.addPost(props.currentUser.id);
     }
 
     return (

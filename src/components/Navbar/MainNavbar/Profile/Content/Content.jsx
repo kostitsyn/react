@@ -7,11 +7,10 @@ import yes from '../../../../../assets/images/yes.webp';
 import no from '../../../../../assets/images/no.gif';
 
 const Content = (props) => {
-
         if (!props.users.length) {
             return <Preloader />
         }
-        let contacts = Object.keys(props.profile.contact).map((k, v) => <div>{k}: {props.profile.contact[k]} key={k}</div>)
+        let contacts = Object.keys(props.profile.contact).map((k, v) => <div>{k}: {props.profile.contact[k]} key={`${k}${v}`}</div>)
         return (
         <div className={c.content}>
             <ContentHeader profile={props.profile} />

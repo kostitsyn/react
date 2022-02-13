@@ -3,11 +3,10 @@ import c from './Messages.module.css';
 import Companion from "./Companion/Companion";
 
 const Messages = (props) => {
-
     let state = props.store.getState();
     let filteredUsers = state.users.users.filter(u => {
         let newArr = [];
-        state.messagesPage.messages.forEach(m => newArr.push(m.user_id))
+        state.messagesPage.messages.forEach(m => newArr.push(m.userId))
         if (newArr.includes(u.id)) {
             return u;
         }

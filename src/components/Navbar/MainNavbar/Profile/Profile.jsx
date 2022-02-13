@@ -11,7 +11,7 @@ const Profile = (props) => {
     return (
         <main className={c.profile}>
             <UserContent friends={props.friends} users={props.users} profile={props.profile}/>
-            <Content friends={props.store} users={props.users} profile={props.profile}/>
+            <Content friends={props.friends} users={props.users} profile={props.profile}/>
         </main>
     )
 }

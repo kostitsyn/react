@@ -5,21 +5,21 @@ const UPDATE_MESSAGE = 'UPDATE-MESSAGE';
 let initialState = {
             newMessageText: '',
             messages: [
-                {user_id: 1},
-                {user_id: 2},
-                {user_id: 3},
+                {userId: 1},
+                {userId: 2},
+                {userId: 3},
             ],
             dialogs: [
                 {
-                    id: 1, messages: [{userId: 100, message: 'hello'}, {userId: 1, message: 'you too'}, {userId: 100, message: 'super'}]
+                    id: 1, messages: [{userId: 1, message: 'hello'}, {userId: 2, message: 'you too'}, {userId: 1, message: 'super'}]
                 },
                 {
                     id: 2,
-                    messages: [{userId: 2, message: 'good morning'}, {userId: 100, message: 'you too'}, {userId: 2, message: 'go home'}]
+                    messages: [{userId: 2, message: 'good morning'}, {userId: 3, message: 'you too'}, {userId: 2, message: 'go home'}]
                 },
                 {
                     id: 3,
-                    messages: [{userId: 100, message: 'you sick'}, {userId: 3, message: 'you too'}, {userId: 100, message: 'fuck you'}]
+                    messages: [{userId: 4, message: 'you sick'}, {userId: 5, message: 'you too'}, {userId: 4, message: 'fuck you'}]
                 },
             ]
         }

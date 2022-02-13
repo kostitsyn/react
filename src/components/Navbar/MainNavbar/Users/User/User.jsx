@@ -2,6 +2,7 @@ import React from 'react';
 import c from '../../Friends/Friend/Friend.module.css';
 import axios from 'axios';
 import jQuery from 'jquery';
+import {usersAPI} from '../../../../../api/api';
 
 const User = (props) => {
 
@@ -21,38 +22,20 @@ const User = (props) => {
     }
 
     let addFriend = (userId) => {
-        let csrftoken = getCookie('csrftoken');
-        debugger;
-        axios.post(`http://127.0.0.1:8000/api/follow/${userId}/`, {},
-            {
-                withCredentials: true,
-                headers: {"x-csrftoken": csrftoken}
-            })
-                .then(response => {
-                    debugger;
-                    if (response.data.resultCode === 0) {
-                        debugger;
-                        props.addFriend(response.data.data.id);
-                    }
-                })
+        usersAPI.addFriend(userId).then(data => {
+            if (data.resultCode === 0) {
+                props.addFriend(data.data.id);
+            }
+        })
     }
 
     let deleteFriend = (userId) => {
-        let csrftoken = getCookie('csrftoken');
-        debugger;
-        axios.delete(`http://127.0.0.1:8000/api/follow/${userId}/`,
-            {
-                withCredentials: true,
-                headers: {"x-csrftoken": csrftoken}
-            })
-                .then(response => {
-                    debugger;
-                    if (response.data.resultCode === 0) {
-                        props.deleteFriend(response.data.data.id);
-                    }
-                })
+        usersAPI.deleteFriend(userId).then(data => {
+            if (data.resultCode === 0) {
+                props.deleteFriend(data.data.id);
+            }
+        })
     }
-    debugger;
     return (
         <div className={c.friend}>
             <img src={props.user.imgLink} alt='ava'/>
