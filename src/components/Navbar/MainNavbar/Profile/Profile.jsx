@@ -5,13 +5,13 @@ import c from "./Profile.module.css";
 import Preloader from '../../../common/Preloader/Preloader';
 
 const Profile = (props) => {
-    if (!props.profile) {
+    if (!props.profileOnPage) {
         return <Preloader />
     }
     return (
         <main className={c.profile}>
-            <UserContent friends={props.friends} users={props.users} profile={props.profile}/>
-            <Content friends={props.friends} users={props.users} profile={props.profile}/>
+            <UserContent friends={props.friends} users={props.users} profile={props.profileOnPage}/>
+            <Content friends={props.friends} users={props.users} profile={props.profileOnPage}/>
         </main>
     )
 }

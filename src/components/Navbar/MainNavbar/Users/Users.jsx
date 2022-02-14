@@ -9,9 +9,12 @@ const Users = (props) => {
     }
     let excludeCurrentUser = props.users.filter(u => u.id !==props.profile.id)
     let userElements = excludeCurrentUser.map(u => <User addFriend={props.addFriend}
-                                                               deleteFriend={props.deleteFriend}
-                                                               followed={props.friends.includes(u.id)}
-                                                               user={u} key={u.id} />);
+                                                         deleteFriend={props.deleteFriend}
+                                                         followed={props.friends.includes(u.id)}
+                                                         followingInProgress={props.followingInProgress}
+                                                         toggleFollowingInProgress={props.toggleFollowingInProgress}
+                                                         user={u}
+                                                         key={u.id} />);
 
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
 

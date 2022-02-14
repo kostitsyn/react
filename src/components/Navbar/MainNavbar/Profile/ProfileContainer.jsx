@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Profile from './Profile';
 import {connect} from 'react-redux';
-import {setUserProfile} from '../../../../redux/profile-reducer';
+import {setProfileOnPage} from '../../../../redux/profile-reducer';
 import {useParams} from 'react-router-dom';
 import {usersAPI} from '../../../../api/api';
 
@@ -29,21 +29,22 @@ class ProfileContainer extends React.Component {
         let userId = this.props.router.userId;
         if (userId) {
             usersAPI.getProfile(userId).then(data => {
-            this.props.setUserProfile(data);
+            this.props.setProfileOnPage(data);
         })
+        }else {
+            this.props.setProfileOnPage(this.props.profile);
         }
-
-
     }
 
     render() {
-        return <Profile {...this.props} profile={this.props.profile}/>
+        return <Profile {...this.props} profileOnPage={this.props.profileOnPage}/>
     }
 }
 
 let mapStateToProps = (state) => {
     return {
         profile: state.profilePage.profile,
+        profileOnPage: state.profilePage.profileOnPage,
         friends: state.friendsPage.friends,
         users: state.users.users
     }
@@ -52,4 +53,4 @@ let mapStateToProps = (state) => {
 
 let WithUrlDataContainerComponent = withRouter(ProfileContainer);
 
-export default connect(mapStateToProps, {setUserProfile})(WithUrlDataContainerComponent);
+export default connect(mapStateToProps, {setProfileOnPage})(WithUrlDataContainerComponent);

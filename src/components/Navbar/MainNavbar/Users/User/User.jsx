@@ -6,34 +6,38 @@ import {usersAPI} from '../../../../../api/api';
 
 const User = (props) => {
 
-    function getCookie(name) {
-        var cookieValue = null;
-        if (document.cookie && document.cookie !== '') {
-            var cookies = document.cookie.split(';');
-            for (var i = 0; i < cookies.length; i++) {
-                var cookie = jQuery.trim(cookies[i]);
-                if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                    break;
-                }
-            }
-        }
-        return cookieValue;
-    }
+//     function getCookie(name) {
+//         var cookieValue = null;
+//         if (document.cookie && document.cookie !== '') {
+//             var cookies = document.cookie.split(';');
+//             for (var i = 0; i < cookies.length; i++) {
+//                 var cookie = jQuery.trim(cookies[i]);
+//                 if (cookie.substring(0, name.length + 1) === (name + '=')) {
+//                     cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+//                     break;
+//                 }
+//             }
+//         }
+//         return cookieValue;
+//     }
 
     let addFriend = (userId) => {
+        props.toggleFollowingInProgress(true, userId);
         usersAPI.addFriend(userId).then(data => {
             if (data.resultCode === 0) {
                 props.addFriend(data.data.id);
             }
+            props.toggleFollowingInProgress(false, userId);
         })
     }
 
     let deleteFriend = (userId) => {
+        props.toggleFollowingInProgress(true, userId);
         usersAPI.deleteFriend(userId).then(data => {
             if (data.resultCode === 0) {
                 props.deleteFriend(data.data.id);
             }
+            props.toggleFollowingInProgress(false, userId);
         })
     }
     return (
@@ -43,8 +47,8 @@ const User = (props) => {
             <a href='#'>Написать сообщение</a>
 
             {props.followed
-                ? <button onClick={() => deleteFriend(props.user.id)}>Удалить из друзей</button>
-                : <button onClick={() => addFriend(props.user.id)}>Добавить в друзья</button>
+                ? <button disabled={props.followingInProgress.some(id => id===props.user.id)} onClick={() => deleteFriend(props.user.id)}>Удалить из друзей</button>
+                : <button disabled={props.followingInProgress.some(id => id===props.user.id)} onClick={() => addFriend(props.user.id)}>Добавить в друзья</button>
             }
         </div>
     )

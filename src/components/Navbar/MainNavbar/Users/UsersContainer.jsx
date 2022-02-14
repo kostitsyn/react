@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import Users from './Users';
 import axios from 'axios';
 import {addFriend, deleteFriend} from '../../../../redux/friends-reducer';
-import {setUsers, changePage, getTotalUsersCount, setToggle} from '../../../../redux/users-reducer';
+import {setUsers, changePage, getTotalUsersCount, setToggle, toggleFollowingInProgress} from '../../../../redux/users-reducer';
 import {usersAPI} from '../../../../api/api';
 
 
@@ -37,14 +37,16 @@ class UsersContainer extends React.Component {
                users={this.props.users}
                friends={this.props.friends}
                changeUsersOnPage={this.changeUsersOnPage}
-               isFetching={this.props.isFetching} />
+               isFetching={this.props.isFetching}
+               followingInProgress={this.props.followingInProgress}
+               toggleFollowingInProgress={this.props.toggleFollowingInProgress} />
         )
 
     }
 }
 
 let mapStateToProps = (state) => {
-    let excludeCurrentUser = state.users.users.filter(u => u.id !== 100);
+    let excludeCurrentUser = state.users.users.filter(u => u.id !== state.profilePage.profile.id);
     excludeCurrentUser.sort((a, b) => {
         if(a.name > b.name){
             return 1;
@@ -60,8 +62,15 @@ let mapStateToProps = (state) => {
         currentPage: state.users.currentPage,
         totalUsersCount: state.users.totalUsersCount,
         pageSize: state.users.pageSize,
-        isFetching: state.users.isFetching
+        isFetching: state.users.isFetching,
+        followingInProgress: state.users.followingInProgress,
     }
 }
 
-export default connect(mapStateToProps, {setUsers, changePage, getTotalUsersCount, setToggle, addFriend, deleteFriend})(UsersContainer);
+export default connect(mapStateToProps, {setUsers,
+                                        changePage,
+                                        getTotalUsersCount,
+                                        setToggle,
+                                        addFriend,
+                                        deleteFriend,
+                                        toggleFollowingInProgress})(UsersContainer);
