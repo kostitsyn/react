@@ -3,27 +3,18 @@ import {connect} from 'react-redux';
 import Users from './Users';
 import axios from 'axios';
 import {addFriend, deleteFriend} from '../../../../redux/friends-reducer';
-import {setUsers, changePage, getTotalUsersCount, setToggle, toggleFollowingInProgress} from '../../../../redux/users-reducer';
+import {changePage, toggleFollowingInProgress, getUsers} from '../../../../redux/users-reducer';
 import {usersAPI} from '../../../../api/api';
 
 
 class UsersContainer extends React.Component {
     componentDidMount() {
-        this.props.setToggle(true);
-        usersAPI.getUsers(this.props.pageSize, this.props.currentPage).then(data => {
-            this.props.setToggle(false);
-            this.props.setUsers(data.results);
-            this.props.getTotalUsersCount(data.count);
-        })
+
+        this.props.getUsers(this.props.pageSize, this.props.currentPage);
     }
 
     changeUsersOnPage = (p) => {
-        this.props.changePage(p);
-        this.props.setToggle(true);
-        usersAPI.getUsers(this.props.pageSize, p).then(data => {
-            this.props.setToggle(false);
-            this.props.setUsers(data.results);
-        })
+        this.props.getUsers(this.props.pageSize, p);
     }
 
     render () {
@@ -46,6 +37,7 @@ class UsersContainer extends React.Component {
 }
 
 let mapStateToProps = (state) => {
+    debugger;
     let excludeCurrentUser = state.users.users.filter(u => u.id !== state.profilePage.profile.id);
     excludeCurrentUser.sort((a, b) => {
         if(a.name > b.name){
@@ -67,10 +59,7 @@ let mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {setUsers,
-                                        changePage,
-                                        getTotalUsersCount,
-                                        setToggle,
+export default connect(mapStateToProps, {changePage,
                                         addFriend,
                                         deleteFriend,
-                                        toggleFollowingInProgress})(UsersContainer);
+                                        toggleFollowingInProgress, getUsers})(UsersContainer);

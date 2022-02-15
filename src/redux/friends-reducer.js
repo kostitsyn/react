@@ -1,3 +1,6 @@
+import {usersAPI} from '../api/api';
+import {toggleFollowingInProgress} from './users-reducer';
+
 const SET_FRIENDS = 'SET_FRIENDS';
 const ADD_FRIEND = 'ADD-FRIEND';
 const DELETE_FRIEND = 'DELETE-FRIEND';
@@ -28,7 +31,32 @@ const friendsReducer = (state=initialState, action) => {
 }
 
 export const setFriends = (friends) => ({type: SET_FRIENDS, friends})
-export const addFriend = (userId) => ({type: ADD_FRIEND, userId});
-export const deleteFriend = (userId) => ({type: DELETE_FRIEND, userId});
+export const addFriendSuccess = (userId) => ({type: ADD_FRIEND, userId});
+export const deleteFriendSuccess = (userId) => ({type: DELETE_FRIEND, userId});
 
 export default friendsReducer;
+
+
+export const addFriend = (userId) => {
+    return (dispatch) => {
+        dispatch(toggleFollowingInProgress(true, userId));
+        usersAPI.addFriendSuccess(userId).then(data => {
+            if (data.resultCode === 0) {
+                dispatch(addFriend(data.data.id));
+            }
+            dispatch(toggleFollowingInProgress(false, userId));
+        })
+    }
+}
+
+export const deleteFriend = (userId) => {
+    return (dispatch) => {
+        dispatch(toggleFollowingInProgress(true, userId));
+        usersAPI.deleteFriend(userId).then(data => {
+            if (data.resultCode === 0) {
+                dispatch(deleteFriendSuccess(data.data.id));
+            }
+            dispatch(toggleFollowingInProgress(false, userId));
+        })
+    }
+}

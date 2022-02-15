@@ -1,3 +1,5 @@
+import {usersAPI} from '../api/api';
+
 const SET_USERS = 'SET-USERS';
 const CHANGE_CURRENT_PAGE = 'CHANGE_CURRENT_PAGE';
 const GET_TOTAL_USERS_COUNT = 'GET_TOTAL_USERS_COUNT';
@@ -40,3 +42,16 @@ export const setToggle = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching}
 export const toggleFollowingInProgress = (isFetching, userId) => ({type: TOGGLE_IS_FOLLOWING_IN_PROGRESS, isFetching, userId});
 
 export default usersReducer;
+
+
+export const getUsers = (pageSize, currentPage) => {
+    return (dispatch) => {
+            dispatch(changePage(currentPage));
+            dispatch(setToggle(true));
+            usersAPI.getUsers(pageSize, currentPage).then(data => {
+                dispatch(setToggle(false));
+                dispatch(setUsers(data.results));
+                dispatch(getTotalUsersCount(data.count));
+            })
+    }
+}

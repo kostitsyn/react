@@ -1,3 +1,5 @@
+import {usersAPI} from '../api/api';
+
 const ADD_POST = 'ADD-POST';
 const UPDATE_POST = 'UPDATE-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
@@ -48,3 +50,20 @@ export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
 export const setProfileOnPage = (profile) => ({type: SET_PROFILE_ON_PAGE, profile});
 
 export default profileReducer;
+
+export const getUserProfile = (userId) => {
+    return (dispatch) => {
+        usersAPI.getAuthData().then(data1 => {
+            if (data1.resultCode === 0) {
+                let {userId, email, login} = data1.data;
+                usersAPI.getProfile(userId).then(data2 => {
+                    dispatch(setUserProfile(data2));
+                    dispatch(setAuthUserData(userId, email, login));
+                    dispatch(setFriends(data2.friends));
+                })
+            }
+        })
+    }
+}
+
+export const getProfileOnPage = (userId) =>
