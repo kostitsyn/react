@@ -19,6 +19,7 @@ import Bookmarks from "./components/Navbar/AdditionalNavbar/Bookmarks/Bookmarks"
 import Files from "./components/Navbar/AdditionalNavbar/Files/Files";
 import Advertising from "./components/Navbar/AdditionalNavbar/Advertising/Advertising";
 import DialogContainer from "./components/Navbar/MainNavbar/Messages/Companion/Dialog/DialogContainer";
+import Login from "./components/Login/Login";
 
 
 const App = (props) => {
@@ -46,6 +47,7 @@ const App = (props) => {
                     <Route path='/files' element={<Files/>}/>
                     <Route path='/advertising' element={<Advertising/>}/>
                     <Route path='/messages/:id' element={<DialogContainer />}/>
+                    <Route path='/login' element={<Login />}/>
                 </Routes>
             </div>
         </div>

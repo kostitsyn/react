@@ -35,15 +35,6 @@ class UsersContainer extends React.Component {
 }
 
 let mapStateToProps = (state) => {
-    let excludeCurrentUser = state.users.users.filter(u => u.id !== state.profilePage.profile.id);
-    excludeCurrentUser.sort((a, b) => {
-        if(a.name > b.name){
-            return 1;
-        } else if (a.name < b.name) {
-            return -1;
-        }
-        return 0;
-    });
     return {
         friends: state.friendsPage.friends,
         profile: state.profilePage.profile,

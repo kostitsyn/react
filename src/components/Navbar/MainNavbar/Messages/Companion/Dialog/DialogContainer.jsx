@@ -41,7 +41,8 @@ let mapStateToProps = (state) => {
         newMessageText: state.messagesPage.newMessageText,
         companion: companion,
         currentUser: currentUser,
-        id: id
+        id: id,
+        isAuth: state.auth.isAuthenticated
     }
 }
 
