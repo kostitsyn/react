@@ -12,7 +12,6 @@ const Users = (props) => {
                                                          deleteFriend={props.deleteFriend}
                                                          followed={props.friends.includes(u.id)}
                                                          followingInProgress={props.followingInProgress}
-                                                         toggleFollowingInProgress={props.toggleFollowingInProgress}
                                                          user={u}
                                                          key={u.id} />);
 

@@ -1,4 +1,6 @@
 import {usersAPI} from '../api/api';
+import {setAuthUserData} from './auth-reducer';
+import {setFriends} from './friends-reducer';
 
 const ADD_POST = 'ADD-POST';
 const UPDATE_POST = 'UPDATE-POST';
@@ -32,7 +34,6 @@ const profileReducer = (state=initialState, action) => {
             return {...state, posts: [...state.posts, newPost], newPostText: ''};
         }
         case UPDATE_POST: {
-            debugger;
             return {...state, newPostText: action.text};
         }
         case SET_USER_PROFILE:
@@ -51,7 +52,7 @@ export const setProfileOnPage = (profile) => ({type: SET_PROFILE_ON_PAGE, profil
 
 export default profileReducer;
 
-export const getUserProfile = (userId) => {
+export const getUserProfile = () => {
     return (dispatch) => {
         usersAPI.getAuthData().then(data1 => {
             if (data1.resultCode === 0) {
@@ -66,4 +67,14 @@ export const getUserProfile = (userId) => {
     }
 }
 
-export const getProfileOnPage = (userId) =>
+export const getProfileOnPage = (profile, userId=null) => {
+    return (dispatch) => {
+        if (userId) {
+            usersAPI.getProfile(userId).then(data => {
+            dispatch(setProfileOnPage(data));
+        })
+        }else {
+            dispatch(setProfileOnPage(profile));
+        }
+    }
+}

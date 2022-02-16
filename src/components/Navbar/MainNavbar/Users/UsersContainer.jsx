@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import Users from './Users';
 import axios from 'axios';
 import {addFriend, deleteFriend} from '../../../../redux/friends-reducer';
-import {changePage, toggleFollowingInProgress, getUsers} from '../../../../redux/users-reducer';
+import {toggleFollowingInProgress, getUsers} from '../../../../redux/users-reducer';
 import {usersAPI} from '../../../../api/api';
 
 
@@ -29,15 +29,13 @@ class UsersContainer extends React.Component {
                friends={this.props.friends}
                changeUsersOnPage={this.changeUsersOnPage}
                isFetching={this.props.isFetching}
-               followingInProgress={this.props.followingInProgress}
-               toggleFollowingInProgress={this.props.toggleFollowingInProgress} />
+               followingInProgress={this.props.followingInProgress} />
         )
 
     }
 }
 
 let mapStateToProps = (state) => {
-    debugger;
     let excludeCurrentUser = state.users.users.filter(u => u.id !== state.profilePage.profile.id);
     excludeCurrentUser.sort((a, b) => {
         if(a.name > b.name){
@@ -59,7 +57,4 @@ let mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {changePage,
-                                        addFriend,
-                                        deleteFriend,
-                                        toggleFollowingInProgress, getUsers})(UsersContainer);
+export default connect(mapStateToProps, {addFriend, deleteFriend, getUsers})(UsersContainer);

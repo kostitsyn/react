@@ -27,7 +27,7 @@ const instance = axios.create({
 export const usersAPI = {
     getUsers(pageSize=10, currentPage=1) {
         let offset = pageSize * (currentPage-1);
-        return instance.get(`users/?limit=${pageSize}&offset=${offset}`).then(response => {
+        return instance.get(`users/?limit=${pageSize}&offset=${offset}/`).then(response => {
             return response.data;
         })
     },

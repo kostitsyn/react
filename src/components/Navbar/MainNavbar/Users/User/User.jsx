@@ -7,14 +7,13 @@ import {usersAPI} from '../../../../../api/api';
 
 const User = (props) => {
 
-
     let addFriend = (userId) => {
-        this.props.addFriend(userId);
+        props.addFriend(userId);
 
     }
 
     let deleteFriend = (userId) => {
-        this.props.deleteFriend(userId);
+        props.deleteFriend(userId);
     }
     return (
         <div className={c.friend}>

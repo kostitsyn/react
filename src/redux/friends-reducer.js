@@ -40,9 +40,9 @@ export default friendsReducer;
 export const addFriend = (userId) => {
     return (dispatch) => {
         dispatch(toggleFollowingInProgress(true, userId));
-        usersAPI.addFriendSuccess(userId).then(data => {
+        usersAPI.addFriend(userId).then(data => {
             if (data.resultCode === 0) {
-                dispatch(addFriend(data.data.id));
+                dispatch(addFriendSuccess(data.data.id));
             }
             dispatch(toggleFollowingInProgress(false, userId));
         })
