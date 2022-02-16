@@ -2,8 +2,7 @@
     display: grid;
     grid-template-columns: 100px 1fr 100px;
     grid-template-areas:
-    "i n b"
-    "i l b";
+    "k l b";
     border-bottom: 1px solid gray;
     padding: 10px 0;
     position: relative;
@@ -13,21 +12,33 @@
     border-top: 1px solid gray;
 }
 
-.friend img {
+.userLink {
+    grid-area: k;
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    grid-template-areas:
+    "i n";
+    text-decoration: none;
+}
+
+.userLink img {
     width: 80px;
     height: 80px;
     border-radius: 50%;
     grid-area: i;
 }
 
-.friendName {
-    padding-top: 15px;
+.userLink .friendName {
+    padding-top: 10px;
     grid-area: n;
+    align-self: start;
 }
 
-.friend a {
+.writeMsg {
     text-decoration: none;
     grid-area: l;
+    align-self: end;
+    padding-bottom: 10px;
 
 }
 

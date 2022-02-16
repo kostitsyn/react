@@ -1,3 +1,5 @@
+import {authAPI} from '../api/api';
+
 const SET_AUTH_USER = 'SET_AUTH_USER';
 
 let initialState = {

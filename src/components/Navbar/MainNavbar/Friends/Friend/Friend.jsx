@@ -1,5 +1,6 @@
 import React from 'react';
 import c from './Friend.module.css';
+import {NavLink} from "react-router-dom";
 
 const Friend = (props) => {
 
@@ -8,9 +9,11 @@ const Friend = (props) => {
     }
     return (
         <div className={c.friend}>
-            <img src={props.friend.imgLink} alt='ava'/>
-            <span className={c.friendName}>{props.friend.name}</span>
-            <a href='#'>Написать сообщение</a>
+            <NavLink to={`/profile/${props.friend.id}`} className={c.userLink}>
+                <img src={props.friend.imgLink} alt='ava'/>
+                <span className={c.friendName}>{props.friend.username}</span>
+            </NavLink>
+            <a href='#' className={c.writeMsg}>Написать сообщение</a>
             <button onClick={() => deleteFriend(props.friend.id)}>Удалить из друзей</button>
         </div>
     )

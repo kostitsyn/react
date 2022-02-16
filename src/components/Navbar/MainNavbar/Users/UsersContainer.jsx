@@ -3,13 +3,12 @@ import {connect} from 'react-redux';
 import Users from './Users';
 import axios from 'axios';
 import {addFriend, deleteFriend} from '../../../../redux/friends-reducer';
-import {toggleFollowingInProgress, getUsers} from '../../../../redux/users-reducer';
-import {usersAPI} from '../../../../api/api';
+import {getUsers} from '../../../../redux/users-reducer';
 
 
 class UsersContainer extends React.Component {
-    componentDidMount() {
 
+    componentDidMount() {
         this.props.getUsers(this.props.pageSize, this.props.currentPage);
     }
 

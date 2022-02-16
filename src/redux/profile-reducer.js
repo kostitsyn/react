@@ -1,4 +1,4 @@
-import {usersAPI} from '../api/api';
+import {usersAPI, authAPI} from '../api/api';
 import {setAuthUserData} from './auth-reducer';
 import {setFriends} from './friends-reducer';
 
@@ -52,9 +52,9 @@ export const setProfileOnPage = (profile) => ({type: SET_PROFILE_ON_PAGE, profil
 
 export default profileReducer;
 
-export const getUserProfile = () => {
+export const getUserProfile = (userId) => {
     return (dispatch) => {
-        usersAPI.getAuthData().then(data1 => {
+        authAPI.getAuthData().then(data1 => {
             if (data1.resultCode === 0) {
                 let {userId, email, login} = data1.data;
                 usersAPI.getProfile(userId).then(data2 => {

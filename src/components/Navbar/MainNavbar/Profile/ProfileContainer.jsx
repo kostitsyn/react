@@ -4,7 +4,6 @@ import Profile from './Profile';
 import {connect} from 'react-redux';
 import {getProfileOnPage} from '../../../../redux/profile-reducer';
 import {useParams} from 'react-router-dom';
-import {usersAPI} from '../../../../api/api';
 
 // const withRouter = WrappedComponent => props => {
 //     const params = useParams();
