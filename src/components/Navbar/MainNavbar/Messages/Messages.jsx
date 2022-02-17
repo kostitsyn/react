@@ -1,6 +1,9 @@
 import React from 'react';
 import c from './Messages.module.css';
 import Companion from "./Companion/Companion";
+import {Navigate} from "react-router-dom";
+import Login from '../../../Login/Login';
+
 
 const Messages = (props) => {
     let state = props.store.getState();
@@ -13,7 +16,7 @@ const Messages = (props) => {
     })
 
     let userElements = filteredUsers.map(u => <Companion messages={state.messagesPage.dialogs} companion={u} key={u.id} />)
-
+    if (!state.auth.isAuthenticated) return <Navigate to="/login" />;
     return (
         <div className={c.messages}>
             <div className={c.searchBlock}>

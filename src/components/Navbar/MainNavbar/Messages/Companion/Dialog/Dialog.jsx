@@ -1,9 +1,9 @@
 import React from "react";
-import {useParams, Route} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import DialogCompanion from "./DialogCompanion/DialogCompanion";
 import DialogMe from "./OwnDialog/OwnDialog";
 import c from './Dialog.module.css';
-import Login from '../../../../../Login/Login';
+
 
 const Dialog = (props) => {
     let dialogElements = props.currentDialogs.messages.map(d => d.user_id == props.id
@@ -18,7 +18,7 @@ const Dialog = (props) => {
     let addMsg = () => {
         props.addMessage();
     }
-    if (!props.isAuth) return <Route path='/login' element={<Login/>}/>;
+
     return (
         <div>
             {dialogElements}

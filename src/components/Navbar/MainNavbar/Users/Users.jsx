@@ -4,12 +4,15 @@ import c from './Users.module.css';
 import Preloader from '../../../common/Preloader/Preloader';
 
 const Users = (props) => {
-//     if (!props.profile) {
-//         return <Preloader />
-//     }
-    debugger;
-    let excludeCurrentUser = props.users.filter(u => u.id !==props.profile.id)
-    let userElements = excludeCurrentUser.map(u => <User addFriend={props.addFriend}
+    let users;
+    if (!props.profile) {
+        users = props.users;
+    } else {
+        users = props.users.filter(u => u.id !==props.profile.id);
+    }
+
+
+    let userElements = users.map(u => <User addFriend={props.addFriend}
                                                          deleteFriend={props.deleteFriend}
                                                          followed={props.friends.includes(u.id)}
                                                          followingInProgress={props.followingInProgress}

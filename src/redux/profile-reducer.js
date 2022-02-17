@@ -61,6 +61,7 @@ export const getUserProfile = (userId) => {
                     dispatch(setUserProfile(data2));
                     dispatch(setAuthUserData(userId, email, login));
                     dispatch(setFriends(data2.friends));
+                    return userId, email, login;
                 })
             }
         })

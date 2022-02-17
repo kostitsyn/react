@@ -31,7 +31,6 @@ class DialogContainer extends React.Component {
 
 
 let mapStateToProps = (state) => {
-    debugger;
     let id = state.profilePage.profile.id;
     let currentDialogs = state.messagesPage.dialogs.find(elem => elem.id === id);
     let companion = state.users.users.find(u => u.id === id);

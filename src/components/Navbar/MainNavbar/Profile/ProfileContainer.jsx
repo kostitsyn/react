@@ -4,6 +4,8 @@ import Profile from './Profile';
 import {connect} from 'react-redux';
 import {getProfileOnPage} from '../../../../redux/profile-reducer';
 import {useParams} from 'react-router-dom';
+import Login from '../../../Login/Login';
+import {Navigate} from "react-router-dom";
 
 // const withRouter = WrappedComponent => props => {
 //     const params = useParams();
@@ -30,16 +32,19 @@ class ProfileContainer extends React.Component {
     }
 
     render() {
+        if (!this.props.isAuth) return <Navigate to='/login' />
         return <Profile {...this.props} profileOnPage={this.props.profileOnPage}/>
     }
 }
 
 let mapStateToProps = (state) => {
+    debugger;
     return {
         profile: state.profilePage.profile,
         profileOnPage: state.profilePage.profileOnPage,
         friends: state.friendsPage.friends,
-        users: state.users.users
+        users: state.users.users,
+        isAuth: state.auth.isAuthenticated
     }
 
 }
