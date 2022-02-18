@@ -12,12 +12,13 @@ const Users = (props) => {
     }
 
 
-    let userElements = users.map(u => <User addFriend={props.addFriend}
-                                                         deleteFriend={props.deleteFriend}
-                                                         followed={props.friends.includes(u.id)}
-                                                         followingInProgress={props.followingInProgress}
-                                                         user={u}
-                                                         key={u.id} />);
+let userElements = users.map(u => <User  addFriend={props.addFriend}
+                                         deleteFriend={props.deleteFriend}
+                                         followed={props.friends.includes(u.id)}
+                                         followingInProgress={props.followingInProgress}
+                                         user={u}
+                                         isAuth={props.isAuth}
+                                         key={u.id} />);
 
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
 

@@ -6,8 +6,7 @@ import axios from 'axios';
 
 class HeaderContainer extends React.Component {
     componentDidMount() {
-        let userId, email, login = this.props.getUserProfile();
-        debugger;
+        this.props.getUserProfile();
     }
     render() {
         return <Header {...this.props} />

@@ -55,3 +55,13 @@ export const authAPI = {
         })
     }
 }
+
+export const messagesAPI = {
+    getMessages() {
+        return instance.get('messages/').then(response => {
+            return response.data;
+        })
+    },
+    saveMessage(sender, recipient, text) {
+    }
+}

@@ -11,6 +11,7 @@ let mapStateToProps = (state) => {
     })
     return {
         currentFriends: currentFriends,
+        isAuth: state.auth.isAuthenticated
     }
 }
 

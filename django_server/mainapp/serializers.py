@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User, Profile, Photo, Contact
+from .models import User, Profile, Photo, Contact, Message
 
 
 class UserModelSerializer(serializers.ModelSerializer):
@@ -32,3 +32,12 @@ class ProfileModelSerializer(serializers.ModelSerializer):
 
 class FollowSerializer(serializers.Serializer):
     user_id = serializers.IntegerField(default=0)
+
+
+class MessageModelSerializer(serializers.ModelSerializer):
+    sender = UserModelSerializer()
+    recipient = UserModelSerializer()
+
+    class Meta:
+        model = Message
+        fields = '__all__'

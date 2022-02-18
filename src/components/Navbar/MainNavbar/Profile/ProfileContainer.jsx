@@ -1,11 +1,9 @@
 import React from 'react';
-import axios from 'axios';
 import Profile from './Profile';
 import {connect} from 'react-redux';
 import {getProfileOnPage} from '../../../../redux/profile-reducer';
 import {useParams} from 'react-router-dom';
-import Login from '../../../Login/Login';
-import {Navigate} from "react-router-dom";
+import {withAuthRedirect} from "../../../../hoc/AuthRedirect";
 
 // const withRouter = WrappedComponent => props => {
 //     const params = useParams();
@@ -32,13 +30,13 @@ class ProfileContainer extends React.Component {
     }
 
     render() {
-        if (!this.props.isAuth) return <Navigate to='/login' />
+
         return <Profile {...this.props} profileOnPage={this.props.profileOnPage}/>
     }
 }
 
+
 let mapStateToProps = (state) => {
-    debugger;
     return {
         profile: state.profilePage.profile,
         profileOnPage: state.profilePage.profileOnPage,
@@ -49,6 +47,9 @@ let mapStateToProps = (state) => {
 
 }
 
-let WithUrlDataContainerComponent = withRouter(ProfileContainer);
+
+let AuthRedirectComponent = withAuthRedirect(ProfileContainer);
+
+let WithUrlDataContainerComponent = withRouter(AuthRedirectComponent);
 
 export default connect(mapStateToProps, {getProfileOnPage})(WithUrlDataContainerComponent);

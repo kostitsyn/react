@@ -6,17 +6,16 @@ import Login from '../../../Login/Login';
 
 
 const Messages = (props) => {
-    let state = props.store.getState();
-    let filteredUsers = state.users.users.filter(u => {
+    let filteredUsers = props.users.filter(u => {
         let newArr = [];
-        state.messagesPage.messages.forEach(m => newArr.push(m.userId))
+        props.messages.forEach(m => newArr.push(m.userId))
         if (newArr.includes(u.id)) {
             return u;
         }
     })
 
-    let userElements = filteredUsers.map(u => <Companion messages={state.messagesPage.dialogs} companion={u} key={u.id} />)
-    if (!state.auth.isAuthenticated) return <Navigate to="/login" />;
+    let userElements = filteredUsers.map(u => <Companion messages={props.dialogs} companion={u} key={u.id} />)
+
     return (
         <div className={c.messages}>
             <div className={c.searchBlock}>
@@ -36,6 +35,5 @@ const Messages = (props) => {
         </div>
     )
 }
-
 
 export default Messages;

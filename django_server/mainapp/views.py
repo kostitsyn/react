@@ -1,11 +1,9 @@
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.views import APIView
-from .models import User, Profile
-from .serializers import UserModelSerializer, ProfileModelSerializer, FollowSerializer
-from rest_framework.permissions import IsAuthenticated
+from .models import User, Profile, Message
+from .serializers import UserModelSerializer, ProfileModelSerializer, FollowSerializer, MessageModelSerializer
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework_api_key.permissions import HasAPIKey
 
 
 class UserModelViewSet(ModelViewSet):
@@ -16,6 +14,11 @@ class UserModelViewSet(ModelViewSet):
 class ProfileModelViewSet(ModelViewSet):
     queryset = Profile.objects.all()
     serializer_class = ProfileModelSerializer
+
+
+class MessageModelViewSet(ModelViewSet):
+    queryset = Message.objects.all()
+    serializer_class = MessageModelSerializer
 
 
 class AuthDataAPIView(APIView):
@@ -36,7 +39,6 @@ class AuthDataAPIView(APIView):
 
 class FollowAPIView(APIView):
     serializer_class = FollowSerializer
-    # permission_classes = [HasAPIKey]
 
     def post(self, request, pk=None):
         response_data = dict()

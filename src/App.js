@@ -5,7 +5,7 @@ import Navbar from "./components/Navbar/Navbar";
 import ProfileContainer from "./components/Navbar/MainNavbar/Profile/ProfileContainer";
 import UsersContainer from "./components/Navbar/MainNavbar/Users/UsersContainer";
 
-import Messages from "./components/Navbar/MainNavbar/Messages/Messages";
+import MessagesContainer from "./components/Navbar/MainNavbar/Messages/MessagesContainer";
 import {Routes, Route} from "react-router-dom";
 import React from 'react';
 import News from "./components/Navbar/MainNavbar/News/News";
@@ -35,7 +35,7 @@ const App = (props) => {
                     </Route>
                     <Route path='/news' element={<News/>}/>
                     <Route path='/messages'
-                           element={<Messages store={props.store}/>}/>
+                           element={<MessagesContainer/>}/>
                     <Route path='/friends' element={<FriendsContainer/>}/>
                     <Route path='/communities' element={<Communities/>}/>
                     <Route path='/photos' element={<Photos/>}/>

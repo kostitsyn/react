@@ -24,10 +24,14 @@ const User = (props) => {
             </NavLink>
             <a href='#' className={c.writeMsg}>Написать сообщение</a>
 
-            {props.followed
-                ? <button disabled={props.followingInProgress.some(id => id===props.user.id)} onClick={() => deleteFriend(props.user.id)}>Удалить из друзей</button>
-                : <button disabled={props.followingInProgress.some(id => id===props.user.id)} onClick={() => addFriend(props.user.id)}>Добавить в друзья</button>
+            {props.isAuth
+                ? (props.followed
+                        ? <button disabled={props.followingInProgress.some(id => id===props.user.id)} onClick={() => deleteFriend(props.user.id)}>Удалить из друзей</button>
+                        : <button disabled={props.followingInProgress.some(id => id===props.user.id)} onClick={() => addFriend(props.user.id)}>Добавить в друзья</button>
+                    )
+                : null
             }
+            {}
         </div>
 
     )

@@ -44,6 +44,7 @@ let mapStateToProps = (state) => {
         pageSize: state.users.pageSize,
         isFetching: state.users.isFetching,
         followingInProgress: state.users.followingInProgress,
+        isAuth: state.auth.isAuthenticated,
     }
 }
 

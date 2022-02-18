@@ -5,6 +5,7 @@ import {addMessage, updateMessageText} from "../../../../../../redux/messages-re
 import Dialog from './Dialog';
 import {connect, useSelector} from 'react-redux';
 
+
 function withRouter(Component) {
     function ComponentWithRouterProp(props) {
       let params = useParams();
@@ -18,7 +19,6 @@ function withRouter(Component) {
 
 class DialogContainer extends React.Component {
     componentDidMount() {
-        debugger;
         let userId = this.props.router.userId;
         if (!userId) {
             userId = 1;
@@ -31,10 +31,12 @@ class DialogContainer extends React.Component {
 
 
 let mapStateToProps = (state) => {
+    debugger;
     let id = state.profilePage.profile.id;
     let currentDialogs = state.messagesPage.dialogs.find(elem => elem.id === id);
     let companion = state.users.users.find(u => u.id === id);
     let currentUser = state.users.users.find(u => u.id === 100);
+    debugger;
     return {
         currentDialogs: currentDialogs,
         newMessageText: state.messagesPage.newMessageText,

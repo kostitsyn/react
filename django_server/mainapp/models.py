@@ -64,3 +64,17 @@ class Profile(models.Model):
     class Meta:
         verbose_name = 'Профиль'
         verbose_name_plural = 'Профили'
+
+
+class Message(models.Model):
+    sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name='sender', verbose_name='Отправитель')
+    recipient = models.ForeignKey(User, on_delete=models.CASCADE, related_name='recipient', verbose_name='Получатель')
+    text = models.TextField(max_length=1024, blank=True, verbose_name='Текст сообщения')
+    date_send = models.DateTimeField(auto_now_add=True, verbose_name='Дата отправления')
+
+    def __str__(self):
+        return f'Сообщение от {self.sender.username} пользователю {self.recipient.username}'
+
+    class Meta:
+        verbose_name = 'Сообщение'
+        verbose_name_plural = 'Сообщения'
