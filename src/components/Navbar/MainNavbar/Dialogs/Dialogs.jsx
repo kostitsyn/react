@@ -6,15 +6,7 @@ import Login from '../../../Login/Login';
 
 
 const Messages = (props) => {
-    let filteredUsers = props.users.filter(u => {
-        let newArr = [];
-        props.messages.forEach(m => newArr.push(m.userId))
-        if (newArr.includes(u.id)) {
-            return u;
-        }
-    })
-
-    let userElements = filteredUsers.map(u => <Companion messages={props.dialogs} companion={u} key={u.id} />)
+    let userElements = props.messages.map(m => <Companion userId={props.userId} messages={m} key={m.id} />)
 
     return (
         <div className={c.messages}>

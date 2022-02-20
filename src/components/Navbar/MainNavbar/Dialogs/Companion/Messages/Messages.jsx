@@ -6,7 +6,7 @@ import c from './Dialog.module.css';
 
 
 const Dialog = (props) => {
-    let dialogElements = props.currentDialogs.messages.map(d => d.user_id == props.id
+    let dialogElements = props.currentDialogs.messages.map(d => d.userId == props.id
                               ? <DialogCompanion companion={props.companion} state={d} key={`${d.id}${d.message}`} />
                               : <DialogMe currentUser={props.currentUser} state={d} /> )
 
@@ -16,6 +16,7 @@ const Dialog = (props) => {
     }
 
     let addMsg = () => {
+        debugger;
         props.addMessage();
     }
 

@@ -1,9 +1,11 @@
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.views import APIView
-from .models import User, Profile, Message
-from .serializers import UserModelSerializer, ProfileModelSerializer, FollowSerializer, MessageModelSerializer
+from .models import User, Profile, Message, Dialog
+from .serializers import UserModelSerializer, ProfileModelSerializer, FollowSerializer, \
+    MessageModelSerializer, DialogModelSerializer
 from rest_framework.response import Response
 from rest_framework import status
+from django.db.models import Q
 
 
 class UserModelViewSet(ModelViewSet):
@@ -16,9 +18,31 @@ class ProfileModelViewSet(ModelViewSet):
     serializer_class = ProfileModelSerializer
 
 
-class MessageModelViewSet(ModelViewSet):
-    queryset = Message.objects.all()
+class DialogModelViewSet(ModelViewSet):
+    serializer_class = DialogModelSerializer
+
+    def get_queryset(self):
+        user_id = self.request.query_params.get('user')
+        if user_id:
+            dialog = Dialog.objects.filter(Q(user=user_id) | Q(companion=user_id))
+            return dialog
+        return Dialog.objects.all()
+
+
+class MessageAPIView(APIView):
     serializer_class = MessageModelSerializer
+
+    def post(self, request, pk=None):
+        sender = User.objects.get(pk=request.data.get('sender'))
+        recipient = User.objects.get(pk=request.data.get('recipient'))
+        dialog = Dialog.objects.get(pk=pk)
+        new_message = Message.objects.create(sender=sender,
+                                             recipient=recipient,
+                                             text=request.data.get('text'),
+                                             dialog=dialog)
+        serializer = self.serializer_class(data=new_message)
+        serializer.is_valid()
+        return Response(serializer.data)
 
 
 class AuthDataAPIView(APIView):

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User, Profile, Photo, Contact, Message
+from .models import User, Profile, Photo, Contact, Message, Dialog
 
 
 class UserModelSerializer(serializers.ModelSerializer):
@@ -35,9 +35,19 @@ class FollowSerializer(serializers.Serializer):
 
 
 class MessageModelSerializer(serializers.ModelSerializer):
-    sender = UserModelSerializer()
-    recipient = UserModelSerializer()
+    # sender = UserModelSerializer()
+    # recipient = UserModelSerializer()
 
     class Meta:
         model = Message
+        fields = '__all__'
+
+
+class DialogModelSerializer(serializers.ModelSerializer):
+    user = UserModelSerializer()
+    companion = UserModelSerializer()
+    messages = MessageModelSerializer(many=True)
+
+    class Meta:
+        model = Dialog
         fields = '__all__'
