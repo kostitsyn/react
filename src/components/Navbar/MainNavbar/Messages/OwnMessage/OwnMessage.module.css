@@ -7,6 +7,12 @@
     "m a"
 }
 
+.time {
+    color: #818c99;
+    font-weight: 400;
+    font-size: 12px;
+}
+
 .me span {
     padding: 7px;
 }
@@ -18,7 +24,7 @@
     font-weight: 600;
 }
 
-.message {
+.text {
     grid-area: m;
     margin-left: auto;
 }
@@ -28,6 +34,6 @@
     width: 36px;
     height: 36px;
     border-radius: 50%;
-    margin-top: 16px;
-    margin-left: 7px;
+    align-self: center;
+    justify-self: center;
 }

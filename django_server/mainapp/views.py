@@ -30,7 +30,6 @@ class DialogModelViewSet(ModelViewSet):
 
 
 class MessageAPIView(APIView):
-    serializer_class = MessageModelSerializer
 
     def post(self, request, pk=None):
         sender = User.objects.get(pk=request.data.get('sender'))
@@ -40,8 +39,8 @@ class MessageAPIView(APIView):
                                              recipient=recipient,
                                              text=request.data.get('text'),
                                              dialog=dialog)
-        serializer = self.serializer_class(data=new_message)
-        serializer.is_valid()
+        serializer = MessageModelSerializer(new_message)
+        # serializer.is_valid()
         return Response(serializer.data)
 
 

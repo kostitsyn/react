@@ -1,0 +1,36 @@
+.companion {
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    grid-template-areas:
+    "a n"
+    "a m"
+}
+
+.ava {
+    grid-area: a;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    align-self: center;
+    justify-self: center;
+}
+
+.time {
+    color: #818c99;
+    font-weight: 400;
+    font-size: 12px;
+}
+
+.text {
+    padding: 7px;
+    grid-area: m;
+}
+
+.name {
+    vertical-align: top;
+    color: #2a5885;
+    font-weight: 600;
+    padding-left: 7px;
+    grid-area: n;
+}

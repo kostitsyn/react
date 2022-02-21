@@ -1,12 +1,12 @@
 import React from 'react';
-import c from './Messages.module.css';
+import c from './Dialogs.module.css';
 import Companion from "./Companion/Companion";
 import {Navigate} from "react-router-dom";
 import Login from '../../../Login/Login';
 
 
-const Messages = (props) => {
-    let userElements = props.messages.map(m => <Companion userId={props.userId} messages={m} key={m.id} />)
+const Dialogs = (props) => {
+    let userElements = props.dialogs.map(d => <Companion userId={props.userId} dialog={d} key={d.id} />)
 
     return (
         <div className={c.messages}>
@@ -28,4 +28,4 @@ const Messages = (props) => {
     )
 }
 
-export default Messages;
+export default Dialogs;

@@ -5,6 +5,7 @@ import Preloader from '../../../../common/Preloader/Preloader';
 import default_ava from '../../../../../assets/images/default_ava.png';
 
 const UserContent = (props) => {
+    debugger;
     return (
         <div className={c.userContent}>
             <div className={c.avatar}>

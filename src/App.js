@@ -6,6 +6,8 @@ import ProfileContainer from "./components/Navbar/MainNavbar/Profile/ProfileCont
 import UsersContainer from "./components/Navbar/MainNavbar/Users/UsersContainer";
 
 import MessagesContainer from "./components/Navbar/MainNavbar/Messages/MessagesContainer";
+import DialogsContainer from "./components/Navbar/MainNavbar/Dialogs/DialogsContainer";
+
 import {Routes, Route} from "react-router-dom";
 import React from 'react';
 import News from "./components/Navbar/MainNavbar/News/News";
@@ -18,7 +20,6 @@ import MiniApps from "./components/Navbar/AdditionalNavbar/MiniApps/MiniApps";
 import Bookmarks from "./components/Navbar/AdditionalNavbar/Bookmarks/Bookmarks";
 import Files from "./components/Navbar/AdditionalNavbar/Files/Files";
 import Advertising from "./components/Navbar/AdditionalNavbar/Advertising/Advertising";
-import DialogContainer from "./components/Navbar/MainNavbar/Messages/Companion/Dialog/DialogContainer";
 import Login from "./components/Login/Login";
 
 
@@ -34,8 +35,8 @@ const App = (props) => {
                         <Route path=":userId" element={<ProfileContainer/>}/>
                     </Route>
                     <Route path='/news' element={<News/>}/>
-                    <Route path='/messages'
-                           element={<MessagesContainer/>}/>
+                    <Route path='/dialogs'
+                           element={<DialogsContainer/>}/>
                     <Route path='/friends' element={<FriendsContainer/>}/>
                     <Route path='/communities' element={<Communities/>}/>
                     <Route path='/photos' element={<Photos/>}/>
@@ -46,7 +47,7 @@ const App = (props) => {
                     <Route path='/bookmarks' element={<Bookmarks/>}/>
                     <Route path='/files' element={<Files/>}/>
                     <Route path='/advertising' element={<Advertising/>}/>
-                    <Route path='/messages/:id' element={<DialogContainer />}/>
+                    <Route path='/messages/:id' element={<MessagesContainer />}/>
                     <Route path='/login' element={<Login />}/>
                 </Routes>
             </div>

@@ -5,7 +5,8 @@ import MyPosts from "./MyPosts";
 import {connect} from 'react-redux';
 
 let mapStateToProps = (state) => {
-    let currentUser = state.users.users.find(u => u.id === 1);
+    debugger;
+    let currentUser = state.users.users.find(u => u.id === state.auth.userId);
     let userPosts = state.profilePage.posts.filter(p => p.author === currentUser.id);
     return {
         userPosts : userPosts,

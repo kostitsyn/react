@@ -56,12 +56,18 @@ export const authAPI = {
     }
 }
 
-export const messagesAPI = {
-    getMessages() {
-        return instance.get('messages/').then(response => {
+export const dialogsAPI = {
+    getDialogs(userId) {
+        return instance.get(`dialogs/?user=${userId}`).then(response => {
             return response.data;
         })
-    },
-    saveMessage(sender, recipient, text) {
+    }
+}
+
+export const messagesAPI = {
+    addMessage(dialogId, sender, recipient, text) {
+        return instance.post(`message/${dialogId}/`, {sender: sender, recipient: recipient, text: text}).then(response => {
+            return response.data;
+        })
     }
 }

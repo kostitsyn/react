@@ -1,47 +1,34 @@
-import {messagesAPI} from '../api/api';
+import {dialogsAPI} from '../api/api';
+import {setMessages} from './messages-reducer';
 
-const ADD_MESSAGE = 'ADD-MESSAGE';
-const UPDATE_MESSAGE = 'UPDATE-MESSAGE';
-const SET_MESSAGES = 'SET_MESSAGES';
+const SET_DIALOGS = 'SET_DIALOGS';
 
 
 let initialState = {
-            newMessageText: '',
-            messages: []
+            dialogs: []
         }
 
-const messagesReducer = (state=initialState, action) => {
+const dialogsReducer = (state=initialState, action) => {
     switch (action.type) {
-        case ADD_MESSAGE: {
-            let newMessage = {
-                sender: action.senderId,
-                recipient: action.recipientId,
-                message: state.newMessageText
-            }
-            return {...state, newMessageText: '', messages: [...state.messsages, newMessage]}
-        }
-        case UPDATE_MESSAGE: {
-            return {...state, newMessageText: action.text};
-        }
-        case SET_MESSAGES: {
-            return {...state, messages: action.messages}
+        case SET_DIALOGS: {
+            return {...state, dialogs: action.dialogs}
         }
         default:
             return state;
     }
 }
 
-export const updateMessageText = (text) => ({type: UPDATE_MESSAGE, text});
-export const addMessage = (senderId, recipientId) => ({type: ADD_MESSAGE, senderId, recipientId});
-export const setMessages = (messages) => ({type: SET_MESSAGES, messages});
+export const setDialogs = (dialogs) => ({type: SET_DIALOGS, dialogs});
 
-export const getMessages = (userId) => {
+export const getDialogs = (userId) => {
     return (dispatch) => {
-        messagesAPI.getMessages(userId).then(data => {
-            debugger;
-            dispatch(setMessages(data));
+        dialogsAPI.getDialogs(userId).then(data => {
+            dispatch(setDialogs(data));
+            for (let i=0; i<data.length; i++) {
+                dispatch(setMessages({dialogId: data[i].id, messages: data[i].messages}));
+            }
         })
     }
 }
 
-export default messagesReducer;
+export default dialogsReducer;

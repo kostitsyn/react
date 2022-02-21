@@ -1,6 +1,6 @@
 import {usersAPI} from '../api/api';
 
-const SET_USERS = 'SET-USERS';
+const SET_USERS = 'SET_USERS';
 const CHANGE_CURRENT_PAGE = 'CHANGE_CURRENT_PAGE';
 const GET_TOTAL_USERS_COUNT = 'GET_TOTAL_USERS_COUNT';
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
@@ -18,6 +18,15 @@ let initialState = {
 const usersReducer = (state=initialState, action) => {
     switch (action.type) {
         case SET_USERS:
+//            let users = [...state.users];
+//            let usersId = [];
+//            users.forEach(u => usersId.push(u.id));
+//            for (let i=0; i<action.users.length; i++) {
+//                if (!usersId.includes(action.users[i].id)) {
+//                    debugger;
+//                    users = [...users, action.users[i]];
+//                }
+//            }
             return {...state, users: action.users};
         case CHANGE_CURRENT_PAGE:
             return {...state, currentPage: action.pageNumber};

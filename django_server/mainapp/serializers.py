@@ -35,8 +35,8 @@ class FollowSerializer(serializers.Serializer):
 
 
 class MessageModelSerializer(serializers.ModelSerializer):
-    # sender = UserModelSerializer()
-    # recipient = UserModelSerializer()
+    sender = UserModelSerializer()
+    recipient = UserModelSerializer()
 
     class Meta:
         model = Message

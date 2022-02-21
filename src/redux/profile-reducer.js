@@ -39,6 +39,7 @@ const profileReducer = (state=initialState, action) => {
         case SET_USER_PROFILE:
             return {...state, profile: action.profile};
         case SET_PROFILE_ON_PAGE:
+            debugger;
             return {...state, profileOnPage: action.profile};
         default:
             return state;
@@ -68,9 +69,11 @@ export const getUserProfile = (userId) => {
 }
 
 export const getProfileOnPage = (profile, userId=null) => {
+    debugger;
     return (dispatch) => {
         if (userId) {
             usersAPI.getProfile(userId).then(data => {
+            debugger;
             dispatch(setProfileOnPage(data));
         })
         }else {
