@@ -3,16 +3,27 @@ import c from './MyPosts.module.css';
 import PostItem from "./MyPostItem/MyPostItem";
 
 const MyPosts = (props) => {
-    let postElements = props.userPosts.map(p => <PostItem message={p.message} likes={p.likes} currentUser={props.currentUser} comments={p.comments} key={p.id} />);
+    let profileUserId;
+    if (props.router.userId) {
+        profileUserId = props.router.userId;
+    } else {
+        profileUserId = props.userId;
+    }
+    let currentUser = props.users.find(u => u.id === profileUserId);
+    let userPosts = props.posts.filter(p => p.author === profileUserId);
 
+    let postElements;
+    if (userPosts) {
+        postElements = userPosts.map(p => <PostItem message={p.message} likes={p.likes} currentUser={currentUser} comments={p.comments} key={p.id} />);
+    } else {
+        postElements = [];
+    }
     let updatePostText = (event) => {
-        debugger;
         let text = event.target.value;
         props.updatePostText(text);
 
     }
     let addPost = () => {
-        debugger;
         props.addPost(props.currentUser.id);
     }
 

@@ -1,18 +1,28 @@
 import React from 'react';
-import PostItem from "./MyPostItem/MyPostItem";
 import {addPost, updatePostText} from "../../../../../../redux/profile-reducer";
 import MyPosts from "./MyPosts";
 import {connect} from 'react-redux';
+import {useParams} from 'react-router-dom';
+
+function withRouter(Component) {
+    function ComponentWithRouterProp(props) {
+      let params = useParams();
+      return (
+        <Component {...props} router={ params }/>
+      );
+    }
+
+    return ComponentWithRouterProp;
+}
+
 
 let mapStateToProps = (state) => {
-    debugger;
-    let currentUser = state.users.users.find(u => u.id === state.auth.userId);
-    let userPosts = state.profilePage.posts.filter(p => p.author === currentUser.id);
     return {
-        userPosts : userPosts,
+        posts : state.profilePage.posts,
         newPostText: state.profilePage.newPostText,
-        currentUser: currentUser
+        users: state.users.users,
+        userId: state.auth.userId
     }
 }
 
-export default connect(mapStateToProps, {addPost, updatePostText})(MyPosts);
+export default withRouter(connect(mapStateToProps, {addPost, updatePostText})(MyPosts));

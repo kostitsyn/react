@@ -91,3 +91,21 @@ class Message(models.Model):
     class Meta:
         verbose_name = 'Сообщение'
         verbose_name_plural = 'Сообщения'
+
+
+class Post(models.Model):
+    text = models.TextField(max_length=1024, blank=True, verbose_name='Текст поста')
+    likes = models.IntegerField(default=0, verbose_name='Количество лайков')
+    comments = models.IntegerField(default=0, verbose_name='Количество комментариев')
+    reposts = models.IntegerField(default=0, verbose_name='Количество репостов')
+    views = models.IntegerField(default=0, verbose_name='Количество просмотров')
+    date_created = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
+    date_updated = models.DateTimeField(auto_now=True, verbose_name='Дата изменения')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts', verbose_name='Пользователь')
+
+    def __str__(self):
+        return f'Пост №{self.id} пользователя {self.user.username}'
+
+    class Meta:
+        verbose_name = 'Пост'
+        verbose_name_plural = 'Посты'

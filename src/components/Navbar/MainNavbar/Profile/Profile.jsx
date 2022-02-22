@@ -5,11 +5,9 @@ import c from "./Profile.module.css";
 import Preloader from '../../../common/Preloader/Preloader';
 
 const Profile = (props) => {
-    debugger;
     if (!props.profileOnPage) {
         return <Preloader />
     }
-    debugger;
     return (
         <main className={c.profile}>
             <UserContent friends={props.friends} users={props.users} profile={props.profileOnPage}/>

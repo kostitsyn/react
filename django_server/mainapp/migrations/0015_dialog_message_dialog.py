@@ -23,6 +23,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='message',
             name='dialog',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='dialog', to='mainapp.dialog', verbose_name='Диалог'),
+            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='dialog', to='mainapp.message', verbose_name='Диалог'),
         ),
     ]

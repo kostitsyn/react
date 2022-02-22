@@ -18,15 +18,6 @@ let initialState = {
 const usersReducer = (state=initialState, action) => {
     switch (action.type) {
         case SET_USERS:
-//            let users = [...state.users];
-//            let usersId = [];
-//            users.forEach(u => usersId.push(u.id));
-//            for (let i=0; i<action.users.length; i++) {
-//                if (!usersId.includes(action.users[i].id)) {
-//                    debugger;
-//                    users = [...users, action.users[i]];
-//                }
-//            }
             return {...state, users: action.users};
         case CHANGE_CURRENT_PAGE:
             return {...state, currentPage: action.pageNumber};
@@ -37,7 +28,7 @@ const usersReducer = (state=initialState, action) => {
         case TOGGLE_IS_FOLLOWING_IN_PROGRESS:
             return {...state, followingInProgress: action.isFetching
                     ? [...state.followingInProgress, action.userId]
-                    : state.followingInProgress.filter(id => id != action.userId)
+                    : state.followingInProgress.filter(id => id !== action.userId)
             }
         default:
             return state;

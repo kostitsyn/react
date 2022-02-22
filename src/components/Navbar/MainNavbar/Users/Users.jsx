@@ -28,11 +28,11 @@ let userElements = users.map(u => <User  addFriend={props.addFriend}
     }
     return (
         <>
-            {props.isFetching ? <Preloader/> : null}
+            {props.isFetching ? <Preloader/> : undefined}
             <div>
                 <div>
                     {pageNumbers.map(p => {
-                        return <span onClick={(e) => props.changeUsersOnPage(p)} className={props.currentPage === p && c.selectedPage}>{p}</span>})}
+                        return <span key={p} onClick={(e) => props.changeUsersOnPage(p)} className={props.currentPage === p ? c.selectedPage : undefined}>{p}</span>})}
                 </div>
                 <div className={c.users}>
                     {userElements}

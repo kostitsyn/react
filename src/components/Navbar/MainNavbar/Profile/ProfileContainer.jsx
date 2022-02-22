@@ -19,15 +19,22 @@ function withRouter(Component) {
     }
 
     return ComponentWithRouterProp;
-  }
+}
 
 
 class ProfileContainer extends React.Component {
 
     componentDidMount() {
+        debugger;
         let userId = this.props.router.userId;
         this.props.getProfileOnPage(this.props.profile, userId);
+
+
     }
+
+//     componentDidUpdate() {
+//         this.props.getProfileOnPage(this.props.profile);
+//     }
 
     render() {
         return <Profile {...this.props} profileOnPage={this.props.profileOnPage}/>
@@ -41,7 +48,8 @@ let mapStateToProps = (state) => {
         profileOnPage: state.profilePage.profileOnPage,
         friends: state.friendsPage.friends,
         users: state.users.users,
-        isAuth: state.auth.isAuthenticated
+        isAuth: state.auth.isAuthenticated,
+        posts: state.profilePage.posts
     }
 
 }
