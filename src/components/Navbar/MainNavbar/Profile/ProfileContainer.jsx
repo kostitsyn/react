@@ -25,16 +25,18 @@ function withRouter(Component) {
 class ProfileContainer extends React.Component {
 
     componentDidMount() {
-        debugger;
+
         let userId = this.props.router.userId;
         this.props.getProfileOnPage(this.props.profile, userId);
 
 
     }
 
-//     componentDidUpdate() {
-//         this.props.getProfileOnPage(this.props.profile);
-//     }
+    componentDidUpdate(prevProps) {
+        if (this.props.router.userId !== prevProps.router.userId) {
+            this.props.getProfileOnPage(this.props.profile);
+        }
+    }
 
     render() {
         return <Profile {...this.props} profileOnPage={this.props.profileOnPage}/>

@@ -6,14 +6,15 @@ const ADD_POST = 'ADD-POST';
 const UPDATE_POST = 'UPDATE-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_PROFILE_ON_PAGE = 'SET_PROFILE_ON_PAGE';
+const SET_POSTS = 'SET_POSTS';
 
 
 let initialState = {
             newPostText: '',
             posts: [
-                {id: 1, author: 1, message: "Отдыхаю на Кубе", likes: 10, comments: 5},
-                {id: 2, author: 1, message: "Окончил обучение на GeekBrains", likes: 123, comments: 2},
-                {id: 3, author: 1, message: "Устроился на работу мечты", likes: 100000, comments: 3}
+//                {id: 1, author: 1, message: "Отдыхаю на Кубе", likes: 10, comments: 5},
+//                {id: 2, author: 1, message: "Окончил обучение на GeekBrains", likes: 123, comments: 2},
+//                {id: 3, author: 1, message: "Устроился на работу мечты", likes: 100000, comments: 3}
             ],
             profile: null,
             profileOnPage: null
@@ -40,6 +41,8 @@ const profileReducer = (state=initialState, action) => {
             return {...state, profile: action.profile};
         case SET_PROFILE_ON_PAGE:
             return {...state, profileOnPage: action.profile};
+        case SET_POSTS:
+            return {...state, posts: action.posts};
         default:
             return state;
     }
@@ -49,6 +52,7 @@ export const updatePostText = (text) => ({type: UPDATE_POST, text});
 export const addPost = (authorId) => ({type: ADD_POST, authorId});
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
 export const setProfileOnPage = (profile) => ({type: SET_PROFILE_ON_PAGE, profile});
+export const setPosts = (posts) => ({type: SET_POSTS, posts});
 
 export default profileReducer;
 
@@ -71,10 +75,18 @@ export const getProfileOnPage = (profile, userId=null) => {
     return (dispatch) => {
         if (userId) {
             usersAPI.getProfile(userId).then(data => {
-            dispatch(setProfileOnPage(data));
+                dispatch(setProfileOnPage(data));
         })
         }else {
             dispatch(setProfileOnPage(profile));
         }
+    }
+}
+
+export const getPosts = (userId) => {
+    return (dispatch) => {
+        usersAPI.getPosts(userId).then(data => {
+            dispatch(setPosts(data));
+        })
     }
 }

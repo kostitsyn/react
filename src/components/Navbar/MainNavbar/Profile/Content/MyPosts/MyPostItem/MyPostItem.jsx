@@ -5,7 +5,7 @@ import c from './MyPostItem.module.css';
 const MyPostItem = (props) => {
     return (
         <div className={c.postItem}>
-            <img src={require('../../../../../../../images/ava.jpg')} alt='ava' />
+            <img src={props.currentUser.imgLink} alt='ava' />
             <h3>{props.currentUser.name}</h3>
             <span className={c.postText}>{props.message}</span>
             <div className={c.statistic}>

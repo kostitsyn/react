@@ -19,6 +19,7 @@ class UsersContainer extends React.Component {
     render () {
         return (
             <Users addFriend={this.props.addFriend}
+               isAuth={this.props.isAuth}
                profile={this.props.profile}
                deleteFriend={this.props.deleteFriend}
                totalUsersCount={this.props.totalUsersCount}

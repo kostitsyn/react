@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User, Profile, Photo, Contact, Message, Dialog
+from .models import User, Profile, Photo, Contact, Message, Dialog, Post
 
 
 class UserModelSerializer(serializers.ModelSerializer):
@@ -50,4 +50,10 @@ class DialogModelSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Dialog
+        fields = '__all__'
+
+
+class PostModelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Post
         fields = '__all__'

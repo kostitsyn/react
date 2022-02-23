@@ -1,8 +1,8 @@
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.views import APIView
-from .models import User, Profile, Message, Dialog
+from .models import User, Profile, Message, Dialog, Post
 from .serializers import UserModelSerializer, ProfileModelSerializer, FollowSerializer, \
-    MessageModelSerializer, DialogModelSerializer
+    MessageModelSerializer, DialogModelSerializer, PostModelSerializer
 from rest_framework.response import Response
 from rest_framework import status
 from django.db.models import Q
@@ -24,10 +24,20 @@ class DialogModelViewSet(ModelViewSet):
     def get_queryset(self):
         user_id = self.request.query_params.get('user')
         if user_id:
-            dialog = Dialog.objects.filter(Q(user=user_id) | Q(companion=user_id))
-            return dialog
+            dialogs = Dialog.objects.filter(Q(user=user_id) | Q(companion=user_id))
+            return dialogs
         return Dialog.objects.all()
 
+
+class PostModelViewSet(ModelViewSet):
+    serializer_class = PostModelSerializer
+
+    def get_queryset(self):
+        user_id = self.request.query_params.get('user')
+        if user_id:
+            posts = Post.objects.filter(user=user_id)
+            return posts
+        return Post.objects.all()
 
 class MessageAPIView(APIView):
 
@@ -106,3 +116,6 @@ class FollowAPIView(APIView):
             response_data['messages'] = 'You are not following this user'
             response_data['data'] = dict()
         return Response(response_data)
+
+
+

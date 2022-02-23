@@ -45,6 +45,11 @@ export const usersAPI = {
         return instance.delete(`follow/${userId}/`).then(response => {
             return response.data;
         })
+    },
+    getPosts(userId) {
+        return instance.get(`posts/?user=${userId}`).then(response => {
+            return response.data;
+        })
     }
 }
 
