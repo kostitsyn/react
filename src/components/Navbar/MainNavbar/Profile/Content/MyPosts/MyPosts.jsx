@@ -19,16 +19,21 @@ const MyPosts = (props) => {
 
     }
     let addPost = () => {
-        props.addPost(props.currentUser.id);
+        props.addPost(props.userId, props.newPostText);
     }
-
+    debugger;
     return (
         <div>
-            <div className={c.addPost}>
+            {!props.router.userId
+            ?<div className={c.addPost}>
                 <label htmlFor='addPost'>Add post: </label>
                 <textarea onChange={updatePostText} value={props.newPostText} id='addPost'/>
                 <button onClick={addPost}>Сохранить</button>
             </div>
+            : undefined
+
+            }
+
             <div className={c.posts}>
                 Posts:
                 {postElements}

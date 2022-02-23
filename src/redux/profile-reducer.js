@@ -2,8 +2,8 @@ import {usersAPI, authAPI} from '../api/api';
 import {setAuthUserData} from './auth-reducer';
 import {setFriends} from './friends-reducer';
 
-const ADD_POST = 'ADD-POST';
-const UPDATE_POST = 'UPDATE-POST';
+const SAVE_POST = 'SAVE_POST';
+const UPDATE_POST = 'UPDATE_POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_PROFILE_ON_PAGE = 'SET_PROFILE_ON_PAGE';
 const SET_POSTS = 'SET_POSTS';
@@ -11,36 +11,31 @@ const SET_POSTS = 'SET_POSTS';
 
 let initialState = {
             newPostText: '',
-            posts: [
-//                {id: 1, author: 1, message: "Отдыхаю на Кубе", likes: 10, comments: 5},
-//                {id: 2, author: 1, message: "Окончил обучение на GeekBrains", likes: 123, comments: 2},
-//                {id: 3, author: 1, message: "Устроился на работу мечты", likes: 100000, comments: 3}
-            ],
+            posts: [],
             profile: null,
             profileOnPage: null
         }
 
 const profileReducer = (state=initialState, action) => {
     switch (action.type) {
-        case ADD_POST: {
-            debugger;
-            let lastId = state.posts[state.posts.length-1].id;
-            let newPost = {
-                id: ++lastId,
-                author: action.authorId,
-                message: state.newPostText,
-                likes: 0,
-                comments: 0
-            };
-            return {...state, posts: [...state.posts, newPost], newPostText: ''};
+        case SAVE_POST: {
+//            let lastId = state.posts[state.posts.length-1].id;
+//            let newPost = {
+//                id: ++lastId,
+//                author: action.authorId,
+//                message: state.newPostText,
+//                likes: 0,
+//                comments: 0
+//            };
+            return {...state, posts: [...state.posts, action.newPost], newPostText: ''};
         }
         case UPDATE_POST: {
             return {...state, newPostText: action.text};
         }
         case SET_USER_PROFILE:
-            return {...state, profile: action.profile};
+            return {...state, posts: [], profile: action.profile};
         case SET_PROFILE_ON_PAGE:
-            return {...state, profileOnPage: action.profile};
+            return {...state, posts: [], profileOnPage: action.profile};
         case SET_POSTS:
             return {...state, posts: action.posts};
         default:
@@ -49,7 +44,7 @@ const profileReducer = (state=initialState, action) => {
 }
 
 export const updatePostText = (text) => ({type: UPDATE_POST, text});
-export const addPost = (authorId) => ({type: ADD_POST, authorId});
+export const savePost = (newPost) => ({type: SAVE_POST, newPost});
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
 export const setProfileOnPage = (profile) => ({type: SET_PROFILE_ON_PAGE, profile});
 export const setPosts = (posts) => ({type: SET_POSTS, posts});
@@ -87,6 +82,15 @@ export const getPosts = (userId) => {
     return (dispatch) => {
         usersAPI.getPosts(userId).then(data => {
             dispatch(setPosts(data));
+        })
+    }
+}
+
+export const addPost = (userId, text) => {
+    return (dispatch) => {
+        debugger;
+        usersAPI.addPost(userId, text).then(data => {
+            dispatch(savePost(data));
         })
     }
 }

@@ -50,6 +50,12 @@ export const usersAPI = {
         return instance.get(`posts/?user=${userId}`).then(response => {
             return response.data;
         })
+    },
+    addPost(userId, text) {
+        debugger;
+        return instance.post(`posts/`, {user: userId, text: text}).then(response => {
+            return response.data;
+        })
     }
 }
 
