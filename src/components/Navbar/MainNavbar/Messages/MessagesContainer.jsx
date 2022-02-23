@@ -1,21 +1,10 @@
 import React from "react";
-import {useParams} from "react-router-dom";
 import c from './Messages.module.css';
 import {addMessage, updateMessageText} from "../../../../redux/messages-reducer";
 import Messages from './Messages';
 import {connect, useSelector} from 'react-redux';
+import {withRouter} from '../../../../withRouter/withRouter';
 
-
-function withRouter(Component) {
-    function ComponentWithRouterProp(props) {
-      let params = useParams();
-      return (
-        <Component {...props} router={ params }/>
-      );
-    }
-
-    return ComponentWithRouterProp;
-  }
 
 class MessagesContainer extends React.Component {
     render() {

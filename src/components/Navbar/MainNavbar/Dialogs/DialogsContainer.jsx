@@ -1,7 +1,6 @@
 import React from 'react';
 import Dialogs from './Dialogs';
 import {connect} from 'react-redux';
-// import {updateMessageText, addMessage, getMessages} from '../../../../redux/messages-reducer';
 import {getDialogs} from '../../../../redux/dialogs-reducer';
 import {withAuthRedirect} from '../../../../hoc/AuthRedirect';
 

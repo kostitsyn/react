@@ -2,18 +2,8 @@ import React from 'react';
 import {addPost, updatePostText, getPosts} from "../../../../../../redux/profile-reducer";
 import MyPosts from "./MyPosts";
 import {connect} from 'react-redux';
-import {useParams} from 'react-router-dom';
+import {withRouter} from '../../../../../../withRouter/withRouter';
 
-function withRouter(Component) {
-    function ComponentWithRouterProp(props) {
-      let params = useParams();
-      return (
-        <Component {...props} router={ params }/>
-      );
-    }
-
-    return ComponentWithRouterProp;
-}
 
 class MyPostsContainer extends React.Component {
     componentDidMount() {
@@ -25,7 +15,6 @@ class MyPostsContainer extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        debugger;
         if (this.props.router.userId !== prevProps.router.userId) {
             this.props.getPosts(this.props.userId);
         }
