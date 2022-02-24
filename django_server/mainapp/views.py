@@ -6,6 +6,8 @@ from .serializers import UserModelSerializer, ProfileModelSerializer, FollowSeri
 from rest_framework.response import Response
 from rest_framework import status
 from django.db.models import Q
+from rest_framework.decorators import action
+from django.shortcuts import get_object_or_404
 
 
 class UserModelViewSet(ModelViewSet):
@@ -16,6 +18,14 @@ class UserModelViewSet(ModelViewSet):
 class ProfileModelViewSet(ModelViewSet):
     queryset = Profile.objects.all()
     serializer_class = ProfileModelSerializer
+
+    @action(detail=True, methods=['patch'])
+    def edit_status(self, requset, pk=None):
+        profile = get_object_or_404(Profile, pk=pk)
+        profile.about_me = requset.data.get('status')
+        profile.save()
+        serializer = self.serializer_class(profile)
+        return Response(serializer.data)
 
 
 class DialogModelViewSet(ModelViewSet):

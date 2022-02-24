@@ -1,6 +1,6 @@
 import React from 'react';
 import c from './UserContent.module.css';
-import FriendsContent from "./FriendsContent/FriendsContent";
+import FriendsContentContainer from "./FriendsContent/FriendsContentContainer";
 import default_ava from '../../../../../assets/images/default_ava.png';
 
 const UserContent = (props) => {
@@ -15,7 +15,7 @@ const UserContent = (props) => {
                 Presents
             </div>
             <div className={c.friends}>
-                <FriendsContent {...props} />
+                <FriendsContentContainer />
             </div>
             <div>
                 Friends online

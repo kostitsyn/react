@@ -1,10 +1,12 @@
 import React from 'react';
+import ProfileStatus from './ProfileStatus';
 
 const ContentHeader = (props) => {
     return (
         <div>
             <h3>{props.profile.fullName}</h3>
-            <h4>{props.profile.aboutMe}</h4>
+            <ProfileStatus profile={props.profile} statusText={props.statusText} userId={props.userId}
+            saveStatus={props.saveStatus} updateStatusText={props.updateStatusText} />
         </div>
     )
 }

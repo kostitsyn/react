@@ -52,11 +52,16 @@ export const usersAPI = {
         })
     },
     addPost(userId, text) {
-        debugger;
         return instance.post(`posts/`, {user: userId, text: text}).then(response => {
             return response.data;
         })
+    },
+    saveStatus(userId, newStatus) {
+        return instance.patch(`profile/${userId}/edit_status/`, {status: newStatus}).then(response => {
+            return response.data;
+        })
     }
+
 }
 
 export const authAPI = {
