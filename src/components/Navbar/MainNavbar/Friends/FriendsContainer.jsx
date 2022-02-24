@@ -1,6 +1,8 @@
 import {connect} from 'react-redux';
 import Friends from './Friends';
 import {deleteFriend} from '../../../../redux/friends-reducer';
+import {withAuthRedirect} from '../../../../hoc/AuthRedirect';
+import {compose} from 'redux';
 
 
 let mapStateToProps = (state) => {
@@ -11,8 +13,10 @@ let mapStateToProps = (state) => {
     })
     return {
         currentFriends: currentFriends,
-        isAuth: state.auth.isAuthenticated
     }
 }
 
-export default connect(mapStateToProps, {deleteFriend})(Friends);
+export default compose(
+    withAuthRedirect,
+    connect(mapStateToProps, {deleteFriend})
+)(Friends);

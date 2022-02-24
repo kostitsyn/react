@@ -1,9 +1,9 @@
 import React from "react";
-import c from './Messages.module.css';
 import {addMessage, updateMessageText} from "../../../../redux/messages-reducer";
 import Messages from './Messages';
-import {connect, useSelector} from 'react-redux';
-import {withRouter} from '../../../../withRouter/withRouter';
+import {connect} from 'react-redux';
+import {withRouter} from '../../../../hoc/withRouter';
+import {compose} from 'redux';
 
 
 class MessagesContainer extends React.Component {
@@ -22,6 +22,8 @@ let mapStateToProps = (state) => {
     }
 }
 
-let WithUrlDataContainerComponent = withRouter(MessagesContainer);
+export default compose(
+    withRouter,
+    connect(mapStateToProps, {addMessage, updateMessageText})
+)(MessagesContainer);
 
-export default connect(mapStateToProps, {addMessage, updateMessageText})(WithUrlDataContainerComponent);

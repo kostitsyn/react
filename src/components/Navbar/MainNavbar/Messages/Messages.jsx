@@ -1,5 +1,4 @@
 import React from "react";
-import {useParams} from "react-router-dom";
 import MessageCompanion from "./MessageCompanion/MessageCompanion";
 import OwnMessage from "./OwnMessage/OwnMessage";
 import c from './Messages.module.css';
@@ -10,7 +9,7 @@ const Messages = (props) => {
     let companionId = currentMessages.messages[0].sender.id !== props.userId
                                         ? currentMessages.messages[0].sender.id
                                         : currentMessages.messages[0].recipient.id;
-    let dialogElements = currentMessages.messages.map(m => m.sender.id !== props.userId
+    let messageElements = currentMessages.messages.map(m => m.sender.id !== props.userId
                               ? <MessageCompanion companion={m.sender} message={m.text} date={m.dateSend} key={`${m.id}${m.message}`} />
                               : <OwnMessage currentUser={m.sender} message={m.text} date={m.dateSend} key={`${m.id}${m.message}`} /> )
 
@@ -25,7 +24,7 @@ const Messages = (props) => {
 
     return (
         <div>
-            {dialogElements}
+            {messageElements}
             <div className={c.inputBlock}>
                 <textarea onChange={updateMessage} value={props.newMessageText}
                           className={c.inputText} />

@@ -21,7 +21,6 @@ const MyPosts = (props) => {
     let addPost = () => {
         props.addPost(props.userId, props.newPostText);
     }
-    debugger;
     return (
         <div>
             {!props.router.userId

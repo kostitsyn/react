@@ -19,23 +19,15 @@ let initialState = {
 const profileReducer = (state=initialState, action) => {
     switch (action.type) {
         case SAVE_POST: {
-//            let lastId = state.posts[state.posts.length-1].id;
-//            let newPost = {
-//                id: ++lastId,
-//                author: action.authorId,
-//                message: state.newPostText,
-//                likes: 0,
-//                comments: 0
-//            };
             return {...state, posts: [...state.posts, action.newPost], newPostText: ''};
         }
         case UPDATE_POST: {
             return {...state, newPostText: action.text};
         }
         case SET_USER_PROFILE:
-            return {...state, posts: [], profile: action.profile};
+            return {...state, profile: action.profile};
         case SET_PROFILE_ON_PAGE:
-            return {...state, posts: [], profileOnPage: action.profile};
+            return {...state, profileOnPage: action.profile};
         case SET_POSTS:
             return {...state, posts: action.posts};
         default:

@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Users from './Users';
-import axios from 'axios';
 import {addFriend, deleteFriend} from '../../../../redux/friends-reducer';
 import {getUsers} from '../../../../redux/users-reducer';
 

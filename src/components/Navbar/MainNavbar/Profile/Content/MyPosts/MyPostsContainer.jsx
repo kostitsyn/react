@@ -2,7 +2,8 @@ import React from 'react';
 import {addPost, updatePostText, getPosts} from "../../../../../../redux/profile-reducer";
 import MyPosts from "./MyPosts";
 import {connect} from 'react-redux';
-import {withRouter} from '../../../../../../withRouter/withRouter';
+import {withRouter} from '../../../../../../hoc/withRouter';
+import {compose} from 'redux';
 
 
 class MyPostsContainer extends React.Component {
@@ -33,7 +34,8 @@ let mapStateToProps = (state) => {
         userId: state.auth.userId
     }
 }
-let WithUrlDataContainerComponent = withRouter(MyPostsContainer);
 
-
-export default withRouter(connect(mapStateToProps, {addPost, updatePostText, getPosts})(WithUrlDataContainerComponent));
+export default compose(
+    withRouter,
+    connect(mapStateToProps, {addPost, updatePostText, getPosts})
+)(MyPostsContainer);
