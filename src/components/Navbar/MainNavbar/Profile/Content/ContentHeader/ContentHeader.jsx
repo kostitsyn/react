@@ -6,7 +6,7 @@ const ContentHeader = (props) => {
         <div>
             <h3>{props.profile.fullName}</h3>
             <ProfileStatus profile={props.profile} statusText={props.statusText} userId={props.userId}
-            saveStatus={props.saveStatus} updateStatusText={props.updateStatusText} />
+            saveStatus={props.saveStatus} updateStatusText={props.updateStatusText} status={props.status} />
         </div>
     )
 }

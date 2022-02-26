@@ -30,7 +30,6 @@ const MyPosts = (props) => {
                 <button onClick={addPost}>Сохранить</button>
             </div>
             : undefined
-
             }
 
             <div className={c.posts}>

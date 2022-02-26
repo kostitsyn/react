@@ -12,7 +12,7 @@ const Profile = (props) => {
         <main className={c.profile}>
             <UserContent friends={props.friends} users={props.users} profile={props.profileOnPage}/>
             <Content friends={props.friends} users={props.users} profile={props.profileOnPage} statusText={props.statusText}
-            saveStatus={props.saveStatus} userId={props.userId} updateStatusText={props.updateStatusText}/>
+            saveStatus={props.saveStatus} userId={props.userId} updateStatusText={props.updateStatusText} status={props.status}/>
         </main>
     )
 }

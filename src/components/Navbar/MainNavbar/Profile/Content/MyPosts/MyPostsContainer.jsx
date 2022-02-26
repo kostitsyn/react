@@ -8,16 +8,16 @@ import {compose} from 'redux';
 
 class MyPostsContainer extends React.Component {
     componentDidMount() {
-        let userId = this.props.router.userId;
-        if (!userId) {
-            userId = this.props.userId;
-        }
-        this.props.getPosts(userId);
+        this.props.router.userId
+        ? this.props.getPosts(this.props.router.userId)
+        : this.props.getPosts(this.props.userId);
     }
 
     componentDidUpdate(prevProps) {
         if (this.props.router.userId !== prevProps.router.userId) {
-            this.props.getPosts(this.props.userId);
+            this.props.router.userId
+            ? this.props.getPosts(this.props.router.userId)
+            : this.props.getPosts(this.props.userId);
         }
     }
 

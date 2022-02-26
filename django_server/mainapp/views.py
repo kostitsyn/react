@@ -8,6 +8,7 @@ from rest_framework import status
 from django.db.models import Q
 from rest_framework.decorators import action
 from django.shortcuts import get_object_or_404
+from rest_framework import renderers
 
 
 class UserModelViewSet(ModelViewSet):
@@ -19,13 +20,30 @@ class ProfileModelViewSet(ModelViewSet):
     queryset = Profile.objects.all()
     serializer_class = ProfileModelSerializer
 
-    @action(detail=True, methods=['patch'])
-    def edit_status(self, requset, pk=None):
+
+    @action(detail=False, methods=['patch'])
+    def edit_status(self, requset):
+        response_data = {'messages': [], 'result_code': 0, 'data': dict()}
+        profile = requset.user.profile
+        new_status = requset.data.get('status')
+        if len(new_status) > 256:
+            response_data['result_code'] = 1
+            response_data['messages'].append('Превышена максимальная длина строки статуса (256)')
+        serializer = self.serializer_class(profile, data={'about_me': new_status}, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            response_data['data'] = {'status': serializer.data.get('about_me')}
+        else:
+            response_data['result_code'] = 1
+            response_data['messages'].append('Не удалось сохранить объект')
+        return Response(response_data)
+
+    # Не используется, статус берется из профиля
+    @action(detail=True, methods=['get'], renderer_classes=(renderers.JSONRenderer,))
+    # @renderer_classes([renderers.JSONRenderer])
+    def get_status(self, request, pk=None):
         profile = get_object_or_404(Profile, pk=pk)
-        profile.about_me = requset.data.get('status')
-        profile.save()
-        serializer = self.serializer_class(profile)
-        return Response(serializer.data)
+        return Response({'status': profile.about_me})
 
 
 class DialogModelViewSet(ModelViewSet):
@@ -49,6 +67,7 @@ class PostModelViewSet(ModelViewSet):
             return posts
         return Post.objects.all()
 
+
 class MessageAPIView(APIView):
 
     def post(self, request, pk=None):
@@ -60,7 +79,6 @@ class MessageAPIView(APIView):
                                              text=request.data.get('text'),
                                              dialog=dialog)
         serializer = MessageModelSerializer(new_message)
-        # serializer.is_valid()
         return Response(serializer.data)
 
 

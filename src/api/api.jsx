@@ -31,11 +31,6 @@ export const usersAPI = {
             return response.data;
         })
     },
-    getProfile(userId) {
-        return instance.get(`profile/${userId}/`).then(response => {
-            return response.data;
-        })
-    },
     addFriend(userId) {
         return instance.post(`follow/${userId}/`).then(response => {
             return response.data;
@@ -56,12 +51,25 @@ export const usersAPI = {
             return response.data;
         })
     },
-    saveStatus(userId, newStatus) {
-        return instance.patch(`profile/${userId}/edit_status/`, {status: newStatus}).then(response => {
+}
+
+export const profileAPI = {
+    getProfile(userId) {
+        return instance.get(`profile/${userId}/`).then(response => {
+            return response.data;
+        })
+    },
+    // Не используется, статус берется из профиля
+    getStatus(userId) {
+        return instance.get(`profile/${userId}/get_status/`).then(response => {
+            return response.data;
+        })
+    },
+    saveStatus(newStatus) {
+        return instance.patch(`profile/edit_status/`, {status: newStatus}).then(response => {
             return response.data;
         })
     }
-
 }
 
 export const authAPI = {
@@ -69,7 +77,7 @@ export const authAPI = {
         return instance.get('auth/me/').then(response => {
             return response.data;
         })
-    }
+    },
 }
 
 export const dialogsAPI = {

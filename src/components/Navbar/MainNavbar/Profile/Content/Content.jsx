@@ -13,7 +13,7 @@ const Content = (props) => {
         let contacts = Object.keys(props.profile.contact).map((k, v) => <div key={k}>{k}: {props.profile.contact[k]}</div>)
         return (
         <div className={c.content}>
-            <ContentHeader userId={props.userId} statusText={props.statusText} saveStatus={props.saveStatus} profile={props.profile}
+            <ContentHeader userId={props.userId} status={props.status} saveStatus={props.saveStatus} profile={props.profile}
             updateStatusText={props.updateStatusText} />
             <div className={c.foundJob}>
                 <div>Ищу работу:</div>

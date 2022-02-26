@@ -1,9 +1,10 @@
-.friend {
+.friend a {
     display: grid;
     grid-template-areas:
     "i"
     "n";
     justify-items: center;
+    text-decoration: none;
 }
 
 .friend span {

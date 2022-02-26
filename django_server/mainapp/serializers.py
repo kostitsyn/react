@@ -43,6 +43,7 @@ class MessageModelSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+
 class DialogModelSerializer(serializers.ModelSerializer):
     user = UserModelSerializer()
     companion = UserModelSerializer()

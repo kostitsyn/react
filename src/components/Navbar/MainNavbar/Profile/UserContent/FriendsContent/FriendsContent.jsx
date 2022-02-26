@@ -4,7 +4,6 @@ import c from './FriendsContent.module.css';
 import Preloader from '../../../../../common/Preloader/Preloader';
 
 const FriendsContent = (props) => {
-    debugger;
     if (!props.users.length) {
         return <Preloader />
     }
