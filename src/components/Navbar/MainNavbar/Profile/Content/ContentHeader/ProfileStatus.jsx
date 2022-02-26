@@ -25,6 +25,15 @@ class ProfileStatus extends React.Component {
         })
         this.props.saveStatus(this.state.status);
     }
+    // В моём варианте реализации данный метод не нужен, т.к. получение профиля и статуса выполняется в одном запросе
+    componentDidUpdate(prevProps, prevState) {
+        debugger;
+        if (prevProps.status !== this.props.status) {
+            this.setState({
+                status: this.props.status
+            })
+        }
+    }
 
     render() {
         return (
@@ -36,7 +45,7 @@ class ProfileStatus extends React.Component {
                         onChange={this.updateStatusText} value={this.state.status}/>
                       </div>
                     : <div>
-                        <span onDoubleClick={this.activateEditMode}>{this.props.status}</span>
+                        <span onDoubleClick={this.activateEditMode}>{this.props.status || '-------'}</span>
                       </div>
                     )
 
