@@ -78,6 +78,13 @@ export const authAPI = {
             return response.data;
         })
     },
+    login(username, password) {
+        debugger;
+        return instance.post('login/', {username, password}).then(response => {
+            debugger;
+            return response.data;
+        })
+    }
 }
 
 export const dialogsAPI = {

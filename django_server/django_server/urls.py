@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from mainapp.views import UserModelViewSet, ProfileModelViewSet, AuthDataAPIView, \
-    FollowAPIView, DialogModelViewSet, MessageAPIView, PostModelViewSet
+    FollowAPIView, DialogModelViewSet, MessageAPIView, PostModelViewSet, LoginAPIView
 from rest_framework.authtoken import views
 
 router = DefaultRouter()
@@ -34,4 +34,6 @@ urlpatterns = [
     path('api/auth/me/', AuthDataAPIView.as_view()),
     path('api/follow/<int:pk>/', FollowAPIView.as_view()),
     path('api/message/<int:pk>/', MessageAPIView.as_view()),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('api/login/', LoginAPIView.as_view())
 ]

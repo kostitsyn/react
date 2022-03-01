@@ -1,5 +1,5 @@
 import React from 'react';
-import {addPost, updatePostText, getPosts} from "../../../../../../redux/profile-reducer";
+import {addPost, getPosts} from "../../../../../../redux/profile-reducer";
 import MyPosts from "./MyPosts";
 import {connect} from 'react-redux';
 import {withRouter} from '../../../../../../hoc/withRouter';
@@ -37,5 +37,5 @@ let mapStateToProps = (state) => {
 
 export default compose(
     withRouter,
-    connect(mapStateToProps, {addPost, updatePostText, getPosts})
+    connect(mapStateToProps, {addPost, getPosts})
 )(MyPostsContainer);

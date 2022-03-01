@@ -9,6 +9,7 @@ from django.db.models import Q
 from rest_framework.decorators import action
 from django.shortcuts import get_object_or_404
 from rest_framework import renderers
+from django.contrib import auth
 
 
 class UserModelViewSet(ModelViewSet):
@@ -145,5 +146,19 @@ class FollowAPIView(APIView):
             response_data['data'] = dict()
         return Response(response_data)
 
+
+class LoginAPIView(APIView):
+
+    def post(self, request, format=None):
+        response_data = dict()
+        username = request.data.get('username')
+        password = request.data.get('password')
+        user = auth.authenticate(username=username, password=password)
+        if user:
+            auth.login(request, user)
+            response_data['response'] = 'success'
+        else:
+            response_data['response'] = 'error'
+        return Response(response_data)
 
 

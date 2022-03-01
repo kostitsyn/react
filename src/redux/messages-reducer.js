@@ -1,12 +1,11 @@
 import {messagesAPI} from '../api/api';
 
 const SAVE_MESSAGE = 'SAVE_MESSAGE';
-const UPDATE_MESSAGE = 'UPDATE_MESSAGE';
+
 const SET_MESSAGES = 'SET_MESSAGES';
 
 
 let initialState = {
-            newMessageText: '',
             messages: []
         }
 
@@ -15,7 +14,6 @@ const messagesReducer = (state=initialState, action) => {
         case SAVE_MESSAGE: {
             return {
                 ...state,
-                newMessageText: '',
                 messages: state.messages.map(m => {
                     debugger;
                     if(m.dialogId === action.newMessage.dialog) {
@@ -24,9 +22,6 @@ const messagesReducer = (state=initialState, action) => {
                     return m;
                 })
             }
-        }
-        case UPDATE_MESSAGE: {
-            return {...state, newMessageText: action.text};
         }
         case SET_MESSAGES: {
             let currentMessages = state.messages.find(m => m.dialogId === action.messages.dialogId);
@@ -39,7 +34,6 @@ const messagesReducer = (state=initialState, action) => {
     }
 }
 
-export const updateMessageText = (text) => ({type: UPDATE_MESSAGE, text});
 export const saveMessage = (newMessage) => ({type: SAVE_MESSAGE, newMessage});
 export const setMessages = (messages) => ({type: SET_MESSAGES, messages});
 

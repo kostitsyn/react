@@ -1,5 +1,5 @@
 import React from "react";
-import {addMessage, updateMessageText} from "../../../../redux/messages-reducer";
+import {addMessage} from "../../../../redux/messages-reducer";
 import Messages from './Messages';
 import {connect} from 'react-redux';
 import {withRouter} from '../../../../hoc/withRouter';
@@ -24,6 +24,6 @@ let mapStateToProps = (state) => {
 
 export default compose(
     withRouter,
-    connect(mapStateToProps, {addMessage, updateMessageText})
+    connect(mapStateToProps, {addMessage})
 )(MessagesContainer);
 

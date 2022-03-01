@@ -8,9 +8,9 @@ class ProfileStatus extends React.Component {
     }
 
     updateStatusText = event => {
-    this.setState({
-        status: event.target.value
-    })
+        this.setState({
+            status: event.target.value
+        })
     }
 
     activateEditMode = () => {
@@ -27,7 +27,6 @@ class ProfileStatus extends React.Component {
     }
     // В моём варианте реализации данный метод не нужен, т.к. получение профиля и статуса выполняется в одном запросе
     componentDidUpdate(prevProps, prevState) {
-        debugger;
         if (prevProps.status !== this.props.status) {
             this.setState({
                 status: this.props.status
@@ -51,7 +50,6 @@ class ProfileStatus extends React.Component {
 
                 : (<span>{this.props.profile.aboutMe}</span>)
                 }
-
             </div>
         )
     }

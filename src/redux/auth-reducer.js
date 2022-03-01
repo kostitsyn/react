@@ -24,4 +24,11 @@ const authReducer = (state = initialState, action) => {
 
 export const setAuthUserData = (userId, email, login) => ({type: SET_AUTH_USER, data: {userId, email, login}});
 
+
+export const login = (data) => {
+    return (dispatch) => {
+        debugger;
+        authAPI.login(data.login, data.password)
+    }
+}
 export default authReducer;

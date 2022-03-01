@@ -2,7 +2,20 @@ import React from "react";
 import MessageCompanion from "./MessageCompanion/MessageCompanion";
 import OwnMessage from "./OwnMessage/OwnMessage";
 import c from './Messages.module.css';
+import {Field, reduxForm} from 'redux-form';
 
+
+const AddMessageForm = (props) => {
+
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <Field name='text' placeholder='Введите сообщение' className={c.inputText} component='textarea' />
+            <button>Сохранить</button>
+        </form>
+    )
+}
+
+const AddMessageReduxForm = reduxForm({form: 'addMsg'})(AddMessageForm);
 
 const Messages = (props) => {
     let currentMessages = props.messages.find(m => m.dialogId === Number(props.router.id));
@@ -13,22 +26,17 @@ const Messages = (props) => {
                               ? <MessageCompanion companion={m.sender} message={m.text} date={m.dateSend} key={`${m.id}${m.message}`} />
                               : <OwnMessage currentUser={m.sender} message={m.text} date={m.dateSend} key={`${m.id}${m.message}`} /> )
 
-    let updateMessage = (event) => {
-        let text = event.target.value;
-        props.updateMessageText(text);
-    }
 
-    let addMsg = () => {
-        props.addMessage(currentMessages.dialogId, props.userId, companionId,  props.newMessageText);
+
+    let addMsg = (formData) => {
+        props.addMessage(currentMessages.dialogId, props.userId, companionId,  formData.text);
     }
 
     return (
         <div>
             {messageElements}
             <div className={c.inputBlock}>
-                <textarea onChange={updateMessage} value={props.newMessageText}
-                          className={c.inputText} />
-                <button onClick={addMsg}>Сохранить</button>
+                <AddMessageReduxForm onSubmit={addMsg} />
             </div>
         </div>
     )

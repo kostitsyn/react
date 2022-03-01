@@ -3,7 +3,6 @@ import {setAuthUserData} from './auth-reducer';
 import {setFriends} from './friends-reducer';
 
 const SAVE_POST = 'SAVE_POST';
-const UPDATE_POST = 'UPDATE_POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_PROFILE_ON_PAGE = 'SET_PROFILE_ON_PAGE';
 const SET_POSTS = 'SET_POSTS';
@@ -12,7 +11,6 @@ const SET_STATUS = 'SET_STATUS';
 
 
 let initialState = {
-            newPostText: '',
             posts: [],
             profile: null,
             profileOnPage: null
@@ -21,10 +19,7 @@ let initialState = {
 const profileReducer = (state=initialState, action) => {
     switch (action.type) {
         case SAVE_POST: {
-            return {...state, posts: [...state.posts, action.newPost], newPostText: ''};
-        }
-        case UPDATE_POST: {
-            return {...state, newPostText: action.text};
+            return {...state, posts: [...state.posts, action.newPost]};
         }
         case SET_USER_PROFILE:
             return {...state, profile: action.profile};
@@ -39,7 +34,6 @@ const profileReducer = (state=initialState, action) => {
     }
 }
 
-export const updatePostText = (text) => ({type: UPDATE_POST, text});
 export const savePost = (newPost) => ({type: SAVE_POST, newPost});
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
 export const setProfileOnPage = (profile) => ({type: SET_PROFILE_ON_PAGE, profile});
