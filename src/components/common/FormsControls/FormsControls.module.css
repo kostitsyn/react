@@ -1,0 +1,16 @@
+.formControl {
+    display: grid;
+    grid-template-columns: 4fr 6fr !important;
+}
+
+.error .inputField {
+    border: 2px solid red !important;
+    outline: 2px solid red !important;
+
+}
+
+.error span {
+    color: red;
+    justify-self: center;
+    align-self : center;
+}

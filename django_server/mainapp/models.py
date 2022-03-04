@@ -53,7 +53,7 @@ class Photo(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     full_name = models.CharField(max_length=256, verbose_name='Полное имя')
-    about_me = models.CharField(max_length=256, verbose_name='Обо мне')
+    about_me = models.CharField(max_length=256, blank=True, verbose_name='Обо мне')
     looking_for_a_job = models.BooleanField(default=False, verbose_name='Ищу ли работу')
     looking_for_a_job_description = models.CharField(max_length=512, verbose_name='Описание поиска работы')
     friends = models.ManyToManyField('self', blank=True)

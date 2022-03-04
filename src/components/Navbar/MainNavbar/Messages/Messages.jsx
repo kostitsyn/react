@@ -3,13 +3,17 @@ import MessageCompanion from "./MessageCompanion/MessageCompanion";
 import OwnMessage from "./OwnMessage/OwnMessage";
 import c from './Messages.module.css';
 import {Field, reduxForm} from 'redux-form';
+import {required, maxLengthCreator} from '../../../../utils/validators/validators';
+import {Element} from '../../../common/FormsControls/FormsControls';
 
+const maxLengthValidator15 = maxLengthCreator(15);
+const Textarea = Element('textarea');
 
 const AddMessageForm = (props) => {
-
     return (
         <form onSubmit={props.handleSubmit}>
-            <Field name='text' placeholder='Введите сообщение' className={c.inputText} component='textarea' />
+            <Field name='text' validate={[required, maxLengthValidator15]}
+            placeholder='Введите сообщение' component={Textarea} />
             <button>Сохранить</button>
         </form>
     )
