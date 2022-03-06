@@ -38,10 +38,9 @@ let mapStateToProps = (state) => {
     }
 
 }
-let spam = withAuthRedirect('login');
 
 export default compose(
-    spam,
+    withAuthRedirect,
     withRouter,
     connect(mapStateToProps, {getProfileOnPage, saveStatus})
 )(ProfileContainer);

@@ -21,38 +21,58 @@ import Bookmarks from "./components/Navbar/AdditionalNavbar/Bookmarks/Bookmarks"
 import Files from "./components/Navbar/AdditionalNavbar/Files/Files";
 import Advertising from "./components/Navbar/AdditionalNavbar/Advertising/Advertising";
 import Login from "./components/Login/Login";
+import {connect} from 'react-redux';
+import {compose} from 'redux';
+import {withRouter} from './hoc/withRouter';
+import {initializeApp} from './redux/app-reducer';
+import Preloader from './components/common/Preloader/Preloader';
 
 
-const App = (props) => {
-    return (
-        <div className='container'>
-            <HeaderContainer/>
-            <Navbar/>
-            <div className='content'>
-                <Routes>
-                    <Route path='/profile'>
-                        <Route path="" element={<ProfileContainer/>}/>
-                        <Route path=":userId" element={<ProfileContainer/>}/>
-                    </Route>
-                    <Route path='/news' element={<News/>}/>
-                    <Route path='/dialogs'
-                           element={<DialogsContainer/>}/>
-                    <Route path='/friends' element={<FriendsContainer/>}/>
-                    <Route path='/communities' element={<Communities/>}/>
-                    <Route path='/photos' element={<Photos/>}/>
-                    <Route path='/music' element={<Music/>}/>
-                    <Route path='/video' element={<Video/>}/>
-                    <Route path='/users' element={<UsersContainer/>}/>
-                    <Route path='/mini-apps' element={<MiniApps/>}/>
-                    <Route path='/bookmarks' element={<Bookmarks/>}/>
-                    <Route path='/files' element={<Files/>}/>
-                    <Route path='/advertising' element={<Advertising/>}/>
-                    <Route path='/messages/:id' element={<MessagesContainer />}/>
-                    <Route path='/login' element={<Login />}/>
-                </Routes>
+class App extends React.Component {
+    componentDidMount() {
+        this.props.initializeApp();
+    }
+
+    render () {
+        if (!this.props.initialized) {
+            return <Preloader />
+        }
+        return (
+            <div className='container'>
+                <HeaderContainer/>
+                <Navbar/>
+                <div className='content'>
+                    <Routes>
+                        <Route path='/profile'>
+                            <Route path="" element={<ProfileContainer/>}/>
+                            <Route path=":userId" element={<ProfileContainer/>}/>
+                        </Route>
+                        <Route path='/news' element={<News/>}/>
+                        <Route path='/dialogs'
+                               element={<DialogsContainer/>}/>
+                        <Route path='/friends' element={<FriendsContainer/>}/>
+                        <Route path='/communities' element={<Communities/>}/>
+                        <Route path='/photos' element={<Photos/>}/>
+                        <Route path='/music' element={<Music/>}/>
+                        <Route path='/video' element={<Video/>}/>
+                        <Route path='/users' element={<UsersContainer/>}/>
+                        <Route path='/mini-apps' element={<MiniApps/>}/>
+                        <Route path='/bookmarks' element={<Bookmarks/>}/>
+                        <Route path='/files' element={<Files/>}/>
+                        <Route path='/advertising' element={<Advertising/>}/>
+                        <Route path='/messages/:id' element={<MessagesContainer />}/>
+                        <Route path='/login' element={<Login />}/>
+                    </Routes>
+                </div>
             </div>
-        </div>
-    );
+        );
+    }
 }
+let mapStateToProps = (state) => ({
+    initialized: state.app.initialized
+});
 
-export default App;
+
+export default compose(
+//    withRouter,
+    connect(mapStateToProps, {initializeApp}))(App);
