@@ -10,6 +10,15 @@ from rest_framework.decorators import action
 from django.shortcuts import get_object_or_404
 from rest_framework import renderers
 from django.contrib import auth
+from django.views.decorators.csrf import ensure_csrf_cookie
+from rest_framework.decorators import api_view
+from rest_framework.authtoken.models import Token
+
+
+@ensure_csrf_cookie
+@api_view(['GET'])
+def set_csrf_token(request):
+    return Response({'details': 'CSRF cookie set'})
 
 
 class UserModelViewSet(ModelViewSet):
@@ -96,7 +105,9 @@ class AuthDataAPIView(APIView):
             response_data['result_code'] = 1
             response_data['messages'] = ['You are not authorized']
             response_data['data'] = dict()
-        return Response(response_data)
+
+        response = Response(response_data)
+        return response
 
 
 class FollowAPIView(APIView):
@@ -154,11 +165,25 @@ class LoginAPIView(APIView):
         username = request.data.get('username')
         password = request.data.get('password')
         user = auth.authenticate(username=username, password=password)
+        token = Token.objects.get(user_id=user.id)
         if user:
             auth.login(request, user)
             response_data['response'] = 'success'
+            response_data['result_code'] = 0
         else:
             response_data['response'] = 'error'
+            response_data['result_code'] = 1
+        response = Response(response_data)
+        response.set_cookie('token', token, httponly=True)
+
+        return response
+        # return Response(response_data)
+
+    def delete(self, request):
+        response_data = {'response': 'success', 'result_code': 0}
+        auth.logout(request)
         return Response(response_data)
+
+
 
 

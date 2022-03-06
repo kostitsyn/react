@@ -1,12 +1,10 @@
-import {usersAPI, authAPI, profileAPI} from '../api/api';
-import {setAuthUserData} from './auth-reducer';
+import {usersAPI, profileAPI} from '../api/api';
 import {setFriends} from './friends-reducer';
 
 const SAVE_POST = 'SAVE_POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_PROFILE_ON_PAGE = 'SET_PROFILE_ON_PAGE';
 const SET_POSTS = 'SET_POSTS';
-const UPDATE_STATUS = 'UPDATE_STATUS';
 const SET_STATUS = 'SET_STATUS';
 
 
@@ -43,17 +41,12 @@ export const setStatus = (newStatus) => ({type: SET_STATUS, newStatus});
 export default profileReducer;
 
 export const getUserProfile = (userId) => {
+
     return (dispatch) => {
-        authAPI.getAuthData().then(data1 => {
-            if (data1.resultCode === 0) {
-                let {userId, email, login} = data1.data;
-                profileAPI.getProfile(userId).then(data2 => {
-                    dispatch(setUserProfile(data2));
-                    dispatch(setAuthUserData(userId, email, login));
-                    dispatch(setFriends(data2.friends));
-                })
-            }
-        })
+            profileAPI.getProfile(userId).then(data => {
+                dispatch(setUserProfile(data));
+                dispatch(setFriends(data.friends));
+            })
     }
 }
 

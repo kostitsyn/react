@@ -1,31 +1,42 @@
 import axios from 'axios';
 import jQuery from 'jquery';
+import Cookies from "universal-cookie";
 
-const getCookie = name => {
-        var cookieValue = null;
+const getCSRFToken = name => {
+        let csrfToken = null;
         if (document.cookie && document.cookie !== '') {
-            var cookies = document.cookie.split(';');
-            for (var i = 0; i < cookies.length; i++) {
-                var cookie = jQuery.trim(cookies[i]);
+            let cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                let cookie = jQuery.trim(cookies[i]);
                 if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    csrfToken = decodeURIComponent(cookie.substring(name.length + 1));
                     break;
                 }
             }
         }
-        return cookieValue;
+        return csrfToken;
     }
+
+const getAuthToken = name => {
+    const cookies = new Cookies();
+    let rememberMe = cookies.get('rememberMe');
+    return Boolean(rememberMe) && cookies.get(name)
+}
 
 
 const instance = axios.create({
     withCredentials: true,
     baseURL: 'http://127.0.0.1:8000/api/',
-    headers: {"x-csrftoken": getCookie('csrftoken')}
+    headers: {
+        "X-Csrftoken": getCSRFToken('csrftoken'),
+        common: {...(getAuthToken('authToken') && {'Authorization': `Token ${getAuthToken('authToken')}`})}
+    }
 
 })
 
 export const usersAPI = {
     getUsers(pageSize=10, currentPage=1) {
+
         let offset = pageSize * (currentPage-1);
         return instance.get(`users/?limit=${pageSize}&offset=${offset}`).then(response => {
             return response.data;
@@ -78,10 +89,26 @@ export const authAPI = {
             return response.data;
         })
     },
-    login(username, password) {
-        debugger;
-        return instance.post('login/', {username, password}).then(response => {
+    login(username, password, rememberMe) {
+        return instance.post('api-token-auth/', {username, password}).then(response1 => {
             debugger;
+            const cookies = new Cookies();
+            let token = response1.data.token;
+            cookies.set('authToken', token);
+            rememberMe && cookies.set('rememberMe', true);
+            instance.defaults.headers.common['Authorization'] = `Token ${response1.data.token}`;
+            return instance.post('auth/login/', {username, password}).then(response2 => {
+                return response2.data;
+            })
+        })
+
+    },
+    logout() {
+        return instance.delete('auth/login/').then(response => {
+            instance.defaults.headers.common['Authorization'] = '';
+            const cookies = new Cookies();
+            cookies.remove('authToken');
+            cookies.remove('rememberMe');
             return response.data;
         })
     }

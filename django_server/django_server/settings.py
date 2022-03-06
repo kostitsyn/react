@@ -25,12 +25,19 @@ SECRET_KEY = 'django-insecure-j+)(3_k_#!c1+j2)^e)(r2bz7k0_g$bo6(e9bly+te-nijl=$n
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = []
 CORS_ORIGIN_ALLOW_ALL = True
 # CORS_ALLOW_HEADERS = list(default_headers) + [
 #     "X-API-Key",
 # ]
-
+# CORS_ALLOW_METHODS = [
+#     "DELETE",
+#     "GET",
+#     "OPTIONS",
+#     "PATCH",
+#     "POST",
+#     "PUT",
+# ]
 
 CSRF_TRUSTED_ORIGINS = [
     "http://127.0.0.1:3000",
@@ -160,9 +167,13 @@ REST_FRAMEWORK = {
         'djangorestframework_camel_case.parser.CamelCaseJSONParser',
         # Any other parsers
     ),
-    # 'DEFAULT_AUTHENTICATION_CLASSES': (
-    #     'rest_framework.authentication.SessionAuthentication',
-    #     'rest_framework.authentication.TokenAuthentication',
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        # 'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
+    ),
+    # 'DEFAULT_PERMISSION_CLASSES': (
+    #     'rest_framework.permissions.AllowAny',
     # )
 }
 

@@ -1,10 +1,10 @@
 import React from 'react';
 import c from './Header.module.css';
-import Preloader from '../common/Preloader/Preloader';
 import {NavLink} from "react-router-dom";
 import default_ava from '../../assets/images/default_ava.png';
 
 const Header = (props) => {
+    debugger;
     return (
         <header className={c.header}>
             <div className={c.logo}>
@@ -23,10 +23,12 @@ const Header = (props) => {
             </div>
             <div className={c.controlMenu}>
                 {props.isAuth
-                ? <div>
+                ? (<div>
                     <img src={props.profile.user.imgLink ? props.profile.user.imgLink : default_ava} alt='ava' />
                     <svg fill="none" height="8" viewBox="0 0 12 8" width="12" xmlns="http://www.w3.org/2000/svg"><path clipRule="evenodd" d="M2.16 2.3a.75.75 0 011.05-.14L6 4.3l2.8-2.15a.75.75 0 11.9 1.19l-3.24 2.5c-.27.2-.65.2-.92 0L2.3 3.35a.75.75 0 01-.13-1.05z" fill="currentColor" fillRule="evenodd"></path></svg>
-                </div>
+                    <button onClick={props.logout}></button>
+                   </div>
+                   )
                 : <NavLink to={'/login'}>Login</NavLink>
                 }
 

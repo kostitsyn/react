@@ -1,4 +1,6 @@
 import {authAPI} from '../api/api';
+import {getUserProfile} from './profile-reducer';
+
 
 const SET_AUTH_USER = 'SET_AUTH_USER';
 
@@ -12,23 +14,43 @@ let initialState = {
 const authReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_AUTH_USER:
-            return {
-                ...state,
-                ...action.data,
-                isAuthenticated: true
-            }
+            let spam = {...action.payload};
+            debugger;
+            return spam;
         default:
             return state
     }
 }
 
-export const setAuthUserData = (userId, email, login) => ({type: SET_AUTH_USER, data: {userId, email, login}});
+export const setAuthUserData = (userId, email, login, isAuthenticated) => ({type: SET_AUTH_USER, payload: {userId, email, login, isAuthenticated}});
 
 
-export const login = (data) => {
-    return (dispatch) => {
+export const getAuthUserData = () => dispatch => {
+    debugger;
+    authAPI.getAuthData().then(response => {
         debugger;
-        authAPI.login(data.login, data.password)
+        if (response.resultCode === 0) {
+            let {userId, email, login} = response.data;
+            dispatch(setAuthUserData(userId, email, login, true));
+            dispatch(getUserProfile(userId));
+        }
+    })
+}
+
+export const login = ({login, password, rememberMe}) => {
+    return (dispatch) => {
+        authAPI.login(login, password, rememberMe).then(response => {
+            if (response.resultCode === 0) {
+                dispatch(getAuthUserData());
+
+            }
+        })
     }
+}
+
+export const logout = () => dispatch => {
+    authAPI.logout().then(response => {
+        dispatch(setAuthUserData(null, null, null, false));
+    })
 }
 export default authReducer;
