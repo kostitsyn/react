@@ -2,17 +2,19 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Users from './Users';
 import {addFriend, deleteFriend} from '../../../../redux/friends-reducer';
-import {getUsers} from '../../../../redux/users-reducer';
+import {requestUsers} from '../../../../redux/users-reducer';
+import {getFriends, getProfile, getUsers, getCurrentPage, getUsersCount, getPageSize, getIsFetching,
+getFollowingInProgress, getIsAuth} from '../../../../redux/users-selectors';
 
 
 class UsersContainer extends React.Component {
 
     componentDidMount() {
-        this.props.getUsers(this.props.pageSize, this.props.currentPage);
+        this.props.requestUsers(this.props.pageSize, this.props.currentPage);
     }
 
     changeUsersOnPage = (p) => {
-        this.props.getUsers(this.props.pageSize, p);
+        this.props.requestUsers(this.props.pageSize, p);
     }
 
     render () {
@@ -34,18 +36,32 @@ class UsersContainer extends React.Component {
     }
 }
 
+// let mapStateToProps = (state) => {
+//     return {
+//         friends: state.friendsPage.friends,
+//         profile: state.profilePage.profile,
+//         users: state.users.users,
+//         currentPage: state.users.currentPage,
+//         totalUsersCount: state.users.totalUsersCount,
+//         pageSize: state.users.pageSize,
+//         isFetching: state.users.isFetching,
+//         followingInProgress: state.users.followingInProgress,
+//         isAuth: state.auth.isAuthenticated,
+//     }
+// }
+
 let mapStateToProps = (state) => {
     return {
-        friends: state.friendsPage.friends,
-        profile: state.profilePage.profile,
-        users: state.users.users,
-        currentPage: state.users.currentPage,
-        totalUsersCount: state.users.totalUsersCount,
-        pageSize: state.users.pageSize,
-        isFetching: state.users.isFetching,
-        followingInProgress: state.users.followingInProgress,
-        isAuth: state.auth.isAuthenticated,
+        friends: getFriends(state),
+        profile: getProfile(state),
+        users: getUsers(state),
+        currentPage: getCurrentPage(state),
+        totalUsersCount: getUsersCount(state),
+        pageSize: getPageSize(state),
+        isFetching: getIsFetching(state),
+        followingInProgress: getFollowingInProgress(state),
+        isAuth: getIsAuth(state),
     }
 }
 
-export default connect(mapStateToProps, {addFriend, deleteFriend, getUsers})(UsersContainer);
+export default connect(mapStateToProps, {addFriend, deleteFriend, requestUsers})(UsersContainer);

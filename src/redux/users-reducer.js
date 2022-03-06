@@ -44,7 +44,7 @@ export const toggleFollowingInProgress = (isFetching, userId) => ({type: TOGGLE_
 export default usersReducer;
 
 
-export const getUsers = (pageSize, currentPage) => {
+export const requestUsers = (pageSize, currentPage) => {
     return (dispatch) => {
             dispatch(changePage(currentPage));
             dispatch(setToggle(true));
