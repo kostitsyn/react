@@ -4,7 +4,6 @@ import {NavLink} from "react-router-dom";
 import default_ava from '../../assets/images/default_ava.png';
 
 const Header = (props) => {
-    debugger;
     return (
         <header className={c.header}>
             <div className={c.logo}>

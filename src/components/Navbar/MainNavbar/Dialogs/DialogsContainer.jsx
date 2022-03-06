@@ -24,7 +24,9 @@ let mapStateToProps = (state) => {
     }
 }
 
+let spam = withAuthRedirect('login');
+
 export default compose(
-    withAuthRedirect,
+    spam,
     connect(mapStateToProps, {getDialogs})
 )(DialogsContainer);

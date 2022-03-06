@@ -1,7 +1,6 @@
 import React from 'react';
 import c from './Dialogs.module.css';
 import Companion from "./Companion/Companion";
-import {Navigate} from "react-router-dom";
 import Login from '../../../Login/Login';
 
 

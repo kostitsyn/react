@@ -90,18 +90,18 @@ export const authAPI = {
         })
     },
     login(username, password, rememberMe) {
-        return instance.post('api-token-auth/', {username, password}).then(response1 => {
-            debugger;
+        return instance.post('auth/login/', {username, password}).then(response2 => {
+            return response2.data;
+        })
+    },
+    getAuthToken(username, password, rememberMe) {
+        return instance.post('api-token-auth/', {username, password}).then(response => {
             const cookies = new Cookies();
-            let token = response1.data.token;
+            let token = response.data.token;
             cookies.set('authToken', token);
             rememberMe && cookies.set('rememberMe', true);
-            instance.defaults.headers.common['Authorization'] = `Token ${response1.data.token}`;
-            return instance.post('auth/login/', {username, password}).then(response2 => {
-                return response2.data;
-            })
+            instance.defaults.headers.common['Authorization'] = `Token ${response.data.token}`;
         })
-
     },
     logout() {
         return instance.delete('auth/login/').then(response => {

@@ -95,16 +95,13 @@ class MessageAPIView(APIView):
 class AuthDataAPIView(APIView):
 
     def get(self, request):
-        response_data = dict()
+        response_data = {'messages': [], 'result_code': 0, 'data': dict()}
         if request.user.is_authenticated:
             user_data = {'user_id': request.user.id, 'email': request.user.email, 'login': request.user.username}
-            response_data['result_code'] = 0
-            response_data['messages'] = []
             response_data['data'] = user_data
         else:
             response_data['result_code'] = 1
-            response_data['messages'] = ['You are not authorized']
-            response_data['data'] = dict()
+            response_data['messages'].append('You are not authorized')
 
         response = Response(response_data)
         return response
@@ -113,8 +110,9 @@ class AuthDataAPIView(APIView):
 class FollowAPIView(APIView):
     serializer_class = FollowSerializer
 
+
     def post(self, request, pk=None):
-        response_data = dict()
+        response_data = {'messages': [], 'result_code': 0, 'data': dict()}
         if request.user.id == pk:
             return Response(status=status.HTTP_400_BAD_REQUEST)
         user = User.objects.get(pk=request.user.id)
@@ -124,19 +122,16 @@ class FollowAPIView(APIView):
         is_exists = user_profile.friends.filter(pk=adding_friend_profile.id).exists()
         if is_exists:
             response_data['result_code'] = 1
-            response_data['messages'] = 'You already following this user'
-            response_data['data'] = dict()
+            response_data['messages'].append('Вы уже подписаны на этого пользователя')
         else:
             serializer = ProfileModelSerializer(adding_friend_profile)
-            response_data['result_code'] = 0
-            response_data['messages'] = []
             response_data['data'] = serializer.data
             user_profile.friends.add(adding_friend_profile)
             user_profile.save()
         return Response(response_data)
 
     def delete(self, request, pk=None):
-        response_data = dict()
+        response_data = {'messages': [], 'result_code': 0, 'data': dict()}
         if request.user.id == pk:
             return Response(status=status.HTTP_400_BAD_REQUEST)
         user = User.objects.get(pk=request.user.id)
@@ -146,32 +141,28 @@ class FollowAPIView(APIView):
         is_exists = user_profile.friends.filter(pk=removing_friend_profile.id).exists()
         if is_exists:
             serializer = ProfileModelSerializer(removing_friend_profile)
-            response_data['result_code'] = 0
-            response_data['messages'] = []
             response_data['data'] = serializer.data
             user_profile.friends.remove(removing_friend_profile)
             user_profile.save()
         else:
             response_data['result_code'] = 1
-            response_data['messages'] = 'You are not following this user'
-            response_data['data'] = dict()
+            response_data['messages'].append('You are not following this user')
         return Response(response_data)
 
 
 class LoginAPIView(APIView):
 
     def post(self, request, format=None):
-        response_data = dict()
+        response_data = {'messages': [], 'result_code': 0, 'data': dict()}
         username = request.data.get('username')
         password = request.data.get('password')
         user = auth.authenticate(username=username, password=password)
-        token = Token.objects.get(user_id=user.id)
+        token = ''
         if user:
+            token = Token.objects.get(user_id=user.id)
             auth.login(request, user)
-            response_data['response'] = 'success'
-            response_data['result_code'] = 0
         else:
-            response_data['response'] = 'error'
+            response_data['messages'].append('Неверный логин или пароль')
             response_data['result_code'] = 1
         response = Response(response_data)
         response.set_cookie('token', token, httponly=True)
@@ -180,7 +171,7 @@ class LoginAPIView(APIView):
         # return Response(response_data)
 
     def delete(self, request):
-        response_data = {'response': 'success', 'result_code': 0}
+        response_data = {'messages': [], 'result_code': 0, 'data': dict()}
         auth.logout(request)
         return Response(response_data)
 

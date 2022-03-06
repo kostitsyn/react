@@ -17,7 +17,6 @@ class HeaderContainer extends React.Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        debugger;
         if (nextProps.isAuth !== this.props.isAuth) {
             this.props.getUserProfile(nextProps.userId);
             return true;

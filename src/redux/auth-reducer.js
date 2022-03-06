@@ -1,5 +1,6 @@
 import {authAPI} from '../api/api';
 import {getUserProfile} from './profile-reducer';
+import {stopSubmit} from 'redux-form';
 
 
 const SET_AUTH_USER = 'SET_AUTH_USER';
@@ -14,9 +15,7 @@ let initialState = {
 const authReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_AUTH_USER:
-            let spam = {...action.payload};
-            debugger;
-            return spam;
+            return {...action.payload};
         default:
             return state
     }
@@ -26,9 +25,7 @@ export const setAuthUserData = (userId, email, login, isAuthenticated) => ({type
 
 
 export const getAuthUserData = () => dispatch => {
-    debugger;
     authAPI.getAuthData().then(response => {
-        debugger;
         if (response.resultCode === 0) {
             let {userId, email, login} = response.data;
             dispatch(setAuthUserData(userId, email, login, true));
@@ -42,9 +39,12 @@ export const login = ({login, password, rememberMe}) => {
         authAPI.login(login, password, rememberMe).then(response => {
             if (response.resultCode === 0) {
                 dispatch(getAuthUserData());
-
+            } else {
+                let message = response.messages.length > 0 ? response.messages[0] : 'Some error'
+                dispatch(stopSubmit('login', {_error: message}))
             }
         })
+        authAPI.getAuthToken(login, password, rememberMe);
     }
 }
 
