@@ -1,3 +1,5 @@
+import {createSelector} from 'reselect';
+
 export const getFriends = state => {
     return state.friendsPage.friends;
 }
@@ -6,9 +8,13 @@ export const getProfile = state => {
     return state.profilePage.profile;
 }
 
-export const getUsers = state => {
+const getUsersSelector = state => {
     return state.users.users;
 }
+
+export const getUsers = createSelector(getUsersSelector, users => {
+    return users.filter(u => true);
+})
 
 export const getCurrentPage = state => {
     return state.users.currentPage;
