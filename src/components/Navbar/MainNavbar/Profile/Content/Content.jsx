@@ -7,8 +7,9 @@ import yes from '../../../../../assets/images/yes.webp';
 import no from '../../../../../assets/images/no.gif';
 
 const Content = (props) => {
-        if (!props.users.length) {
-            return <Preloader />
+        if (!props.userId && !props.onURLid) {
+             return <Preloader />
+
         }
         let contacts = Object.keys(props.profile.contact).map((k, v) => <div key={k}>{k}: {props.profile.contact[k]}</div>)
         return (

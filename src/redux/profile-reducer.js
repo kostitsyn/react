@@ -20,7 +20,8 @@ const profileReducer = (state=initialState, action) => {
             return {...state, posts: [...state.posts, action.newPost]};
         }
         case SET_USER_PROFILE:
-            return {...state, profile: action.profile};
+            let spam = {...state, profile: action.profile};
+            return spam;
         case SET_PROFILE_ON_PAGE:
             return {...state, profileOnPage: action.profile};
         case SET_POSTS:

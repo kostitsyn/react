@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Header from './Header';
-import {getUserProfile} from '../../redux/profile-reducer';
+import {getUserProfile, getPosts} from '../../redux/profile-reducer';
 import {getAuthUserData} from '../../redux/auth-reducer';
 import {logout} from '../../redux/auth-reducer';
 import Cookies from "universal-cookie";
@@ -16,14 +16,25 @@ class HeaderContainer extends React.Component {
         Boolean(rememberMe) && this.props.getAuthUserData();
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        if (nextProps.isAuth !== this.props.isAuth) {
-            this.props.getUserProfile(nextProps.userId);
-            return true;
-        } else {
-            return false;
+    componentDidUpdate(prevProps, prevState) {
+        debugger;
+        if (this.props.isAuth && (prevProps.userId !== this.props.userId)) {
+            this.props.getUserProfile(this.props.userId);
         }
     }
+
+//     shouldComponentUpdate(nextProps, nextState) {
+//         debugger;
+//         if (nextProps.isAuth && (nextProps.isAuth !== this.props.isAuth)) {
+//             this.props.getUserProfile(nextProps.userId);
+//             this.props.getPosts(nextProps.userId);
+//             return true;
+//         } else if(nextProps.profile.id !== this.props.profile.id) {
+//             return true;
+//         } else {
+//             return false;
+//         }
+//     }
 
     render() {
         return <Header {...this.props} />
@@ -39,4 +50,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {getUserProfile, getAuthUserData, logout})(HeaderContainer);
+export default connect(mapStateToProps, {getUserProfile, getAuthUserData, logout, getPosts})(HeaderContainer);

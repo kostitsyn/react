@@ -20,30 +20,35 @@ const AddPostForm = (props) => {
 }
 const AddPostReduxForm = reduxForm({form: 'addPost'})(AddPostForm);
 
-const MyPosts = (props) => {
-
-    let profileUserId;
-    if (props.router.userId) {
-        profileUserId = props.router.userId;
-    } else {
-        profileUserId = props.userId;
+class MyPosts extends React.Component {
+    shouldComponentUpdate(nextProps, nextState) {
+        return nextProps != this.props;
     }
-    let currentUser = props.users.find(u => u.id === Number(profileUserId));
-    let postElements = props.posts.map(p => <PostItem message={p.text} likes={p.likes} currentUser={currentUser} comments={p.comments} key={p.id} />);
 
-    let addPost = (formData) => {
-        props.addPost(props.userId, formData.text);
-    }
-    return (
-        <div>
-            {!props.router.userId && <div className={c.addPost}></div>}
-            <AddPostReduxForm onSubmit={addPost}/>
-            <div className={c.posts}>
-                Posts:
-                {postElements}
+    render() {
+        let profileUserId;
+        if (this.props.router.userId) {
+            profileUserId = this.props.router.userId;
+        } else {
+            profileUserId = this.props.userId;
+        }
+        let currentUser = this.props.users.find(u => u.id === Number(profileUserId));
+        let postElements = this.props.posts.map(p => <PostItem message={p.text} likes={p.likes} currentUser={currentUser} comments={p.comments} key={p.id} />);
+
+        let addPost = (formData) => {
+            this.props.addPost(this.props.userId, formData.text);
+        }
+        return (
+            <div>
+                {!this.props.router.userId && <div className={c.addPost}></div>}
+                <AddPostReduxForm onSubmit={addPost}/>
+                <div className={c.posts}>
+                    Posts:
+                    {postElements}
+                </div>
             </div>
-        </div>
-    )
+        )
+    }
 }
 
 export default MyPosts;

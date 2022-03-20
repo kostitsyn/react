@@ -2,8 +2,12 @@ import React from 'react';
 import c from './Header.module.css';
 import {NavLink} from "react-router-dom";
 import default_ava from '../../assets/images/default_ava.png';
+import Preloader from '../common/Preloader/Preloader';
 
 const Header = (props) => {
+    if (!props.profile) {
+        return <Preloader />
+    }
     return (
         <header className={c.header}>
             <div className={c.logo}>

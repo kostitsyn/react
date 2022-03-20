@@ -4,6 +4,7 @@ import MyPosts from "./MyPosts";
 import {connect} from 'react-redux';
 import {withRouter} from '../../../../../../hoc/withRouter';
 import {compose} from 'redux';
+import {requestUsers} from '../../../../../../redux/users-reducer';
 
 
 class MyPostsContainer extends React.Component {
@@ -37,5 +38,5 @@ let mapStateToProps = (state) => {
 
 export default compose(
     withRouter,
-    connect(mapStateToProps, {addPost, getPosts})
+    connect(mapStateToProps, {addPost, getPosts, requestUsers})
 )(MyPostsContainer);

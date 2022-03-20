@@ -15,7 +15,7 @@ class ProfileContainer extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        if (this.props.router.userId !== prevProps.router.userId) {
+        if (this.props.router.userId !== prevProps.router.userId || this.props.posts !== prevProps.posts) {
             this.props.getProfileOnPage(this.props.profile, this.props.router.userId);
         }
     }

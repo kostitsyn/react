@@ -1,5 +1,5 @@
 import {authAPI} from '../api/api';
-import {getUserProfile} from './profile-reducer';
+import {getUserProfile, getProfileOnPage} from './profile-reducer';
 import {stopSubmit} from 'redux-form';
 
 
@@ -30,6 +30,7 @@ export const getAuthUserData = () => dispatch => {
             let {userId, email, login} = response.data;
             dispatch(setAuthUserData(userId, email, login, true));
             dispatch(getUserProfile(userId));
+            dispatch(getProfileOnPage(null, userId));
         }
     })
 }
