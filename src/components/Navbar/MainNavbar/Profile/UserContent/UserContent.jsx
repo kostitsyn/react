@@ -5,7 +5,6 @@ import default_ava from '../../../../../assets/images/default_ava.png';
 import Preloader from '../../../../common/Preloader/Preloader';
 
 const UserContent = (props) => {
-    debugger;
     if ((props.userId !== props.profile.id) && !props.urlId) {
         return <Preloader />
     }

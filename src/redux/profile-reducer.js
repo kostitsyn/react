@@ -2,6 +2,7 @@ import {usersAPI, profileAPI} from '../api/api';
 import {setFriends} from './friends-reducer';
 
 const SAVE_POST = 'SAVE_POST';
+const DELETE_POST = 'DELETE_POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_PROFILE_ON_PAGE = 'SET_PROFILE_ON_PAGE';
 const SET_POSTS = 'SET_POSTS';
@@ -19,9 +20,11 @@ const profileReducer = (state=initialState, action) => {
         case SAVE_POST: {
             return {...state, posts: [...state.posts, action.newPost]};
         }
+        case DELETE_POST: {
+            return {...state, posts: state.posts.filter(p => p.id !== action.postId)};
+        }
         case SET_USER_PROFILE:
-            let spam = {...state, profile: action.profile};
-            return spam;
+            return {...state, profile: action.profile};
         case SET_PROFILE_ON_PAGE:
             return {...state, profileOnPage: action.profile};
         case SET_POSTS:
@@ -34,6 +37,7 @@ const profileReducer = (state=initialState, action) => {
 }
 
 export const savePost = (newPost) => ({type: SAVE_POST, newPost});
+export const deletePost = (postId) => ({type: DELETE_POST, postId});
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
 export const setProfileOnPage = (profile) => ({type: SET_PROFILE_ON_PAGE, profile});
 export const setPosts = (posts) => ({type: SET_POSTS, posts});
@@ -66,6 +70,7 @@ export const getProfileOnPage = (profile, userId=null) => {
 export const getPosts = (userId) => {
     return (dispatch) => {
         usersAPI.getPosts(userId).then(data => {
+            debugger;
             dispatch(setPosts(data));
         })
     }

@@ -17,24 +17,10 @@ class HeaderContainer extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        debugger;
         if (this.props.isAuth && (prevProps.userId !== this.props.userId)) {
             this.props.getUserProfile(this.props.userId);
         }
     }
-
-//     shouldComponentUpdate(nextProps, nextState) {
-//         debugger;
-//         if (nextProps.isAuth && (nextProps.isAuth !== this.props.isAuth)) {
-//             this.props.getUserProfile(nextProps.userId);
-//             this.props.getPosts(nextProps.userId);
-//             return true;
-//         } else if(nextProps.profile.id !== this.props.profile.id) {
-//             return true;
-//         } else {
-//             return false;
-//         }
-//     }
 
     render() {
         return <Header {...this.props} />
