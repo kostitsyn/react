@@ -26,6 +26,7 @@ class MyPosts extends React.Component {
     }
 
     render() {
+
         let profileUserId;
         if (this.props.router.userId) {
             profileUserId = this.props.router.userId;

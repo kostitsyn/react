@@ -9,19 +9,21 @@ import {requestUsers} from '../../../../../../redux/users-reducer';
 
 class MyPostsContainer extends React.Component {
     componentDidMount() {
-        let {router, userId, getPosts} = this.props;
-        router.userId
-        ? getPosts(router.userId)
-        : getPosts(userId);
+        debugger;
+        let {router, userId, getPosts, users, requestUsers} = this.props;
+        router.userId ? getPosts(router.userId) : getPosts(userId);
+        users.length === 0 && requestUsers();
     }
 
     componentDidUpdate(prevProps) {
         let {router, userId, getPosts} = this.props;
-        if (router.userId !== prevProps.router.userId) {
-            router.userId
-            ? getPosts(router.userId)
-            : getPosts(userId);
-        }
+//         debugger;
+//         router.userId ? getPosts(router.userId) : getPosts(userId);
+//         if (router.userId !== prevProps.router.userId) {
+//             router.userId
+//             ? getPosts(router.userId)
+//             : getPosts(userId);
+//         }
     }
 
     render() {

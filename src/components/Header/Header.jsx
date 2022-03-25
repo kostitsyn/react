@@ -4,6 +4,7 @@ import {NavLink} from "react-router-dom";
 import default_ava from '../../assets/images/default_ava.png';
 import Preloader from '../common/Preloader/Preloader';
 
+
 const Header = ({profile, isAuth, logout}) => {
     if (!profile) {
          return <Preloader />

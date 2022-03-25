@@ -18,12 +18,14 @@ let initialState = {
 const usersReducer = (state=initialState, action) => {
     switch (action.type) {
         case SET_USERS:
+            debugger;
             return {...state, users: action.users};
         case CHANGE_CURRENT_PAGE:
             return {...state, currentPage: action.pageNumber};
         case GET_TOTAL_USERS_COUNT:
             return {...state, totalUsersCount: action.usersCount};
         case TOGGLE_IS_FETCHING:
+            debugger;
             return {...state, isFetching: action.isFetching};
         case TOGGLE_IS_FOLLOWING_IN_PROGRESS:
             return {...state, followingInProgress: action.isFetching
@@ -44,12 +46,13 @@ export const toggleFollowingInProgress = (isFetching, userId) => ({type: TOGGLE_
 export default usersReducer;
 
 
-export const requestUsers = (pageSize, currentPage) => {
+export const requestUsers = (pageSize=7, currentPage=1) => {
     return async (dispatch) => {
             dispatch(changePage(currentPage));
-            dispatch(setToggle(true));
+//            dispatch(setToggle(true));
             let data = await usersAPI.getUsers(pageSize, currentPage);
-            dispatch(setToggle(false));
+            debugger;
+//            dispatch(setToggle(false));
             dispatch(setUsers(data.results));
             dispatch(getTotalUsersCount(data.count));
     }

@@ -17,3 +17,4 @@ export const createField = (placeholder, name, validators, component, props={}, 
         <Field placeholder={placeholder} name={name} validate={validators} component={component} {...props}/>
     </div>
 )
+//https://vk.com/z=video72272338_456244447%2Fvideos283618632

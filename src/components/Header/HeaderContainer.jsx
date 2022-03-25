@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Header from './Header';
-import {getUserProfile, getPosts} from '../../redux/profile-reducer';
+import {getUserProfile} from '../../redux/profile-reducer';
 import {getAuthUserData} from '../../redux/auth-reducer';
 import {logout} from '../../redux/auth-reducer';
 import Cookies from "universal-cookie";
@@ -38,4 +38,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {getUserProfile, getAuthUserData, logout, getPosts})(HeaderContainer);
+export default connect(mapStateToProps, {getUserProfile, getAuthUserData, logout})(HeaderContainer);
