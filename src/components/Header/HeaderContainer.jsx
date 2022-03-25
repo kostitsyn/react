@@ -8,17 +8,19 @@ import Cookies from "universal-cookie";
 
 class HeaderContainer extends React.Component {
     componentDidMount() {
-        if (this.props.isAuth) {
-            this.props.getUserProfile(this.props.userId);
+        let {isAuth, userId, getUserProfile, getAuthUserData} = this.props;
+        if (isAuth) {
+            getUserProfile(userId);
         }
         const cookies = new Cookies();
         let rememberMe = cookies.get('rememberMe');
-        Boolean(rememberMe) && this.props.getAuthUserData();
+        Boolean(rememberMe) && getAuthUserData();
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if (this.props.isAuth && (prevProps.userId !== this.props.userId)) {
-            this.props.getUserProfile(this.props.userId);
+        let {isAuth, userId, getUserProfile} = this.props;
+        if (isAuth && (prevProps.userId !== userId)) {
+            getUserProfile(userId);
         }
     }
 

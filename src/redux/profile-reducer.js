@@ -1,12 +1,12 @@
 import {usersAPI, profileAPI} from '../api/api';
 import {setFriends} from './friends-reducer';
 
-const SAVE_POST = 'SAVE_POST';
-const DELETE_POST = 'DELETE_POST';
-const SET_USER_PROFILE = 'SET_USER_PROFILE';
-const SET_PROFILE_ON_PAGE = 'SET_PROFILE_ON_PAGE';
-const SET_POSTS = 'SET_POSTS';
-const SET_STATUS = 'SET_STATUS';
+const SAVE_POST = 'profile/SAVE_POST';
+const DELETE_POST = 'profile/DELETE_POST';
+const SET_USER_PROFILE = 'profile/SET_USER_PROFILE';
+const SET_PROFILE_ON_PAGE = 'profile/SET_PROFILE_ON_PAGE';
+const SET_POSTS = 'profile/SET_POSTS';
+const SET_STATUS = 'profile/SET_STATUS';
 
 
 let initialState = {
@@ -46,21 +46,18 @@ export const setStatus = (newStatus) => ({type: SET_STATUS, newStatus});
 export default profileReducer;
 
 export const getUserProfile = (userId) => {
-
-    return (dispatch) => {
-            profileAPI.getProfile(userId).then(data => {
-                dispatch(setUserProfile(data));
-                dispatch(setFriends(data.friends));
-            })
+    return async (dispatch) => {
+        let data = await profileAPI.getProfile(userId);
+        dispatch(setUserProfile(data));
+        dispatch(setFriends(data.friends));
     }
 }
 
 export const getProfileOnPage = (profile, userId=null) => {
-    return (dispatch) => {
+    return async (dispatch) => {
         if (userId) {
-            profileAPI.getProfile(userId).then(data => {
-                dispatch(setProfileOnPage(data));
-        })
+            let data = await profileAPI.getProfile(userId);
+            dispatch(setProfileOnPage(data));
         }else {
             dispatch(setProfileOnPage(profile));
         }
@@ -68,28 +65,24 @@ export const getProfileOnPage = (profile, userId=null) => {
 }
 
 export const getPosts = (userId) => {
-    return (dispatch) => {
-        usersAPI.getPosts(userId).then(data => {
-            debugger;
-            dispatch(setPosts(data));
-        })
+    return async (dispatch) => {
+        let data = await usersAPI.getPosts(userId);
+        dispatch(setPosts(data));
     }
 }
 
 export const addPost = (userId, text) => {
-    return (dispatch) => {
-        usersAPI.addPost(userId, text).then(data => {
-            dispatch(savePost(data));
-        })
+    return async (dispatch) => {
+        let data = await usersAPI.addPost(userId, text);
+        dispatch(savePost(data));
     }
 }
 
 export const saveStatus = (newStatus) => {
-    return (dispatch) => {
-        profileAPI.saveStatus(newStatus).then(data => {
-            if (data.resultCode === 0) {
-                dispatch(setStatus(data.data.status));
-            }
-        })
+    return async (dispatch) => {
+        let data = await profileAPI.saveStatus(newStatus);
+        if (data.resultCode === 0) {
+            dispatch(setStatus(data.data.status));
+        }
     }
 }

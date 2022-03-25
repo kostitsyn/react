@@ -27,9 +27,10 @@ class ProfileStatus extends React.Component {
     }
     // В моём варианте реализации данный метод не нужен, т.к. получение профиля и статуса выполняется в одном запросе
     componentDidUpdate(prevProps, prevState) {
-        if (prevProps.status !== this.props.status) {
+        let {status} = this.props;
+        if (prevProps.status !== status) {
             this.setState({
-                status: this.props.status
+                status: status
             })
         }
     }

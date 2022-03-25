@@ -2,39 +2,34 @@ import React from 'react';
 import User from './User/User';
 import c from './Users.module.css';
 import Preloader from '../../../common/Preloader/Preloader';
+import Paginator from '../../../common/Paginator/Paginator';
 
-const Users = (props) => {
-    let users;
-    if (!props.profile) {
-        users = props.users;
+const Users = ({profile, users, isAuth, totalUsersCount, friends, pageSize, currentPage, isFetching,
+                addFriend, deleteFriend, followingInProgress, changeUsersOnPage}) => {
+    let allUsers;
+    if (!profile) {
+        allUsers = users;
     } else {
-        users = props.users.filter(u => u.id !==props.profile.id);
+        allUsers = users.filter(u => u.id !== profile.id);
     }
 
 
-let userElements = users.map(u => <User  addFriend={props.addFriend}
-                                         deleteFriend={props.deleteFriend}
-                                         followed={props.friends.includes(u.id)}
-                                         followingInProgress={props.followingInProgress}
+let userElements = allUsers.map(u => <User  addFriend={addFriend}
+                                         deleteFriend={deleteFriend}
+                                         followed={friends.includes(u.id)}
+                                         followingInProgress={followingInProgress}
                                          user={u}
-                                         isAuth={props.isAuth}
+                                         isAuth={isAuth}
                                          key={u.id} />);
 
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
 
-    let pageNumbers = [];
-    for(let i=1; i<=pagesCount; ++i) {
-        pageNumbers.push(i);
-    }
     return (
         <>
-            {props.isFetching
+            {isFetching
             ? <Preloader/>
             : <div>
-                <div>
-                    {pageNumbers.map(p => {
-                        return <span key={p} onClick={(e) => props.changeUsersOnPage(p)} className={props.currentPage === p ? c.selectedPage : undefined}>{p}</span>})}
-                </div>
+                <Paginator totalUsersCount={totalUsersCount} pageSize={pageSize}
+                currentPage={currentPage} changeUsersOnPage={changeUsersOnPage}/>
                 <div className={c.users}>
                     {userElements}
                 </div>

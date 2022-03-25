@@ -4,16 +4,16 @@ import Content from "./Content/Content";
 import c from "./Profile.module.css";
 import Preloader from '../../../common/Preloader/Preloader';
 
-const Profile = (props) => {
-    if (!props.profileOnPage) {
+const Profile = ({friends, users, userId, router, status, updateStatusText, saveStatus, profileOnPage}) => {
+    if (!profileOnPage) {
         return <Preloader />
     }
     return (
         <main className={c.profile}>
-            <UserContent friends={props.friends} users={props.users} profile={props.profileOnPage} userId={props.userId} urlId={props.router.userId}/>
-            <Content friends={props.friends} users={props.users} profile={props.profileOnPage}
-            saveStatus={props.saveStatus} userId={props.userId} onURLid={props.router.userId}
-            updateStatusText={props.updateStatusText} status={props.status}/>
+            <UserContent friends={friends} users={users} profile={profileOnPage} userId={userId} urlId={router.userId}/>
+            <Content friends={friends} users={users} profile={profileOnPage}
+            saveStatus={saveStatus} userId={userId} onURLid={router.userId}
+            updateStatusText={updateStatusText} status={status}/>
         </main>
     )
 }

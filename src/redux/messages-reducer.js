@@ -1,8 +1,8 @@
 import {messagesAPI} from '../api/api';
 
-const SAVE_MESSAGE = 'SAVE_MESSAGE';
+const SAVE_MESSAGE = 'messages/SAVE_MESSAGE';
 
-const SET_MESSAGES = 'SET_MESSAGES';
+const SET_MESSAGES = 'messages/SET_MESSAGES';
 
 
 let initialState = {
@@ -38,10 +38,9 @@ export const saveMessage = (newMessage) => ({type: SAVE_MESSAGE, newMessage});
 export const setMessages = (messages) => ({type: SET_MESSAGES, messages});
 
 export const addMessage = (dialogId, sender, recipient, text) => {
-    return (dispatch) => {
-        messagesAPI.addMessage(dialogId, sender, recipient, text).then(data => {
-            dispatch(saveMessage(data));
-        })
+    return async (dispatch) => {
+    let data = await messagesAPI.addMessage(dialogId, sender, recipient, text);
+    dispatch(saveMessage(data));
     }
 }
 

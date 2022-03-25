@@ -1,12 +1,12 @@
 import React from 'react';
 import ProfileStatusWithHooks from './ProfileStatusWithHooks';
 
-const ContentHeader = (props) => {
+const ContentHeader = ({profile, statusText, userId, saveStatus, updateStatusText, status}) => {
     return (
         <div>
-            <h3>{props.profile.fullName}</h3>
-            <ProfileStatusWithHooks profile={props.profile} statusText={props.statusText} userId={props.userId}
-            saveStatus={props.saveStatus} updateStatusText={props.updateStatusText} status={props.status} />
+            <h3>{profile.fullName}</h3>
+            <ProfileStatusWithHooks profile={profile} statusText={statusText} userId={userId}
+            saveStatus={saveStatus} updateStatusText={updateStatusText} status={status} />
         </div>
     )
 }

@@ -10,11 +10,13 @@ getFollowingInProgress, getIsAuth} from '../../../../redux/users-selectors';
 class UsersContainer extends React.Component {
 
     componentDidMount() {
-        this.props.requestUsers(this.props.pageSize, this.props.currentPage);
+        let {pageSize, currentPage, requestUsers} = this.props;
+        requestUsers(pageSize, currentPage);
     }
 
     changeUsersOnPage = (p) => {
-        this.props.requestUsers(this.props.pageSize, p);
+        let {pageSize, requestUsers} = this.props;
+        requestUsers(pageSize, p);
     }
 
     render () {

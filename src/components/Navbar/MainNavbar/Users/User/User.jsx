@@ -6,28 +6,28 @@ import {usersAPI} from '../../../../../api/api';
 import {NavLink} from "react-router-dom";
 
 
-const User = (props) => {
+const User = ({user, isAuth, followed, addFriend, deleteFriend, followingInProgress}) => {
 
-    let addFriend = (userId) => {
-        props.addFriend(userId);
+    let setFriend = (userId) => {
+        addFriend(userId);
 
     }
 
-    let deleteFriend = (userId) => {
-        props.deleteFriend(userId);
+    let removeFriend = (userId) => {
+        deleteFriend(userId);
     }
     return (
         <div className={c.friend}>
-            <NavLink to={`/profile/${props.user.id}`} className={c.userLink}>
-                <img src={props.user.imgLink} alt='ava'/>
-                <span className={c.friendName}>{props.user.username}</span>
+            <NavLink to={`/profile/${user.id}`} className={c.userLink}>
+                <img src={user.imgLink} alt='ava'/>
+                <span className={c.friendName}>{user.username}</span>
             </NavLink>
             <a href='#' className={c.writeMsg}>Написать сообщение</a>
 
-            {props.isAuth
-                ? (props.followed
-                        ? <button disabled={props.followingInProgress.some(id => id===props.user.id)} onClick={() => deleteFriend(props.user.id)}>Удалить из друзей</button>
-                        : <button disabled={props.followingInProgress.some(id => id===props.user.id)} onClick={() => addFriend(props.user.id)}>Добавить в друзья</button>
+            {isAuth
+                ? (followed
+                        ? <button disabled={followingInProgress.some(id => id===user.id)} onClick={() => removeFriend(user.id)}>Удалить из друзей</button>
+                        : <button disabled={followingInProgress.some(id => id===user.id)} onClick={() => setFriend(user.id)}>Добавить в друзья</button>
                     )
                 : null
             }

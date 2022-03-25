@@ -8,9 +8,9 @@ import {Element} from '../../../../../common/FormsControls/FormsControls';
 const maxLengthValidator10 = maxLengthCreator(10);
 const Textarea = Element('textarea');
 
-const AddPostForm = (props) => {
+const AddPostForm = ({handleSubmit}) => {
     return (
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <label htmlFor='addPost'>Add post: </label>
             <Field validate={[required, maxLengthValidator10]} name='text'
             placeholder='Введите текст записи' id='addPost' component={Textarea}/>

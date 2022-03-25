@@ -8,7 +8,8 @@ import {compose} from 'redux';
 
 class DialogsContainer extends React.Component {
     componentDidMount() {
-        this.props.getDialogs(this.props.userId);
+        let {userId, getDialogs} = this.props;
+        getDialogs(userId);
     }
 
     render() {

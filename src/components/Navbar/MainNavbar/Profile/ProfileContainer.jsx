@@ -10,13 +10,15 @@ import {compose} from 'redux';
 class ProfileContainer extends React.Component {
 
     componentDidMount() {
-        let userId = this.props.router.userId;
-        this.props.getProfileOnPage(this.props.profile, userId);
+        let {router, profile, getProfileOnPage} = this.props;
+        let userId = router.userId;
+        getProfileOnPage(profile, userId);
     }
 
     componentDidUpdate(prevProps) {
-        if (this.props.router.userId !== prevProps.router.userId || this.props.posts !== prevProps.posts) {
-            this.props.getProfileOnPage(this.props.profile, this.props.router.userId);
+        let {router, posts, profile, getProfileOnPage} = this.props;
+        if (router.userId !== prevProps.router.userId || posts !== prevProps.posts) {
+            getProfileOnPage(profile, router.userId);
         }
     }
 

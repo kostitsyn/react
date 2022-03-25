@@ -9,9 +9,9 @@ import {Element} from '../../../common/FormsControls/FormsControls';
 const maxLengthValidator15 = maxLengthCreator(15);
 const Textarea = Element('textarea');
 
-const AddMessageForm = (props) => {
+const AddMessageForm = ({handleSubmit}) => {
     return (
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <Field name='text' validate={[required, maxLengthValidator15]}
             placeholder='Введите сообщение' component={Textarea} />
             <button>Сохранить</button>
@@ -21,19 +21,19 @@ const AddMessageForm = (props) => {
 
 const AddMessageReduxForm = reduxForm({form: 'addMsg'})(AddMessageForm);
 
-const Messages = (props) => {
-    let currentMessages = props.messages.find(m => m.dialogId === Number(props.router.id));
-    let companionId = currentMessages.messages[0].sender.id !== props.userId
+const Messages = ({messages, router, userId, addMessage}) => {
+    let currentMessages = messages.find(m => m.dialogId === Number(router.id));
+    let companionId = currentMessages.messages[0].sender.id !== userId
                                         ? currentMessages.messages[0].sender.id
                                         : currentMessages.messages[0].recipient.id;
-    let messageElements = currentMessages.messages.map(m => m.sender.id !== props.userId
+    let messageElements = currentMessages.messages.map(m => m.sender.id !== userId
                               ? <MessageCompanion companion={m.sender} message={m.text} date={m.dateSend} key={`${m.id}${m.message}`} />
                               : <OwnMessage currentUser={m.sender} message={m.text} date={m.dateSend} key={`${m.id}${m.message}`} /> )
 
 
 
     let addMsg = (formData) => {
-        props.addMessage(currentMessages.dialogId, props.userId, companionId,  formData.text);
+        addMessage(currentMessages.dialogId, userId, companionId,  formData.text);
     }
 
     return (

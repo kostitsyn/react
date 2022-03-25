@@ -1,7 +1,7 @@
 import {dialogsAPI} from '../api/api';
 import {setMessages} from './messages-reducer';
 
-const SET_DIALOGS = 'SET_DIALOGS';
+const SET_DIALOGS = 'dialogs/SET_DIALOGS';
 
 
 let initialState = {
@@ -21,13 +21,12 @@ const dialogsReducer = (state=initialState, action) => {
 export const setDialogs = (dialogs) => ({type: SET_DIALOGS, dialogs});
 
 export const getDialogs = (userId) => {
-    return (dispatch) => {
-        dialogsAPI.getDialogs(userId).then(data => {
-            dispatch(setDialogs(data));
-            for (let i=0; i<data.length; i++) {
-                dispatch(setMessages({dialogId: data[i].id, messages: data[i].messages}));
-            }
-        })
+    return async (dispatch) => {
+        let data = await dialogsAPI.getDialogs(userId)
+        dispatch(setDialogs(data));
+        for (let i=0; i<data.length; i++) {
+            dispatch(setMessages({dialogId: data[i].id, messages: data[i].messages}));
+        }
     }
 }
 

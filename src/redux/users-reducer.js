@@ -1,10 +1,10 @@
 import {usersAPI} from '../api/api';
 
-const SET_USERS = 'SET_USERS';
-const CHANGE_CURRENT_PAGE = 'CHANGE_CURRENT_PAGE';
-const GET_TOTAL_USERS_COUNT = 'GET_TOTAL_USERS_COUNT';
-const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
-const TOGGLE_IS_FOLLOWING_IN_PROGRESS = 'TOGGLE_IS_FOLLOWING_IN_PROGRESS';
+const SET_USERS = 'users/SET_USERS';
+const CHANGE_CURRENT_PAGE = 'users/CHANGE_CURRENT_PAGE';
+const GET_TOTAL_USERS_COUNT = 'users/GET_TOTAL_USERS_COUNT';
+const TOGGLE_IS_FETCHING = 'users/TOGGLE_IS_FETCHING';
+const TOGGLE_IS_FOLLOWING_IN_PROGRESS = 'users/TOGGLE_IS_FOLLOWING_IN_PROGRESS';
 
 let initialState = {
     users: [],
@@ -45,13 +45,12 @@ export default usersReducer;
 
 
 export const requestUsers = (pageSize, currentPage) => {
-    return (dispatch) => {
+    return async (dispatch) => {
             dispatch(changePage(currentPage));
             dispatch(setToggle(true));
-            usersAPI.getUsers(pageSize, currentPage).then(data => {
-                dispatch(setToggle(false));
-                dispatch(setUsers(data.results));
-                dispatch(getTotalUsersCount(data.count));
-            })
+            let data = await usersAPI.getUsers(pageSize, currentPage);
+            dispatch(setToggle(false));
+            dispatch(setUsers(data.results));
+            dispatch(getTotalUsersCount(data.count));
     }
 }

@@ -4,8 +4,8 @@ import Companion from "./Companion/Companion";
 import Login from '../../../Login/Login';
 
 
-const Dialogs = (props) => {
-    let userElements = props.dialogs.map(d => <Companion userId={props.userId} dialog={d} key={d.id} />)
+const Dialogs = ({dialogs, userId}) => {
+    let userElements = dialogs.map(d => <Companion userId={userId} dialog={d} key={d.id} />)
 
     return (
         <div className={c.messages}>
