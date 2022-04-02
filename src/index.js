@@ -1,23 +1,12 @@
 import React from 'react';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import store from './redux/redux-store';
 import ReactDOM from 'react-dom';
-import App from './App';
-import {BrowserRouter} from "react-router-dom";
-import {Provider} from 'react-redux';
+import SamuraiJSApp from './App';
+import store from './redux/redux-store';
 
 let render = (state) => {
-    ReactDOM.render(
-        <React.StrictMode>
-            <BrowserRouter>
-                <Provider store={store}>
-                    <App store={store}/>
-                </Provider>
-            </BrowserRouter>
-        </React.StrictMode>,
-        document.getElementById('root')
-    );
+    ReactDOM.render(<SamuraiJSApp />, document.getElementById('root'));
 }
 
 render(store.getState());
