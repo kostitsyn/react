@@ -29,7 +29,7 @@ class Contact(models.Model):
         verbose_name_plural = 'Контакты'
 
     def __str__(self):
-        return f'Контакты пользователя {self.profile.user_id.name}'
+        return f'Контакты пользователя {self.profile.user.username}'
 
 
 class Photo(models.Model):
@@ -39,7 +39,7 @@ class Photo(models.Model):
 
     def __str__(self):
         print()
-        return f'Фотографии пользователя {self.profile.user_id.name}'
+        return f'Фотографии пользователя {self.profile.user.username}'
 
     class Meta:
         verbose_name = 'Фото'

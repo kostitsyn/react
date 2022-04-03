@@ -5,7 +5,7 @@ import Preloader from '../../../common/Preloader/Preloader';
 import Paginator from '../../../common/Paginator/Paginator';
 
 const Users = ({profile, users, isAuth, totalUsersCount, friends, pageSize, currentPage, isFetching,
-                addFriend, deleteFriend, followingInProgress, changeUsersOnPage}) => {
+                addFriend, deleteFriend, followingInProgress, changeUsersOnPage, requestUsers}) => {
     let allUsers;
     if (!profile) {
         allUsers = users;
@@ -28,15 +28,13 @@ let userElements = allUsers.map(u => <User  addFriend={addFriend}
             {isFetching
             ? <Preloader/>
             : <div>
-                <Paginator totalUsersCount={totalUsersCount} pageSize={pageSize}
-                currentPage={currentPage} changeUsersOnPage={changeUsersOnPage}/>
+                <Paginator totalObjectsCount={totalUsersCount} pageSize={pageSize}
+                currentPage={currentPage} changeUsersOnPage={changeUsersOnPage} requestObjects={requestUsers}/>
                 <div className={c.users}>
                     {userElements}
                 </div>
             </div>
             }
-
-
         </>
     )
 }

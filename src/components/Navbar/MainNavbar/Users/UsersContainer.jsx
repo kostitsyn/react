@@ -32,7 +32,8 @@ class UsersContainer extends React.Component {
                friends={this.props.friends}
                changeUsersOnPage={this.changeUsersOnPage}
                isFetching={this.props.isFetching}
-               followingInProgress={this.props.followingInProgress} />
+               followingInProgress={this.props.followingInProgress}
+               requestUsers={this.props.requestUsers}/>
         )
 
     }
