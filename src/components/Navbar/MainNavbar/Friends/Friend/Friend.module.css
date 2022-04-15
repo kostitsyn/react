@@ -39,6 +39,7 @@
     grid-area: l;
     align-self: end;
     padding-bottom: 10px;
+    cursor: pointer;
 
 }
 

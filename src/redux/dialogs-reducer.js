@@ -2,6 +2,7 @@ import {dialogsAPI} from '../api/api';
 import {setMessages} from './messages-reducer';
 
 const SET_DIALOGS = 'dialogs/SET_DIALOGS';
+const CREATE_DIALOGS = 'dialogs/CREATE_DIALOGS';
 
 
 let initialState = {

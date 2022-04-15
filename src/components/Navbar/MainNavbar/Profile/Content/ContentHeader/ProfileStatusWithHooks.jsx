@@ -15,10 +15,12 @@ const ProfileStatusWithHooks = ({status, saveStatus, userId, profile}) => {
 
     const deactivateEditMode = () => {
         setEditMode(false);
+        debugger;
         saveStatus(stateStatus);
     }
 
     const updateStatusText = event => {
+        debugger;
         setStatus(event.target.value);
     }
 
@@ -28,7 +30,7 @@ const ProfileStatusWithHooks = ({status, saveStatus, userId, profile}) => {
             ? (editMode
                 ? <div>
                     <input autoFocus={true} onBlur={deactivateEditMode}
-                    onChange={updateStatusText} value={status}/>
+                    onChange={updateStatusText} value={stateStatus}/>
                   </div>
                 : <div>
                     <span onDoubleClick={activateEditMode}>{status || '-------'}</span>
