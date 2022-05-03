@@ -1,20 +1,25 @@
 import React from 'react';
 import c from './UserContent.module.css';
 import FriendsContentContainer from "./FriendsContent/FriendsContentContainer";
-import default_ava from '../../../../../assets/images/default_ava.png';
 import Preloader from '../../../../common/Preloader/Preloader';
+import Avatar from '../../../../common/Avatar/Avatar';
 
-const UserContent = (props) => {
-    if ((props.userId !== props.profile.id) && !props.urlId) {
+const UserContent = ({profile, userId, urlId, saveAvatar, img}) => {
+    if ((userId !== profile.id) && !urlId) {
         return <Preloader />
+    }
+    const changeAvatar = e => {
+        if (e.target.files.length){
+            saveAvatar(e.target.files[0])
+        }
+
     }
     return (
         <div className={c.userContent}>
             <div className={c.avatar}>
-                {props.profile.user.imgLink
-                ? <img src={props.profile.user.imgLink} alt='avatar'/>
-                : <img src={default_ava} alt='avatar'/>}
+                <Avatar user={profile.user} img={img}/>
             </div>
+            <input type={'file'} onChange={changeAvatar}/>
             <div>
                 Presents
             </div>

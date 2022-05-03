@@ -20,7 +20,11 @@ const getCSRFToken = name => {
 const getAuthToken = name => {
     const cookies = new Cookies();
     let rememberMe = cookies.get('rememberMe');
-    return Boolean(rememberMe) && cookies.get(name)
+//     if (rememberMe) {
+//         return rememberMe;
+//     }
+//     return cookies.get(name);
+    return Boolean(rememberMe) || cookies.get(name);
 }
 
 
@@ -77,6 +81,14 @@ export const profileAPI = {
     },
     saveStatus(newStatus) {
         return instance.patch(`profile/edit_status/`, {status: newStatus}).then(response => {
+            return response.data;
+        })
+    },
+    changeAvatar(file) {
+        const formData = new FormData();
+        formData.append('ava', file);
+        return instance.patch('profile/change_photo/', formData,
+        {headers: {'Content-Type': 'multipart/form-data'}}).then(response => {
             return response.data;
         })
     }

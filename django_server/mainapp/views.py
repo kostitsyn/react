@@ -13,6 +13,7 @@ from django.contrib import auth
 from django.views.decorators.csrf import ensure_csrf_cookie
 from rest_framework.decorators import api_view
 from rest_framework.authtoken.models import Token
+from django.conf import settings
 
 
 @ensure_csrf_cookie
@@ -30,12 +31,24 @@ class ProfileModelViewSet(ModelViewSet):
     queryset = Profile.objects.all()
     serializer_class = ProfileModelSerializer
 
+    @action(detail=False, methods=['patch'])
+    def change_photo(self, request):
+        response_data = {'messages': [], 'result_code': 0, 'data': dict()}
+        serializer = UserModelSerializer(request.user, data={'img_file': request.FILES.get('ava')}, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            response_data['data'] = {'ava': f"{settings.DOMAIN_NAME}{serializer.data.get('img_file')}"}
+        else:
+            response_data['result_code'] = 1
+            response_data['messages'].append('Не удалось сменить аватарку')
+        return Response(response_data)
+
 
     @action(detail=False, methods=['patch'])
-    def edit_status(self, requset):
+    def edit_status(self, request):
         response_data = {'messages': [], 'result_code': 0, 'data': dict()}
-        profile = requset.user.profile
-        new_status = requset.data.get('status')
+        profile = request.user.profile
+        new_status = request.data.get('status')
         if len(new_status) > 256:
             response_data['result_code'] = 1
             response_data['messages'].append('Превышена максимальная длина строки статуса (256)')
@@ -174,7 +187,3 @@ class LoginAPIView(APIView):
         response_data = {'messages': [], 'result_code': 0, 'data': dict()}
         auth.logout(request)
         return Response(response_data)
-
-
-
-

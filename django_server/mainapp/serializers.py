@@ -5,13 +5,13 @@ from .models import User, Profile, Photo, Contact, Message, Dialog, Post
 class UserModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'username', 'img_link')
+        fields = ('id', 'username', 'img_link', 'img_file')
 
 
 class PhotoModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Photo
-        fields = ('small', 'large')
+        fields = ('small_url', 'small_file', 'large_url', 'large_file')
 
 
 class ContactModelSerializer(serializers.ModelSerializer):

@@ -1,7 +1,7 @@
 import React from 'react';
 import Profile from './Profile';
 import {connect} from 'react-redux';
-import {getProfileOnPage, saveStatus} from '../../../../redux/profile-reducer';
+import {getProfileOnPage, saveStatus, saveAvatar} from '../../../../redux/profile-reducer';
 import {withAuthRedirect} from "../../../../hoc/AuthRedirect";
 import {withRouter} from '../../../../hoc/withRouter';
 import {compose} from 'redux';
@@ -31,6 +31,7 @@ class ProfileContainer extends React.Component {
 let mapStateToProps = (state) => {
     return {
         profile: state.profilePage.profile,
+        img: state.profilePage.profile.user.imgFile,
         profileOnPage: state.profilePage.profileOnPage,
         friends: state.friendsPage.friends,
         users: state.users.users,
@@ -44,5 +45,5 @@ let mapStateToProps = (state) => {
 export default compose(
     withAuthRedirect,
     withRouter,
-    connect(mapStateToProps, {getProfileOnPage, saveStatus})
+    connect(mapStateToProps, {getProfileOnPage, saveStatus, saveAvatar})
 )(ProfileContainer);

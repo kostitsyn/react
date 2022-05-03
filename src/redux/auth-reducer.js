@@ -31,19 +31,22 @@ export const getAuthUserData = () => async (dispatch) => {
         dispatch(setAuthUserData(userId, email, login, true));
         dispatch(getUserProfile(userId));
         dispatch(getProfileOnPage(null, userId));
+    } else {
+        dispatch(setAuthUserData(null, null, null, false));
     }
 }
 
 export const login = ({login, password, rememberMe}) => {
     return async (dispatch) => {
         let response = await authAPI.login(login, password, rememberMe);
+        await authAPI.getAuthToken(login, password, rememberMe);
         if (response.resultCode === 0) {
             dispatch(getAuthUserData());
         } else {
             let message = response.messages.length > 0 ? response.messages[0] : 'Some error'
             dispatch(stopSubmit('login', {_error: message}))
         }
-        authAPI.getAuthToken(login, password, rememberMe);
+
     }
 }
 

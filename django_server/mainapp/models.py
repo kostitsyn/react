@@ -1,9 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+import urllib.request
+import os
+from django.core.files import File
 
 
 class User(AbstractUser):
     img_link = models.URLField(max_length=512, blank=True, verbose_name='аватарка')
+    img_file = models.ImageField(upload_to='avatars/ava', blank=True, verbose_name='файл аватарки')
 
     class Meta:
         verbose_name = 'Пользователь'
@@ -12,6 +16,17 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.username
+
+    def save(self, *args, **kwargs):
+        self.get_remote_image()
+        super().save(*args, **kwargs)
+
+    def get_remote_image(self):
+        if self.img_link and not self.img_file:
+            result = urllib.request.urlretrieve(self.img_link)
+            self.img_file.save(os.path.basename(self.img_link),
+                                 File(open(result[0])))
+
 
 
 class Contact(models.Model):
@@ -33,17 +48,36 @@ class Contact(models.Model):
 
 
 class Photo(models.Model):
-    small = models.URLField(max_length=1024, verbose_name='Малое фото')
-    large = models.URLField(max_length=1024, verbose_name='Большое фото')
+    small_url = models.URLField(max_length=1024, blank=True, verbose_name='Малое фото')
+    small_file = models.ImageField(upload_to='avatars/small', blank=True, verbose_name='Файл малого фото')
+
+    large_url = models.URLField(max_length=1024, blank=True, verbose_name='Большое фото')
+    large_file = models.ImageField(upload_to='avatars/large', blank=True, verbose_name='Файл большого фото')
+
     profile = models.OneToOneField('Profile', default=1, on_delete=models.CASCADE)
 
     def __str__(self):
-        print()
         return f'Фотографии пользователя {self.profile.user.username}'
 
     class Meta:
         verbose_name = 'Фото'
         verbose_name_plural = 'Фотографии'
+
+    def save(self, *args, **kwargs):
+        self.get_remote_image()
+        super().save(*args, **kwargs)
+
+    def get_remote_image(self):
+        if self.small_url and not self.small_file:
+            result = urllib.request.urlretrieve(self.small_url)
+            self.small_file.save(os.path.basename(self.small_url),
+                                 File(open(result[0])))
+            self.save()
+        if self.large_url and not self.large_file:
+            result = urllib.request.urlretrieve(self.large_url)
+            self.large_file.save(os.path.basename(self.large_url),
+                                 File(open(result[0])))
+            self.save()
 
 
 # class Friend(models.Model):

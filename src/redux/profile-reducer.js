@@ -7,6 +7,7 @@ const SET_USER_PROFILE = 'profile/SET_USER_PROFILE';
 const SET_PROFILE_ON_PAGE = 'profile/SET_PROFILE_ON_PAGE';
 const SET_POSTS = 'profile/SET_POSTS';
 const SET_STATUS = 'profile/SET_STATUS';
+const SET_AVATAR = 'profile/SET_AVATAR';
 
 
 let initialState = {
@@ -30,7 +31,11 @@ const profileReducer = (state=initialState, action) => {
         case SET_POSTS:
             return {...state, posts: action.posts};
         case SET_STATUS:
-              return {...state, profile: {...state.profile, aboutMe: action.newStatus}};
+            return {...state, profile: {...state.profile, aboutMe: action.newStatus}};
+        case SET_AVATAR:
+//            let spam = {...state, profile: {...state.profile, user: {...state.profile.user, imgFile: `127.0.0.1:8000${action.file}`}}}
+            let spam = {...state, profile: {...state.profile, user: {...state.profile.user, imgFile: action.file}}}
+            return spam
         default:
             return state;
     }
@@ -42,6 +47,7 @@ export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
 export const setProfileOnPage = (profile) => ({type: SET_PROFILE_ON_PAGE, profile});
 export const setPosts = (posts) => ({type: SET_POSTS, posts});
 export const setStatus = (newStatus) => ({type: SET_STATUS, newStatus});
+export const setAvatar = (file) => ({type: SET_AVATAR, file});
 
 export default profileReducer;
 
@@ -83,6 +89,15 @@ export const saveStatus = (newStatus) => {
         let data = await profileAPI.saveStatus(newStatus);
         if (data.resultCode === 0) {
             dispatch(setStatus(data.data.status));
+        }
+    }
+}
+
+export const saveAvatar = (file) => {
+    return async (dispatch) => {
+        let data = await profileAPI.changeAvatar(file);
+        if (data.resultCode === 0) {
+            dispatch(setAvatar(data.data.ava));
         }
     }
 }

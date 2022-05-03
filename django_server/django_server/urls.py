@@ -19,6 +19,8 @@ from rest_framework.routers import DefaultRouter
 from mainapp.views import UserModelViewSet, ProfileModelViewSet, AuthDataAPIView, \
     FollowAPIView, DialogModelViewSet, MessageAPIView, PostModelViewSet, LoginAPIView, set_csrf_token
 from rest_framework.authtoken import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 router = DefaultRouter()
 router.register('users', UserModelViewSet)
@@ -36,5 +38,9 @@ urlpatterns = [
     path('api/message/<int:pk>/', MessageAPIView.as_view()),
     path('accounts/', include('django.contrib.auth.urls')),
     path('api/auth/login/', LoginAPIView.as_view()),
-    path('api/set-csrf-cookie/', set_csrf_token)
+    path('api/set-csrf-cookie/', set_csrf_token),
+    # path('api/profile/photo/', AvatarAPIView.as_view()),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
